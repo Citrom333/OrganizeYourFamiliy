@@ -152,8 +152,8 @@ namespace backend.Migrations
                 name: "IX_Users_familyId",
                 table: "Users",
                 column: "familyId");
-            migrationBuilder.Sql("INSERT INTO Families (Name, Password) VALUES ('Smith', 'citrom')");
-            migrationBuilder.Sql("INSERT INTO Users (Name, Password, FamilyRole, Birthday, AvatarPic, familyId) VALUES ('Mother', 'citrom', 1, '1982-08-20','backend/images/avatar57.png', 1)");
+            // migrationBuilder.Sql("INSERT INTO Families (Name, Password) VALUES ('Smith', 'citrom')");
+            // migrationBuilder.Sql("INSERT INTO Users (Name, Password, FamilyRole, Birthday, AvatarPic, familyId) VALUES ('Mother', 'citrom', 1, '1982-08-20','backend/images/avatar57.png', 1)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

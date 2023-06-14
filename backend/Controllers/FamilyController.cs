@@ -28,5 +28,24 @@ public class FamilyController: ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
+    [HttpGet]
+    public async Task<IActionResult> GetFamilies()
+    {
+        var families = await _familyService.GetAllFamilies();
+        return Ok(families);
+    }
+    
+    [HttpDelete]
+    public async Task<IActionResult> DeleteFamily(int id)
+    {
+        try
+        {
+            await _familyService.DeleteFamily(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

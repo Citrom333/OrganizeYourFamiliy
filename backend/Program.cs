@@ -11,6 +11,7 @@ builder.Services.AddDbContext<OrganizerContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConfiguration"));
 });
+builder.Services.AddTransient<IFamilyService, FamilyService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
