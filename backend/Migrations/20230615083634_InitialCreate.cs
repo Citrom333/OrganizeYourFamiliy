@@ -50,7 +50,11 @@ namespace backend.Migrations
                     FamilyRole = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AvatarPic = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    familyId = table.Column<long>(type: "bigint", nullable: false)
+                    familyId = table.Column<long>(type: "bigint", nullable: false),
+                    RewardPointHousework = table.Column<int>(type: "int", nullable: false),
+                    RewardPointJob = table.Column<int>(type: "int", nullable: false),
+                    RewardPointSchool = table.Column<int>(type: "int", nullable: false),
+                    RewardPointOther = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,8 +156,6 @@ namespace backend.Migrations
                 name: "IX_Users_familyId",
                 table: "Users",
                 column: "familyId");
-            // migrationBuilder.Sql("INSERT INTO Families (Name, Password) VALUES ('Smith', 'citrom')");
-            // migrationBuilder.Sql("INSERT INTO Users (Name, Password, FamilyRole, Birthday, AvatarPic, familyId) VALUES ('Mother', 'citrom', 1, '1982-08-20','backend/images/avatar57.png', 1)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

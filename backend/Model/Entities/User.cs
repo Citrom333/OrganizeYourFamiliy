@@ -18,6 +18,9 @@ public class User
     public string AvatarPic { get; set; }
     public List<Reward> Rewards { get; set; }
     public Family family { get; set; }
-    // public Dictionary<TaskType, int> ActualRewardPoints { get; set; }
-
+    public int RewardPointHousework { get; set; }
+    public int RewardPointJob{ get; set; }
+    public int RewardPointSchool { get; set; }
+    public int RewardPointOther { get; set; }
+    
 }

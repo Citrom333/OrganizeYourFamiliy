@@ -160,6 +160,18 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RewardPointHousework")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointJob")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointOther")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointSchool")
+                        .HasColumnType("int");
+
                     b.Property<long>("familyId")
                         .HasColumnType("bigint");
 

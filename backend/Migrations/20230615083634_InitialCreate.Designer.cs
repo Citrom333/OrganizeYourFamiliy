@@ -12,7 +12,7 @@ using backend.Model;
 namespace backend.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20230614181059_InitialCreate")]
+    [Migration("20230615083634_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,6 +161,18 @@ namespace backend.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RewardPointHousework")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointJob")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointOther")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RewardPointSchool")
+                        .HasColumnType("int");
 
                     b.Property<long>("familyId")
                         .HasColumnType("bigint");
