@@ -35,7 +35,7 @@ public class FamilyService : IFamilyService
     public async Task<List<Family>> GetAllFamilies()
     {
         List<Family> families =
-            await _context.Families.ToListAsync();
+            await _context.Families.Include(family=>family.FamilyMembers).ToListAsync();
         return families;
     }
     
