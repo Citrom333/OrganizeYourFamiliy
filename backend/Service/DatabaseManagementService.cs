@@ -11,7 +11,7 @@ namespace backend.Service
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<OrganizerContext>();
-                // context.Database.EnsureDeleted();
+                //context.Database.EnsureDeleted();
                 context.Database.Migrate();
             }
         }
