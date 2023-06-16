@@ -10,10 +10,11 @@ public class UserDTO
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
 
-    public string Name { get; set; }
-    public string Password { get; set; }
-    public string FamilyRole { get; set; }
-    public DateTime Birthday { get; set; }
-    public long FamilyId { get; set; }
+    public string? Name { get; set; }
+    public string? Password { get; set; }
+    public string? FamilyRole { get; set; }
+    public DateTime? Birthday { get; set; } = null;
+    public long? FamilyId { get; set; }
+    public string? AvatarPic { get; set; }
 
 }
