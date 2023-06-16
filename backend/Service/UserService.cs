@@ -25,6 +25,7 @@ public class UserService : IUserService
                 Password = user.Password,
                 FamilyRole = user.FamilyRole,
                 Birthday = user.Birthday,
+                AvatarPic = "./images/avatar01.png",
                 family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId),
             };
             _context.Users.Add(newUser);
@@ -37,53 +38,55 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<List<UserDTO>> GetAllUsersOfFamily(int familyId)
+    public async Task<List<UserDTO>> GetAllUsers()
     {
-        List<UserDTO> users = await _context.Users.Where(u => u.family.Id == familyId)
+        List<UserDTO> users = await _context.Users.Include(user=>user.family)
             .Select(u => ConvertUserToUserDTO(u)).ToListAsync();
         return users;
     }
 
-    public async Task<UserDTO> GetUser(long id)
+    public async Task<User> GetUser(long id)
     {
-        User user = await _context.Users.FirstAsync(u => u.Id == id);
-        return ConvertUserToUserDTO(user);
+        User user = await _context.Users.Include(user=>user.family).FirstAsync(u => u.Id == id);
+        return user;
     }
 
-    public async Task<bool> UpdateUser(User user)
+    public async Task<bool> UpdateUser(UserDTO user)
     {
         try
+        {
+            var userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
+            if (userToUpdate != null)
             {
-                var userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
-                if (userToUpdate != null)
-                {
-                    userToUpdate.Name = (user.Name != null) ? user.Name : userToUpdate.Name;
-                    userToUpdate.family = (user.family != null) ? user.family : userToUpdate.family;
-                    userToUpdate.FamilyRole = (user.FamilyRole != null) ? user.FamilyRole : userToUpdate.FamilyRole;
-                    userToUpdate.Birthday = (user.Birthday != null) ? user.Birthday : userToUpdate.Birthday;
-                    userToUpdate.Password = (user.Password != null) ? user.Password : userToUpdate.Password;
-                    userToUpdate.AvatarPic = (user.AvatarPic != null) ? user.AvatarPic : userToUpdate.AvatarPic;
-                    if (user.Programs.Count != 0) 
-                        userToUpdate.Programs.AddRange(user.Programs);
-                    if (user.Tasks.Count != 0) 
-                        userToUpdate.Tasks.AddRange(user.Tasks);
-                    if (user.Rewards.Count != 0) 
-                        userToUpdate.Rewards.AddRange(user.Rewards);
-                    userToUpdate.RewardPointHousework += user.RewardPointHousework;
-                    userToUpdate.RewardPointSchool += user.RewardPointSchool;
-                    userToUpdate.RewardPointJob += user.RewardPointJob;
-                    userToUpdate.RewardPointOther += user.RewardPointOther;
-                    await _context.SaveChangesAsync();
-                    return true;
-                }
+                if (!string.IsNullOrEmpty(user.Name))
+                    userToUpdate.Name = user.Name;
+            
+                if (user.FamilyId != null)
+                    userToUpdate.family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId);
+            
+                if (!string.IsNullOrEmpty(user.FamilyRole))
+                    userToUpdate.FamilyRole = user.FamilyRole;
+                if (!string.IsNullOrEmpty(user.AvatarPic))
+                    userToUpdate.AvatarPic = user.AvatarPic;
+            
+                if (user.Birthday != null)
+                    userToUpdate.Birthday = user.Birthday;
+            
+                if (!string.IsNullOrEmpty(user.Password))
+                    userToUpdate.Password = user.Password;
+                
+                await _context.SaveChangesAsync();
+                return true;
+            }
 
-                return false;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            return false;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
+
 
     public async Task<bool> DeleteUser(long id)
     {
@@ -100,12 +103,54 @@ public class UserService : IUserService
         }
     }
 
-    private UserDTO ConvertUserToUserDTO(User user)
+    public async Task<bool> AddRewardPointToUser(TaskType task, long id, int point)
+    {
+        try
+        {
+            User user =await _context.Users.FirstAsync(u => u.Id == id);
+            Console.WriteLine(user.Name);
+            if (task == TaskType.Housework)
+                user.RewardPointHousework += point;
+            if (task == TaskType.School)
+                user.RewardPointSchool += point;
+            if (task == TaskType.Job)
+                user.RewardPointJob += point;
+            if (task == TaskType.Other)
+                user.RewardPointOther += point;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+    public async Task<bool> ResetRewardPointsOfUsers()
+    {
+        try
+        {
+            foreach (var user in _context.Users)
+            {
+                user.RewardPointHousework = 0;
+                user.RewardPointSchool = 0;
+                user.RewardPointJob = 0;
+                user.RewardPointOther = 0;
+            }
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+    private static UserDTO ConvertUserToUserDTO(User user)
     {
         return new UserDTO()
         {
             Id = user.Id,
             Name = user.Name,
+            Password = user.Password, 
             FamilyRole = user.FamilyRole,
             Birthday = user.Birthday,
             FamilyId = user.family.Id
