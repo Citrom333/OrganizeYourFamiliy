@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using backend.Model;
 using backend.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,23 @@ builder.Services.AddDbContext<OrganizerContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConfiguration"));
 });
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = "FamilyAuthenticationScheme";
+        options.DefaultChallengeScheme = "FamilyMemberAuthenticationScheme";
+    })
+    .AddCookie("FamilyAuthenticationScheme", options =>
+    {
+        options.Cookie.Name = "FamilyLogin";
+        options.LoginPath = "/family/login";
+    })
+    .AddCookie("FamilyMemberAuthenticationScheme", options =>
+    {
+        options.Cookie.Name = "FamilyMemberLogin";
+        options.LoginPath = "/user/login";
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddTransient<IFamilyService, FamilyService>();
 builder.Services.AddTransient<IUserService, UserService>();
 
@@ -31,7 +49,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
