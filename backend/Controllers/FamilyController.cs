@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using backend.Model;
 using backend.Model.Entities;
 using backend.Service;
 using Microsoft.AspNetCore.Authentication;
@@ -54,9 +55,9 @@ public class FamilyController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(string name, string password)
+    public async Task<IActionResult> Login([FromBody] LoginModel nameAndPassword)
     {
-        bool isPasswordValid = await CheckPassword(name, password);
+        bool isPasswordValid = await CheckPassword(nameAndPassword.Name, nameAndPassword.Password);
         if (!isPasswordValid)
         {
             return BadRequest("Wrong name or password");
@@ -64,7 +65,7 @@ public class FamilyController : ControllerBase
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, name)
+            new Claim(ClaimTypes.Name, nameAndPassword.Name)
             
         };
 
@@ -78,8 +79,12 @@ public class FamilyController : ControllerBase
             _authenticationScheme,
             new ClaimsPrincipal(claimsIdentity),
             authProperties);
-        
-        return Ok();
+        var response = new LoginModel()
+        {
+            Name = HttpContext.User.Identity.Name,
+            Password = nameAndPassword.Password
+        };
+        return Ok(response);
     }
 
     protected async Task<bool> CheckPassword(string name, string password)
