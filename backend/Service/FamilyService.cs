@@ -34,11 +34,25 @@ public class FamilyService : IFamilyService
     }
     public async Task<List<Family>> GetAllFamilies()
     {
+        
         List<Family> families =
             await _context.Families.Include(family=>family.FamilyMembers).ToListAsync();
         return families;
     }
-    
+
+    public async Task<Family?> GetFamilyByName(string name)
+    {
+        try
+        {
+            Family fam = await _context.Families.Include(family => family.FamilyMembers).FirstAsync(f => f.Name == name);
+            return fam;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
     public async Task<bool> DeleteFamily(int id)
     {
         try
