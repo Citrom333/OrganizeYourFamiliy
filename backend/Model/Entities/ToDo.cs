@@ -9,11 +9,13 @@ public class ToDo
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
     
-    public string TaskName { get; set; }
+    public string? TaskName { get; set; }
     public string? Description { get; set; }
-    public DateTime Deadline { get; set; }
-    public TaskType Type { get; set; }
-    public int RewardPoint { get; set; }
+    public DateTime? Deadline { get; set; }
+    public TaskType? Type { get; set; }
+    public int? RewardPoint { get; set; }
     public bool Ready { get; set; }
+    
+    public User? Owner { get; set; }
 
 }
