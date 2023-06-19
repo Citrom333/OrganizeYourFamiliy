@@ -21,6 +21,7 @@ namespace backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Families", x => x.Id);
+                    table.UniqueConstraint("AK_Families_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
