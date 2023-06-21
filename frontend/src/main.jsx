@@ -9,6 +9,7 @@ import MainFamilyPage from './Pages/MainFamilyPage.jsx';
 import AddMember from './Pages/AddFamilyMember.jsx';
 import MyPage from './Pages/MyPage.jsx';
 import MyRewards from './Pages/MyRewards.jsx';
+import LoginAsFamilyMember from './Pages/LoginAsFamilyMember.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
           {
             path: "AddFamilyMember",
             element: <AddMember />
+          },
+          {
+            path: "LoginAsFamilyMember",
+            element: <LoginAsFamilyMember />
           },
           {
             path: "MyPage",
