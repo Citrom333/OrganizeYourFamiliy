@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../Style.css"
 function AddMember() {
     let avatarPics = [];
     for (let i = 1; i < 63; i++) {
@@ -90,10 +90,11 @@ function AddMember() {
                     </label>
                     <label>
                         <p>Choose an avatar picture</p>
-                        <div>
+                        <div className="avatarPics">
                             {avatarPics.map((pic, index) =>
                                 <div key={index} >
                                     <img
+                                        className="avatarPic"
                                         id={chosenPic === pic ? "chosenPicture" : ""}
                                         src={pic}
                                         onClick={() => setChosenPic(pic)}>
@@ -107,7 +108,7 @@ function AddMember() {
                 </form>
                 <div><p>{message}</p></div>
                 <div>
-                    <a href="/">
+                    <a href="/MainFamilyPage">
                         <button >
                             Back
                         </button>

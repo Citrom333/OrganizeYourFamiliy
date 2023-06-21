@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import "../Style.css"
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 function MainFamilyPage() {
+    const location = useLocation();
     const [members, setMembers] = useState([]);
     const fetchMembers = () =>
         fetch("/api/User", {
@@ -18,17 +19,25 @@ function MainFamilyPage() {
     useEffect(() => {
         fetchMembers();
         console.log(members);
+        console.log(location);
     }, [members.length])
     return (
         <>
             <div>
                 <Navbar />
-                <h1>This is my family</h1>
-                <ul>
-                    {members.length > 0 ? members.map(mem => <li key={mem.id}><div><img src={mem.avatarPic} /><div>{mem.name}</div></div></li>) : ""}
-                </ul>
-                <Outlet />
-                <Footer />
+                <div className="mainPageDiv">
+                    {location.pathname !== '/MainFamilyPage/MyPage' ?
+                        <div><h1>This is my family</h1>
+                            <div className="memberAvatars">
+                                {members.length > 0 ? members.map(mem => <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
+                            </div>
+                        </div> :
+                        <div>
+                            {members.map(mem => mem.id.toString() === localStorage.getItem("userId") ? <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div> : "")}
+                        </div>}
+                    <Outlet />
+                    <Footer />
+                </div>
             </div>
 
         </>
