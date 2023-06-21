@@ -5,35 +5,32 @@ function Login() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const fetchTest = () =>
-        fetch("/api/Family", {
+    const fetchFamilyId = async () =>
+        await fetch(`/api/Family/${localStorage.getItem("familyName")}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         }).then((response) => response.json())
             .then((json) => {
-                console.log(json);
+                localStorage.setItem("familyId", json.id);
             });
-    const fetchLogin = (familyname, password) => {
-        fetch("/api/Family/login", {
+    const fetchLogin = async (familyname, password) => {
+        await fetch("/api/Family/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: familyname, password: password }),
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 localStorage.setItem("familyName", data.name);
                 data == null
                     ? navigate("/")
                     : navigate("/MainFamilyPage");
             });
     };
-    const handleLogin = () => {
-        console.log(name);
-        console.log(password);
+    const handleLogin = async () => {
         localStorage.clear();
-        fetchTest();
-        fetchLogin(name, password);
+        await fetchLogin(name, password);
+        await fetchFamilyId();
     }
     return (
         <>
