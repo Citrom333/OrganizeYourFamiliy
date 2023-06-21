@@ -39,6 +39,13 @@ public class FamilyController : ControllerBase
         var families = await _familyService.GetAllFamilies();
         return Ok(families);
     }
+    [HttpGet("{name}")]
+    public async Task<IActionResult> GetFamilyByName(string name)
+    {
+        var family = await _familyService.GetFamilyByName(name);
+        return Ok(family);
+    }
+
 
     [HttpDelete]
     public async Task<IActionResult> DeleteFamily(int id)
