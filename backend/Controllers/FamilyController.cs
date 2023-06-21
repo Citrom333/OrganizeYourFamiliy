@@ -12,11 +12,9 @@ namespace backend.Controllers;
 public class FamilyController : ControllerBase
 {
     private readonly IFamilyService _familyService;
-    private readonly string _authenticationScheme;
     public FamilyController(IFamilyService familyService)
     {
         _familyService = familyService;
-        _authenticationScheme = "FamilyAuthenticationScheme";
     }
 
     [HttpPost]
@@ -60,51 +58,5 @@ public class FamilyController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginModel nameAndPassword)
-    {
-        bool isPasswordValid = await CheckPassword(nameAndPassword.Name, nameAndPassword.Password);
-        if (!isPasswordValid)
-        {
-            return BadRequest("Wrong name or password");
-        }
-
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, nameAndPassword.Name)
-            
-        };
-
-        var claimsIdentity = new ClaimsIdentity(claims, _authenticationScheme);
-        var authProperties = new AuthenticationProperties
-        {
-         
-        };
-
-        await HttpContext.SignInAsync(
-            _authenticationScheme,
-            new ClaimsPrincipal(claimsIdentity),
-            authProperties);
-        var response = new LoginModel()
-        {
-            Name = HttpContext.User.Identity.Name,
-            Password = nameAndPassword.Password
-        };
-        return Ok(response);
-    }
-
-    protected async Task<bool> CheckPassword(string name, string password)
-    {
-        var family = await _familyService.GetFamilyByName(name);
-        return family.Password == password;
-    }
-
-    [HttpPost("logout")]
-    public async Task<IActionResult> Logout()
-    {
-        await HttpContext.SignOutAsync("FamilyAuthenticationScheme");
-        
-        return Ok();
-    }
+   
 }

@@ -98,57 +98,5 @@ public class UserController : ControllerBase
         bool success = await _userService.ResetRewardPointsOfUsers();
         return success ? Ok("Users updated") : StatusCode(400, ErrorMessage);
     }
-
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginModel nameAndPassword)
-    {
-        bool isPasswordValid = await CheckPassword(nameAndPassword.Name, nameAndPassword.Password);
-        if (!isPasswordValid)
-        {
-            return BadRequest("Wrong name or password");
-        }
-
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, nameAndPassword.Name)
-            
-        };
-
-        var claimsIdentity = new ClaimsIdentity(claims, "FamilyMemberAuthenticationScheme");
-        var authProperties = new AuthenticationProperties
-        {
-        };
-
-        await HttpContext.SignInAsync(
-            "FamilyMemberAuthenticationScheme",
-            new ClaimsPrincipal(claimsIdentity),
-            authProperties);
-        var response = new LoginModel()
-        {
-            Name = nameAndPassword.Name,
-            Password = nameAndPassword.Password
-        };
-        return Ok(response);
-    }
-
-    private async Task<bool> CheckPassword(string name, string password)
-    {
-        if (User.Identity.IsAuthenticated)
-        {
-            var family = await _familyService.GetFamilyByName(User.Identity.Name);
-            var users = await _userService.GetAllUsers();
-            var user = users.Where(u => u.FamilyId == family.Id).FirstOrDefault(u => u.Name == name);
-            return user.FamilyId==family.Id && user.Password == password;
-        }
-
-        return false;
-    }
-
-    [HttpPost("logout")]
-    public async Task<IActionResult> Logout()
-    {
-        await HttpContext.SignOutAsync("FamilyMemberAuthenticationScheme");
-
-        return Ok();
-    }
+  
 }
