@@ -18,7 +18,6 @@ function LoginAsFamilyMember() {
 
     useEffect(() => {
         fetchMembers();
-        console.log(members);
     }, [members.length])
 
     const fetchLogin = async (username, password, id) => {
@@ -29,7 +28,6 @@ function LoginAsFamilyMember() {
         })
             .then((response) => response.status !== 200 ? response : response.json())
             .then((data) => {
-                console.log(data);
                 localStorage.setItem("userName", data.name);
                 localStorage.setItem("userId", id);
                 data.name === undefined
@@ -40,9 +38,6 @@ function LoginAsFamilyMember() {
     const handleLogin = async () => {
         localStorage.setItem("userName", "");
         localStorage.setItem("userId", "");
-        console.log(name);
-        console.log(password);
-        console.log(id);
         await fetchLogin(name, password, id);
     }
     const handleMemberSelect = (e) => {
