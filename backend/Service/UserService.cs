@@ -25,7 +25,7 @@ public class UserService : IUserService
                 Password = user.Password,
                 FamilyRole = user.FamilyRole,
                 Birthday = user.Birthday,
-                AvatarPic = "./images/avatar01.png",
+                AvatarPic = user.AvatarPic,
                 family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId),
             };
             _context.Users.Add(newUser);
@@ -153,7 +153,8 @@ public class UserService : IUserService
             Password = user.Password, 
             FamilyRole = user.FamilyRole,
             Birthday = user.Birthday,
-            FamilyId = user.family.Id
+            FamilyId = user.family.Id,
+            AvatarPic = user.AvatarPic
         };
     }
 }
