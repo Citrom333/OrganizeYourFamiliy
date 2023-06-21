@@ -100,9 +100,9 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(string name, string password)
+    public async Task<IActionResult> Login([FromBody] LoginModel nameAndPassword)
     {
-        bool isPasswordValid = await CheckPassword(name, password);
+        bool isPasswordValid = await CheckPassword(nameAndPassword.Name, nameAndPassword.Password);
         if (!isPasswordValid)
         {
             return BadRequest("Wrong name or password");
@@ -110,7 +110,8 @@ public class UserController : ControllerBase
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, name)
+            new Claim(ClaimTypes.Name, nameAndPassword.Name)
+            
         };
 
         var claimsIdentity = new ClaimsIdentity(claims, "FamilyMemberAuthenticationScheme");
@@ -122,8 +123,12 @@ public class UserController : ControllerBase
             "FamilyMemberAuthenticationScheme",
             new ClaimsPrincipal(claimsIdentity),
             authProperties);
-
-        return Ok();
+        var response = new LoginModel()
+        {
+            Name = nameAndPassword.Name,
+            Password = nameAndPassword.Password
+        };
+        return Ok(response);
     }
 
     private async Task<bool> CheckPassword(string name, string password)
