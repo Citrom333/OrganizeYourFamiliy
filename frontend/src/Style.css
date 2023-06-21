@@ -1,0 +1,8 @@
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#chosenPicture {
+    border: 3px solid rgb(94, 6, 6);
+}
