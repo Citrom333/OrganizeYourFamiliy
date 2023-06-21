@@ -15,7 +15,7 @@ public class User
     public DateTime? Birthday { get; set; }
     public List<ToDo> Tasks { get; set; }
     public List<ScheduledProgram> Programs { get; set; }
-    public string? AvatarPic { get; set; }
+    public string AvatarPic { get; set; }
     public List<Reward> Rewards { get; set; }
     public Family family { get; set; }
     public int RewardPointHousework { get; set; }
