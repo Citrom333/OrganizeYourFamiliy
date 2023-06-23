@@ -1,10 +1,10 @@
 body {
-    background-color: rgb(101, 49, 15);
-    color: rgb(36, 142, 142);
+    background-color: rgb(163, 125, 113);
+    color: rgb(34, 61, 76);
 }
 
 .mainPageDiv {
-    margin-top: 60%;
+    margin-top: 80%;
     margin-bottom: 10%;
 }
 
@@ -23,7 +23,14 @@ body {
     gap: 1rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 450px) {
+    .mainPageDiv {
+        margin-top: 60%;
+
+    }
+}
+
+@media (min-width: 640px) {
     .avatarPics {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -61,8 +68,10 @@ body {
 }
 
 .navbar {
-    background-color: darkslategray;
+    background-color: rgb(90, 48, 36);
+    color: beige;
     position: fixed;
+    z-index: 100;
     top: 0;
     width: 100%;
     left: 0;
@@ -77,7 +86,7 @@ body {
 }
 
 .footer {
-    background-color: darkslategray;
+    background-color: rgb(90, 48, 36);
     bottom: 0;
     height: 5%;
     width: 100vw;
@@ -89,4 +98,28 @@ body {
     border: 4px solid;
     border-color: antiquewhite;
     border-radius: 10%;
+}
+
+button {
+    background-color: bisque;
+    margin: 10px;
+}
+
+input {
+    background-color: beige;
+    border-radius: 5%;
+    scale: 1.5;
+}
+
+.submit {
+    background-color: beige;
+    border-radius: 10%;
+    scale: 1.5;
+    margin-top: 15px;
+}
+
+
+select {
+    background-color: beige;
+    scale: 1.5;
 }
