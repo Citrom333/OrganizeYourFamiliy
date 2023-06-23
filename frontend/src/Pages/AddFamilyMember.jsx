@@ -33,7 +33,7 @@ function AddMember() {
                     password: password,
                     familyRole: familyRole,
                     birthday: birthDate.split(".").join("-"),
-                    familyId: 1,
+                    familyId: localStorage.getItem("familyId"),
                     avatarPic: chosenPic
                 }),
             });
@@ -84,6 +84,7 @@ function AddMember() {
                     <label>
                         <p>Family role</p>
                         <select onChange={(e) => setFamilyRole(e.target.value)}>
+                            <option value=""></option>
                             <option value={0}>Adult</option>
                             <option value={1}>Child</option>
                         </select>
@@ -103,7 +104,7 @@ function AddMember() {
                         </div>
                     </label>
                     <div>
-                        <input type="submit" value="Add member" />
+                        <input className="submit" type="submit" value="Add member" />
                     </div>
                 </form>
                 <div><p>{message}</p></div>
