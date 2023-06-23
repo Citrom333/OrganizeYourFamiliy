@@ -46,6 +46,7 @@ function Login() {
                     <p>Family password</p>
                     <input
                         onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                     />
                 </label>
                 <div>
