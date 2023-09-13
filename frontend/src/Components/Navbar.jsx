@@ -2,8 +2,26 @@ import "../Style.css";
 import { useNavigate } from "react-router-dom";
 export default function Navbar() {
     const navigate = useNavigate();
-    const handleLogout = () => {
+
+    const handleLogout = async () => {
         localStorage.clear();
+        try {
+            let res = await fetch("/api/Family/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                }),
+            });
+            if (res.status === 200) {
+                localStorage.Clear();
+            } else {
+                console.log("Some error occured");
+            }
+        } catch (err) {
+            console.log(err);
+        }
         navigate("/");
     }
     return (
