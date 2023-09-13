@@ -21,7 +21,6 @@ namespace backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Families", x => x.Id);
-                    table.UniqueConstraint("AK_Families_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,9 +48,9 @@ namespace backend.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FamilyRole = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AvatarPic = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    familyId = table.Column<long>(type: "bigint", nullable: false),
+                    FamilyId = table.Column<long>(type: "bigint", nullable: false),
                     RewardPointHousework = table.Column<int>(type: "int", nullable: false),
                     RewardPointJob = table.Column<int>(type: "int", nullable: false),
                     RewardPointSchool = table.Column<int>(type: "int", nullable: false),
@@ -61,8 +60,8 @@ namespace backend.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Families_familyId",
-                        column: x => x.familyId,
+                        name: "FK_Users_Families_FamilyId",
+                        column: x => x.FamilyId,
                         principalTable: "Families",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -115,25 +114,25 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "ToDos",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TaskName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    RewardPoint = table.Column<int>(type: "int", nullable: false),
+                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: true),
+                    RewardPoint = table.Column<int>(type: "int", nullable: true),
                     Ready = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: true)
+                    OwnerId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_ToDos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tasks_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_ToDos_Users_OwnerId",
+                        column: x => x.OwnerId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -149,14 +148,14 @@ namespace backend.Migrations
                 column: "ProgramsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_UserId",
-                table: "Tasks",
-                column: "UserId");
+                name: "IX_ToDos_OwnerId",
+                table: "ToDos",
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_familyId",
+                name: "IX_Users_FamilyId",
                 table: "Users",
-                column: "familyId");
+                column: "FamilyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -168,7 +167,7 @@ namespace backend.Migrations
                 name: "ScheduledProgramUser");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "ToDos");
 
             migrationBuilder.DropTable(
                 name: "ScheduledPrograms");

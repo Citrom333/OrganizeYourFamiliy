@@ -104,33 +104,32 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("OwnerId")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("Ready")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RewardPoint")
+                    b.Property<int?>("RewardPoint")
                         .HasColumnType("int");
 
                     b.Property<string>("TaskName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
+                    b.Property<int?>("Type")
                         .HasColumnType("int");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("OwnerId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("ToDos");
                 });
 
             modelBuilder.Entity("backend.Model.Entities.User", b =>
@@ -145,8 +144,11 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("FamilyId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("FamilyRole")
                         .IsRequired()
@@ -172,12 +174,9 @@ namespace backend.Migrations
                     b.Property<int>("RewardPointSchool")
                         .HasColumnType("int");
 
-                    b.Property<long>("familyId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("familyId");
+                    b.HasIndex("FamilyId");
 
                     b.ToTable("Users");
                 });
@@ -210,20 +209,22 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Model.Entities.ToDo", b =>
                 {
-                    b.HasOne("backend.Model.Entities.User", null)
+                    b.HasOne("backend.Model.Entities.User", "Owner")
                         .WithMany("Tasks")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("backend.Model.Entities.User", b =>
                 {
-                    b.HasOne("backend.Model.Entities.Family", "family")
+                    b.HasOne("backend.Model.Entities.Family", "Family")
                         .WithMany("FamilyMembers")
-                        .HasForeignKey("familyId")
+                        .HasForeignKey("FamilyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("family");
+                    b.Navigation("Family");
                 });
 
             modelBuilder.Entity("ScheduledProgramUser", b =>
