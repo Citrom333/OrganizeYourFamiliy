@@ -6,10 +6,11 @@ namespace backend.Service;
 
 public interface IToDoService
 {
-    Task<bool> AddToDoToUser(long UserId, ToDo task);
+    Task<bool> AddToDoToUser(ToDoDTO task);
     Task<List<ToDo>> GetAllToDosOfFamily(long familyId);
+    Task<List<ToDo>> GetAllToDosOfUser(long userId);
     Task<ToDo> GetToDo(long id);
-    Task<bool> UpdateToDo(ToDo task);
+    Task<bool> UpdateToDo(ToDoDTO task);
     Task<bool> DeleteToDo(long id);
     Task<bool> SetToDoReady(long id);
 }
