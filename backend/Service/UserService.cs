@@ -26,7 +26,7 @@ public class UserService : IUserService
                 FamilyRole = user.FamilyRole,
                 Birthday = user.Birthday,
                 AvatarPic = user.AvatarPic,
-                family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId),
+                Family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId),
             };
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
@@ -40,14 +40,14 @@ public class UserService : IUserService
 
     public async Task<List<UserDTO>> GetAllUsers()
     {
-        List<UserDTO> users = await _context.Users.Include(user=>user.family)
+        List<UserDTO> users = await _context.Users.Include(user=>user.Family)
             .Select(u => ConvertUserToUserDTO(u)).ToListAsync();
         return users;
     }
 
     public async Task<User> GetUser(long id)
     {
-        User user = await _context.Users.Include(user=>user.family).FirstAsync(u => u.Id == id);
+        User user = await _context.Users.Include(user=>user.Family).FirstAsync(u => u.Id == id);
         return user;
     }
 
@@ -62,7 +62,7 @@ public class UserService : IUserService
                     userToUpdate.Name = user.Name;
             
                 if (user.FamilyId != null)
-                    userToUpdate.family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId);
+                    userToUpdate.Family = await _context.Families.FirstAsync(f => f.Id == user.FamilyId);
             
                 if (!string.IsNullOrEmpty(user.FamilyRole))
                     userToUpdate.FamilyRole = user.FamilyRole;
@@ -103,19 +103,19 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<bool> AddRewardPointToUser(TaskType task, long id, int point)
+    public async Task<bool> AddRewardPointToUser(ToDoType task, long id, int point)
     {
         try
         {
             User user =await _context.Users.FirstAsync(u => u.Id == id);
             Console.WriteLine(user.Name);
-            if (task == TaskType.Housework)
+            if (task == ToDoType.Housework)
                 user.RewardPointHousework += point;
-            if (task == TaskType.School)
+            if (task == ToDoType.School)
                 user.RewardPointSchool += point;
-            if (task == TaskType.Job)
+            if (task == ToDoType.Job)
                 user.RewardPointJob += point;
-            if (task == TaskType.Other)
+            if (task == ToDoType.Other)
                 user.RewardPointOther += point;
             await _context.SaveChangesAsync();
             return true;
@@ -153,7 +153,7 @@ public class UserService : IUserService
             Password = user.Password, 
             FamilyRole = user.FamilyRole,
             Birthday = user.Birthday,
-            FamilyId = user.family.Id,
+            FamilyId = user.Family.Id,
             AvatarPic = user.AvatarPic
         };
     }
