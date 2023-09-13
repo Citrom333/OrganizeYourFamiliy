@@ -1,0 +1,32 @@
+.calendar {
+
+    width: 80%
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 25px;
+    width: 100%;
+    background: rgb(90, 48, 36);
+    color: beige;
+    text-align: center;
+}
+
+.prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.next {
+    float: right;
+    padding-top: 10px;
+}
+
+table {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #ddd;
+}
