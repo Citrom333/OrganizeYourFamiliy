@@ -123,3 +123,9 @@ select {
     background-color: beige;
     scale: 1.5;
 }
+
+.myPage ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
