@@ -48,7 +48,7 @@ function AddMember() {
                 setMessage("Some error occured");
             }
         } catch (err) {
-            console.log(err);
+            setMessage(err);
         }
     };
     return (
