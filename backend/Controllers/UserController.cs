@@ -64,8 +64,8 @@ public class UserController : ControllerBase
         return BadRequest();
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteUser(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(long id)
     {
         try
         {
