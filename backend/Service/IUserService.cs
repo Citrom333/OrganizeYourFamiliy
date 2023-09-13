@@ -10,6 +10,6 @@ public interface IUserService
     Task<User> GetUser(long id);
     Task<bool> UpdateUser(UserDTO user);
     Task<bool> DeleteUser(long id);
-    Task<bool> AddRewardPointToUser(TaskType task, long id, int point);
+    Task<bool> AddRewardPointToUser(ToDoType task, long id, int point);
     Task<bool> ResetRewardPointsOfUsers();
 }
