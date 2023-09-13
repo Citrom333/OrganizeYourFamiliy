@@ -11,7 +11,7 @@ namespace backend.Model
         public DbSet<Family> Families { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ScheduledProgram> ScheduledPrograms { get; set; }
-        public DbSet<ToDo> Tasks { get; set; }
+        public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Reward> Rewards { get; set; }
     }
 }
