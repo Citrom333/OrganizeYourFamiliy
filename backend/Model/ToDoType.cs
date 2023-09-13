@@ -1,6 +1,6 @@
 namespace backend.Model;
 
-public enum TaskType
+public enum ToDoType
 {
     Housework,
     Job,
