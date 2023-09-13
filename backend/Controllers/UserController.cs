@@ -59,7 +59,8 @@ public class UserController : ControllerBase
         {
             var family = await _familyService.GetFamilyByName(User.Identity.Name);
             var user = await _userService.GetUser(id);
-            return user.Id == 0 && user.family==family ? NotFound() : Ok(user);
+            return user.Family == family ? Ok(user) : NotFound();
+            // return user.Id == 0 && user.Family==family ? NotFound() : Ok(user);
         }
         return BadRequest();
     }
@@ -86,7 +87,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("RewardPoint")]
-    public async Task<IActionResult> AddRewardPointToUser(TaskType task, long id, int point)
+    public async Task<IActionResult> AddRewardPointToUser(ToDoType task, long id, int point)
     {
         bool success = await _userService.AddRewardPointToUser(task, id, point);
         return success ? Ok("User updated") : StatusCode(400, ErrorMessage);
