@@ -11,7 +11,7 @@ function MyRewards() {
                 </label>
 
                 <div>
-                    <a href="/MyPage">
+                    <a href="/MainFamilyPage/MyPage">
                         <button >
                             Back
                         </button>
