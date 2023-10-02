@@ -32,32 +32,31 @@ const Calendar = (props) => {
     const handleNext = () => {
         setFirst_day_of_the_week((prevDate) => addDays(prevDate, 7));
     };
+    const month = first_day_of_the_week.getMonth();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const currentDate = new Date(first_day_of_the_week);
     const getToDos = (date) => {
         let actualToDos = [];
-        for (let i = 0; i < toDos.length; i++) {
-            let toDoDate = new Date(toDos[i].deadline);
-            console.log(date);
-            if (date === toDoDate) {
-                actualToDos.push(toDos[i])
+        for (let i = 0; i < props.toDos.length; i++) {
+            let toDoDate = new Date(props.toDos[i].deadline);
+            if (date.getDate() === toDoDate.getDate() && date.getMonth() === toDoDate.getMonth() && date.getFullYear() === toDoDate.getFullYear()) {
+                actualToDos.push(props.toDos[i])
             }
         }
         return actualToDos;
     }
-    const month = first_day_of_the_week.getMonth();
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const renderCalendar = () => {
         const weekDays = [];
-        let currentDate = new Date(first_day_of_the_week);
 
         for (let i = 0; i < 7; i++) {
             weekDays.push(
                 <td
                     key={`day-${i}`}
-                    className={`day ${currentDate.getDate() === date_today.getDate() ? 'today' : ''}`}
+                    className={`day ${currentDate.getDate() === new Date().getDate() ? 'today' : ''}`}
                 >
                     <div>{currentDate.getDate()}</div>
-                    {getToDos(currentDate.getDate()).length > 0 ? getToDos(currentDate.getDate()).map(t => <div>{t.taskName}</div>) : ""}
+                    {getToDos(currentDate).length > 0 ? getToDos(currentDate).map(t => <div>{t.taskName}</div>) : ""}
                 </td>
             );
             currentDate.setDate(currentDate.getDate() + 1);
