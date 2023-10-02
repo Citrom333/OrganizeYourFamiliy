@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../Calendar.css';
 
-const Calendar = () => {
-    const [toDos, setToDos] = useState([]);
-    const [toDosOfWeek, setToDosOfWeek] = useState([]);
+const Calendar = (props) => {
     let userId = localStorage.getItem("userId");
-    const fetchToDos = () =>
-        fetch(`/api/ToDo/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setToDos(json);
-
-            });
-
-    useEffect(() => {
-        console.log(userId);
-        fetchToDos();
-        console.log(toDos);
-
-    }, [toDos.length])
     const date_today = new Date();
     const [first_day_of_the_week, setFirst_day_of_the_week] = useState(new Date(date_today.setDate(date_today.getDate() - date_today.getDay())));
+
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const renderDaysOfWeek = () => {
         return (

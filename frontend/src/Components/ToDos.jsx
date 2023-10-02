@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-export default function ToDos() {
-    const [toDos, setToDos] = useState([]);
+export default function ToDos(props) {
+
     const [showAddForm, setShowAddForm] = useState(false);
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");
@@ -9,23 +9,9 @@ export default function ToDos() {
     const [rewardPoint, setRewardpoint] = useState("");
     const [message, setMessage] = useState("");
     let userId = localStorage.getItem("userId");
-
-    const fetchToDos = () =>
-        fetch(`/api/ToDo/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setToDos(json);
-
-            });
-
     useEffect(() => {
-        console.log(userId);
-        fetchToDos();
-        console.log(toDos);
+    }, [props.toDos.length])
 
-    }, [toDos.length])
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(`: ${taskName}, : ${description}, : ${deadline}, type: ${toDoType}, : ${userId}`);
@@ -64,7 +50,7 @@ export default function ToDos() {
         <div className="toDos">
             <h3>My to-do list:</h3>
             <ul>
-                {toDos.length > 0 ? toDos.map((t, index) => <li key={index}>{t.taskName}</li>) : ""}
+                {props.toDos.length > 0 ? props.toDos.map((t, index) => <li key={index}>{t.taskName}</li>) : ""}
             </ul>
             <button onClick={setShowAddForm}>Add to-do</button>
             {showAddForm ? <div>
