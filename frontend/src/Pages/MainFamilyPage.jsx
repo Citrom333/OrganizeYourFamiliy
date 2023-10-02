@@ -18,8 +18,6 @@ function MainFamilyPage() {
 
     useEffect(() => {
         fetchMembers();
-        console.log(members);
-        console.log(location);
     }, [members.length])
     return (
         <>

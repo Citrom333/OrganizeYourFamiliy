@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const location = useLocation();
-  useEffect(() => {
-    console.log(location);
-  }, []);
+  // useEffect(() => {
+  //   console.log(location);
+  // }, []);
   return (
     <>
       <div>
