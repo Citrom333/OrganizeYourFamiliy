@@ -1,6 +1,7 @@
 .calendar {
-
-    width: 80%
+    width: 80vw;
+    left: 10vw;
+    right: 10vw;
 }
 
 .header {
@@ -8,7 +9,6 @@
     justify-content: center;
     align-items: center;
     padding: 70px 25px;
-    width: 100%;
     background: rgb(90, 48, 36);
     color: beige;
     text-align: center;
@@ -28,5 +28,63 @@ table {
     margin: 0;
     padding: 10px 0;
     width: 100%;
-    background-color: #ddd;
+    background-color: bisque;
+}
+
+
+.weekcalendar {
+    width: 100%;
+
+}
+
+.day-of-week {
+    width: 11.4vw;
+
+}
+
+.day {
+
+    height: 20vh;
+}
+
+.dayDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    /* Opcionálisan: vízszintesen is balra igazítás */
+    height: 18vh;
+}
+
+.tablecontent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tablecontent>* {
+    margin-bottom: 5px;
+    /* Válassz egy megfelelő margin értéket az elemek közötti térköz beállításához */
+}
+
+.ready {
+    background-color: rgb(61, 97, 61);
+    border: solid 2px;
+    border-color: green;
+}
+
+.not_ready {
+    background-color: rgb(128, 94, 94);
+    border: solid 2px;
+    border-color: rgb(69, 36, 36);
+}
+
+.calendar-grid {
+    height: 20vh;
+}
+
+.today {
+    border: solid 2px;
+    border-color: rgb(102, 149, 149);
+    border-radius: 8%;
 }

@@ -53,10 +53,12 @@ const Calendar = (props) => {
             weekDays.push(
                 <td
                     key={`day-${i}`}
-                    className={`day ${currentDate.getDate() === new Date().getDate() ? 'today' : ''}`}
+                    className={`day ${currentDate.getDate() === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear() ? 'today' : ''}`}
                 >
-                    <div>{currentDate.getDate()}</div>
-                    {getToDos(currentDate).length > 0 ? getToDos(currentDate).map(t => <div>{t.taskName}</div>) : ""}
+                    <div className='dayDiv'>
+                        <div className="tablecontent">{currentDate.getDate()}</div>
+                        {getToDos(currentDate).length > 0 ? getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready" : "tablecontent not_ready"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>) : ""}
+                    </div>
                 </td>
             );
             currentDate.setDate(currentDate.getDate() + 1);
