@@ -1,8 +1,10 @@
 import ToDos from "../Components/ToDos"
 import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react";
+import TodoDetails from "../Components/TodoDetails";
 function MyPage() {
     const [toDos, setToDos] = useState([]);
+    const [selectedTodo, setSelectedTodo] = useState("");
     let userId = localStorage.getItem("userId");
     const fetchToDos = () =>
         fetch(`/api/ToDo/${userId}`, {
@@ -16,15 +18,24 @@ function MyPage() {
 
     useEffect(() => {
         fetchToDos();
-    }, [toDos.length])
+    }, [toDos.length, selectedTodo])
+
+    const handleClick = (e) => {
+        setSelectedTodo(toDos.find(t => t.id == e));
+        console.log(selectedTodo);
+    }
     return (
         <>
             <div className="myPage">
                 <h1>My page</h1>
-                <ToDos toDos={toDos} setToDos={setToDos} />
-                <Calendar toDos={toDos} setToDos={setToDos} />
-            </div>
+                {selectedTodo === "" ?
+                    <div>
+                        <ToDos toDos={toDos} />
+                        <Calendar toDos={toDos} handleClick={e => handleClick(e)} />
+                    </div> :
+                    <TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />}
 
+            </div>
         </>
     )
 }
