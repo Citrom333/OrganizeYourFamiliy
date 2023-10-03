@@ -69,6 +69,7 @@ body {
 
 .navbar {
     background-color: rgb(90, 48, 36);
+    box-shadow: 0 2vh 0 0 rgba(69, 55, 41, 0.207);
     color: beige;
     position: fixed;
     z-index: 100;
@@ -87,6 +88,7 @@ body {
 
 .footer {
     background-color: rgb(90, 48, 36);
+    box-shadow: 0 -2vh 0 0 rgba(69, 55, 41, 0.207);
     bottom: 0;
     height: 5%;
     width: 100vw;
