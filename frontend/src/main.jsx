@@ -10,6 +10,7 @@ import AddMember from './Pages/AddFamilyMember.jsx';
 import MyPage from './Pages/MyPage.jsx';
 import MyRewards from './Pages/MyRewards.jsx';
 import LoginAsFamilyMember from './Pages/LoginAsFamilyMember.jsx';
+import RewardShop from './Pages/RewardShop.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
           {
             path: "MyPage",
             element: <MyPage />
+          },
+          {
+            path: "Rewardshop",
+            element: <RewardShop />
           },
           {
             path: "MyRewards",
