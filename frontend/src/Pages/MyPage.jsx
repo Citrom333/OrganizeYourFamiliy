@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import TodoDetails from "../Components/TodoDetails";
 function MyPage() {
     const [toDos, setToDos] = useState([]);
+    const [addedNew, setAddedNew] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState("");
     let userId = localStorage.getItem("userId");
     const fetchToDos = () =>
@@ -18,7 +19,9 @@ function MyPage() {
 
     useEffect(() => {
         fetchToDos();
-    }, [toDos.length, selectedTodo])
+        console.log(addedNew);
+        setAddedNew(false);
+    }, [toDos.length, addedNew])
 
     const handleClick = (e) => {
         setSelectedTodo(toDos.find(t => t.id == e));
@@ -30,7 +33,7 @@ function MyPage() {
                 <h1>My page</h1>
                 {selectedTodo === "" ?
                     <div>
-                        <ToDos toDos={toDos} />
+                        <ToDos toDos={toDos} setAddedNew={setAddedNew} />
                         <Calendar toDos={toDos} handleClick={e => handleClick(e)} />
                     </div> :
                     <TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />}

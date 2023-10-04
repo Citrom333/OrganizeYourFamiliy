@@ -39,6 +39,7 @@ export default function ToDos(props) {
                 setRewardpoint("");
                 setShowAddForm(false);
                 setMessage("ToDo added successfully");
+                props.setAddedNew(true);
             } else {
                 setMessage("Some error occured");
             }
@@ -48,11 +49,10 @@ export default function ToDos(props) {
     };
     return (
         <div className="toDos">
-            <h3>My to-do list:</h3>
-            <ul>
+            <h3>My to-dos:</h3>
+            {/* <ul>
                 {props.toDos.length > 0 ? props.toDos.map((t, index) => <li key={index}>{t.taskName}</li>) : ""}
-            </ul>
-            <button onClick={setShowAddForm}>Add to-do</button>
+            </ul> */}
             {showAddForm ? <div>
                 <form className="form" onSubmit={handleSubmit}>
                     <label>
@@ -94,7 +94,8 @@ export default function ToDos(props) {
                         <input className="submit" type="submit" value="Add task" />
                     </div>
                 </form>
-            </div> : ""}
+            </div> : <button onClick={() => setShowAddForm(true)}>Add to-do</button>}
+
             {message ? <p>{message}</p> : ""}
         </div>
     )
