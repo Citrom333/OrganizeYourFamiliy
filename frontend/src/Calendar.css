@@ -25,6 +25,9 @@ table {
     background-color: bisque;
 }
 
+.calendar {
+    padding-top: 20px;
+}
 
 .weekcalendar {
     width: 100%;
@@ -57,7 +60,6 @@ table {
 
 .tablecontent>* {
     margin-bottom: 5px;
-    /* Válassz egy megfelelő margin értéket az elemek közötti térköz beállításához */
 }
 
 .ready {
