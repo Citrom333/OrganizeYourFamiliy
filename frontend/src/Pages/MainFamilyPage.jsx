@@ -24,15 +24,13 @@ function MainFamilyPage() {
             <div>
                 <Navbar />
                 <div className="mainPageDiv">
-                    {location.pathname !== '/MainFamilyPage/MyPage' ?
+                    {location.pathname == '/MainFamilyPage' ?
                         <div><h1>This is my family</h1>
                             <div className="memberAvatars">
                                 {members.length > 0 ? members.map(mem => <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
                             </div>
                         </div> :
-                        <div>
-                            {members.map(mem => mem.id.toString() === localStorage.getItem("userId") ? <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div> : "")}
-                        </div>}
+                        ""}
                     <Outlet />
                     <Footer />
                 </div>

@@ -30,6 +30,9 @@ function MyPage() {
     return (
         <>
             <div className="myPage">
+                <div>
+                    <div key={user.id}><img className="userAvatarPic" src={user.avatarPic} /><div>{user.name}</div></div>
+                </div>
                 <h1>My page</h1>
                 {selectedTodo === "" ?
                     <div>
