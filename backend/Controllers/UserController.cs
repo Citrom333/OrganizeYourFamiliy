@@ -86,8 +86,8 @@ public class UserController : ControllerBase
         return success ? Ok("User updated") : StatusCode(400, ErrorMessage);
     }
 
-    [HttpPut("RewardPoint")]
-    public async Task<IActionResult> AddRewardPointToUser(ToDoType task, long id, int point)
+    [HttpPut("RewardPoint/{id}/{point}")]
+    public async Task<IActionResult> AddRewardPointToUser([FromBody] ToDoType task, long id, int point)
     {
         bool success = await _userService.AddRewardPointToUser(task, id, point);
         return success ? Ok("User updated") : StatusCode(400, ErrorMessage);
