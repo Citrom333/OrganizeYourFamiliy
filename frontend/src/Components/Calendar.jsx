@@ -65,7 +65,7 @@ const Calendar = (props) => {
         }
         return <tr>{weekDays}</tr>;
     };
-
+    useEffect(() => { renderCalendar() }, [props.toDo])
     return (
         <div className="calendar">
             <div className="header">
