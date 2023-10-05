@@ -35,6 +35,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddTransient<IFamilyService, FamilyService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IToDoService, ToDoService>();
+builder.Services.AddTransient<IScheduledProgramService, ScheduledProgramService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
