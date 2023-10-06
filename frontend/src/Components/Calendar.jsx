@@ -92,7 +92,7 @@ const Calendar = (props) => {
                             getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
                             : "" : ""}
                     {Object.keys(getPrograms(currentDate)).length > 0 ?
-                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId]} onClick={(e) => showProgram(index)}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
+                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId] > 7 ? "7" : getPrograms(currentDate)[pId]} onClick={(e) => showProgram(index)}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
                         : ""}
                 </div>
 
