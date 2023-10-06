@@ -7,6 +7,7 @@ function MyPage() {
     const [toDos, setToDos] = useState([]);
     const [addedNew, setAddedNew] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState("");
+    const [programs, setPrograms] = useState([]);
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
     const fetchUser = async () =>
@@ -20,7 +21,6 @@ function MyPage() {
             });
     useEffect(() => {
         fetchUser();
-        console.log(user)
     }, [])
     const fetchToDos = () =>
         fetch(`/api/ToDo/${userId}`, {
@@ -31,16 +31,23 @@ function MyPage() {
                 setToDos(json);
 
             });
+    const fetchPrograms = () =>
+        fetch(`/api/ScheduledProgram/${userId}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => response.json())
+            .then((json) => {
+                setPrograms(json);
 
+            });
     useEffect(() => {
         fetchToDos();
-        console.log(addedNew);
+        fetchPrograms();
         setAddedNew(false);
     }, [toDos.length, addedNew, selectedTodo])
 
     const handleClick = (e) => {
         setSelectedTodo(toDos.find(t => t.id == e));
-        console.log(selectedTodo);
     }
     return (
         <>
@@ -53,7 +60,7 @@ function MyPage() {
                     <div>
                         <Rewardpoints user={user} />
                         <ToDos toDos={toDos} setAddedNew={setAddedNew} />
-                        <Calendar toDos={toDos} handleClick={e => handleClick(e)} toDo={selectedTodo} />
+                        <Calendar isMainPage={false} toDos={toDos} handleClick={e => handleClick(e)} toDo={selectedTodo} programs={programs} />
                     </div> :
                     <TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />}
 
