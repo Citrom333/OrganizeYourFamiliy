@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using backend.Model.Entities;
 
+namespace backend.Model.DTOs;
 
-namespace backend.Model.Entities;
-
-public class ScheduledProgram
+public class ScheduledProgramDTO
 {
+
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
@@ -13,5 +14,5 @@ public class ScheduledProgram
     public DateTime? Start { get; set; }
     public DateTime? End { get; set; }
     public decimal? Cost { get; set; }
-    public List<User>? Participants { get; set; }
+    public List<long> ParticipantIds { get; set; }
 }
