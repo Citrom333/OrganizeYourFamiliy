@@ -8,16 +8,20 @@ const Calendar = (props) => {
     const showProgram = () => {
 
     }
+    function getDifferenceInDays(date1, date2) {
+        const diffInMs = Math.abs(date2 - date1);
+        return diffInMs / (1000 * 60 * 60 * 24);
+    }
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const renderDaysOfWeek = () => {
         return (
-            <tr>
+            <div>
                 {days.map((day) => (
                     <th key={day} className="day-of-week">
                         {day}
                     </th>
                 ))}
-            </tr>
+            </div>
         );
     };
 
@@ -49,19 +53,27 @@ const Calendar = (props) => {
         return actualToDos;
     }
     const getPrograms = (date) => {
-        let startDay = new Date(date);
-        startDay.setHours(0, 0, 0, 0);
-        let endDay = new Date(date);
-        endDay.setHours(23, 59, 59, 999);
-        let actualPrograms = [];
+        // let startDay = new Date(date);
+        // startDay.setHours(0, 0, 0, 0);
+        // let endDay = new Date(date);
+        // endDay.setHours(23, 59, 59, 999);
+        let actualPrograms = {};
         for (let i = 0; i < props.programs.length; i++) {
             let programStart = new Date(props.programs[i].start);
+            programStart.setHours(0, 0, 0, 0);
             let programEnd = new Date(props.programs[i].end)
-            if ((Date.parse(startDay) <= Date.parse(programStart) && Date.parse(endDay) >= Date.parse(programStart)) ||
-                (Date.parse(startDay) >= Date.parse(programStart) && Date.parse(startDay) <= Date.parse(programEnd))) {
-                actualPrograms.push(props.programs[i])
+            programEnd.setHours(0, 0, 0, 0);
+            // if ((Date.parse(startDay) <= Date.parse(programStart) && Date.parse(endDay) >= Date.parse(programStart)) ||
+            //     (Date.parse(startDay) >= Date.parse(programStart) && Date.parse(startDay) <= Date.parse(programEnd))) {
+            //     actualPrograms.push(props.programs[i])
+            // }
+            let programDate = new Date(props.programs[i].start);
+            let length = Math.ceil(getDifferenceInDays(programStart, programEnd)) + 1;
+            if (date.getDate() === programDate.getDate() && date.getMonth() === programDate.getMonth() && date.getFullYear() === programDate.getFullYear()) {
+                actualPrograms[props.programs[i].name] = length;
             }
         }
+        console.log(actualPrograms);
         return actualPrograms;
     }
 
@@ -69,24 +81,25 @@ const Calendar = (props) => {
         const weekDays = [];
         for (let i = 0; i < 7; i++) {
             weekDays.push(
-                <td
+                <div
                     key={`day-${i}`}
                     className={`day ${currentDate.getDate() === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear() ? 'today' : ''}`}
                 >
-                    <div className='dayDiv'>
-                        <div className="tablecontent">{currentDate.getDate()}</div>
-                        {!props.isMainPage ?
-                            getToDos(currentDate).length > 0 ?
-                                getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready" : "tablecontent not_ready"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
-                                : "" : ""}
-                        {getPrograms(currentDate).length > 0 ?
-                            getPrograms(currentDate).map(p => <div key={p.id} className={"tablecontent "} data-span={p.id} onClick={(e) => showProgram(p.id)}>{p.name}</div>) : ""}
-                    </div>
-                </td>
+
+                    <div className="tablecontent dayDate">{currentDate.getDate()}</div>
+                    {!props.isMainPage ?
+                        getToDos(currentDate).length > 0 ?
+                            getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
+                            : "" : ""}
+                    {Object.keys(getPrograms(currentDate)).length > 0 ?
+                        Object.keys(getPrograms(currentDate)).map((p, index) => <div key={index} className={"tablecontent event"} data-span={getPrograms(currentDate)[p]} onClick={(e) => showProgram(index)}>{p}</div>)
+                        : ""}
+                </div>
+
             );
             currentDate.setDate(currentDate.getDate() + 1);
         }
-        return <tr>{weekDays}</tr>;
+        return <div className="week">{weekDays}</div>;
     };
     useEffect(() => { renderCalendar() }, [props.toDo])
     return (
@@ -100,10 +113,10 @@ const Calendar = (props) => {
                     Next
                 </button>
             </div>
-            <table className="weekCalendar">
-                <thead className="days-of-week">{renderDaysOfWeek()}</thead>
-                <tbody className="calendar-grid">{renderCalendar()}</tbody>
-            </table>
+            <div className="weekCalendar">
+                <div className="days-of-week">{renderDaysOfWeek()}</div>
+                <div className="weekcontainer">{renderCalendar()}</div>
+            </div>
         </div>
     );
 };
