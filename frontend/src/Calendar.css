@@ -38,14 +38,24 @@ table {
     width: 100%;
 }
 
-.weekcalendar {
+.weekCalendar {
     width: 100%;
-
+    background-color: beige;
 }
 
 .day-of-week {
     width: 11.4vw;
 
+}
+
+.starting {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.ending {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .day {
@@ -54,14 +64,6 @@ table {
     max-height: fit-content;
 }
 
-/* .dayDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    min-height: 18vh;
-    max-height: fit-content;
-} */
 .dayDiv {
     display: contents;
 
@@ -72,15 +74,6 @@ table {
     margin: 0;
 }
 
-/* .tablecontent {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.tablecontent>* {
-    margin-bottom: 5px;
-} */
 .tablecontent {
     display: inline-grid;
 }
@@ -98,11 +91,6 @@ table {
     border: solid 2px;
     border-color: rgb(69, 36, 36);
 }
-
-/* 
-.calendar-grid {
-    min-height: 20vh;
-} */
 
 .today {
     border: solid 2px;
