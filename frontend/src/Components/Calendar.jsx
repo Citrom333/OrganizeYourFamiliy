@@ -5,7 +5,9 @@ const Calendar = (props) => {
     let userId = localStorage.getItem("userId");
     const date_today = new Date();
     const [first_day_of_the_week, setFirst_day_of_the_week] = useState(new Date(date_today.setDate(date_today.getDate() - date_today.getDay())));
+    const showProgram = () => {
 
+    }
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const renderDaysOfWeek = () => {
         return (
@@ -35,6 +37,7 @@ const Calendar = (props) => {
     const month = first_day_of_the_week.getMonth();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const currentDate = new Date(first_day_of_the_week);
+    currentDate.setHours(0, 0, 0, 0);
     const getToDos = (date) => {
         let actualToDos = [];
         for (let i = 0; i < props.toDos.length; i++) {
@@ -45,10 +48,25 @@ const Calendar = (props) => {
         }
         return actualToDos;
     }
+    const getPrograms = (date) => {
+        let startDay = new Date(date);
+        startDay.setHours(0, 0, 0, 0);
+        let endDay = new Date(date);
+        endDay.setHours(23, 59, 59, 999);
+        let actualPrograms = [];
+        for (let i = 0; i < props.programs.length; i++) {
+            let programStart = new Date(props.programs[i].start);
+            let programEnd = new Date(props.programs[i].end)
+            if ((Date.parse(startDay) <= Date.parse(programStart) && Date.parse(endDay) >= Date.parse(programStart)) ||
+                (Date.parse(startDay) >= Date.parse(programStart) && Date.parse(startDay) <= Date.parse(programEnd))) {
+                actualPrograms.push(props.programs[i])
+            }
+        }
+        return actualPrograms;
+    }
 
     const renderCalendar = () => {
         const weekDays = [];
-
         for (let i = 0; i < 7; i++) {
             weekDays.push(
                 <td
@@ -57,7 +75,12 @@ const Calendar = (props) => {
                 >
                     <div className='dayDiv'>
                         <div className="tablecontent">{currentDate.getDate()}</div>
-                        {getToDos(currentDate).length > 0 ? getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready" : "tablecontent not_ready"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>) : ""}
+                        {!props.isMainPage ?
+                            getToDos(currentDate).length > 0 ?
+                                getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready" : "tablecontent not_ready"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
+                                : "" : ""}
+                        {getPrograms(currentDate).length > 0 ?
+                            getPrograms(currentDate).map(p => <div key={p.id} className={"tablecontent "} data-span={p.id} onClick={(e) => showProgram(p.id)}>{p.name}</div>) : ""}
                     </div>
                 </td>
             );
