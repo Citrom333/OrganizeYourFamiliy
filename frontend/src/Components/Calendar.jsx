@@ -4,7 +4,9 @@ import '../Calendar.css';
 const Calendar = (props) => {
     let userId = localStorage.getItem("userId");
     const date_today = new Date();
-    const [first_day_of_the_week, setFirst_day_of_the_week] = useState(new Date(date_today.setDate(date_today.getDate() - date_today.getDay())));
+    let starter = new Date(date_today.setDate(date_today.getDate() - date_today.getDay()));
+    starter.setHours(0, 0, 0, 0);
+    const [first_day_of_the_week, setFirst_day_of_the_week] = useState(starter);
     const showProgram = () => {
 
     }
@@ -53,27 +55,25 @@ const Calendar = (props) => {
         return actualToDos;
     }
     const getPrograms = (date) => {
-        // let startDay = new Date(date);
-        // startDay.setHours(0, 0, 0, 0);
-        // let endDay = new Date(date);
-        // endDay.setHours(23, 59, 59, 999);
+
         let actualPrograms = {};
         for (let i = 0; i < props.programs.length; i++) {
             let programStart = new Date(props.programs[i].start);
             programStart.setHours(0, 0, 0, 0);
             let programEnd = new Date(props.programs[i].end)
             programEnd.setHours(0, 0, 0, 0);
-            // if ((Date.parse(startDay) <= Date.parse(programStart) && Date.parse(endDay) >= Date.parse(programStart)) ||
-            //     (Date.parse(startDay) >= Date.parse(programStart) && Date.parse(startDay) <= Date.parse(programEnd))) {
-            //     actualPrograms.push(props.programs[i])
-            // }
+
             let programDate = new Date(props.programs[i].start);
             let length = Math.ceil(getDifferenceInDays(programStart, programEnd)) + 1;
-            if (date.getDate() === programDate.getDate() && date.getMonth() === programDate.getMonth() && date.getFullYear() === programDate.getFullYear()) {
-                actualPrograms[props.programs[i].name] = length;
-            }
+            if (programStart < first_day_of_the_week && programEnd >= first_day_of_the_week && date.valueOf() === first_day_of_the_week.valueOf()) {
+
+                length -= Math.ceil(getDifferenceInDays(programStart, new Date(first_day_of_the_week - 1))) + 1;
+                actualPrograms[props.programs[i].id] = length;
+            } else
+                if (date.getDate() === programDate.getDate() && date.getMonth() === programDate.getMonth() && date.getFullYear() === programDate.getFullYear()) {
+                    actualPrograms[props.programs[i].id] = length;
+                }
         }
-        console.log(actualPrograms);
         return actualPrograms;
     }
 
@@ -92,7 +92,7 @@ const Calendar = (props) => {
                             getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
                             : "" : ""}
                     {Object.keys(getPrograms(currentDate)).length > 0 ?
-                        Object.keys(getPrograms(currentDate)).map((p, index) => <div key={index} className={"tablecontent event"} data-span={getPrograms(currentDate)[p]} onClick={(e) => showProgram(index)}>{p}</div>)
+                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId]} onClick={(e) => showProgram(index)}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
                         : ""}
                 </div>
 
