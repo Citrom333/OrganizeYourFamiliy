@@ -67,7 +67,7 @@ const Calendar = (props) => {
             let length = Math.ceil(getDifferenceInDays(programStart, programEnd)) + 1;
             if (programStart < first_day_of_the_week && programEnd >= first_day_of_the_week && date.valueOf() === first_day_of_the_week.valueOf()) {
 
-                length -= Math.ceil(getDifferenceInDays(programStart, new Date(first_day_of_the_week - 1))) + 1;
+                length -= Math.ceil(getDifferenceInDays(programStart, new Date(first_day_of_the_week - 1)));
                 actualPrograms[props.programs[i].id] = length;
             } else
                 if (date.getDate() === programDate.getDate() && date.getMonth() === programDate.getMonth() && date.getFullYear() === programDate.getFullYear()) {
