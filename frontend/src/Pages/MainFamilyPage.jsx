@@ -44,6 +44,8 @@ function MainFamilyPage() {
                             <div className="memberAvatars">
                                 {members.length > 0 ? members.map(mem => <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
                             </div>
+                        </div>
+                            <div><Calendar isMainPage={true} toDos={[]} handleClick={e => handleClick(e)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
                     <Outlet />
