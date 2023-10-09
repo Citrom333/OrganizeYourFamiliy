@@ -11,7 +11,8 @@ export default function Rewardpoints(props) {
                 <h3 className="point">School: {props.user.rewardPointSchool}</h3>
                 <h3 className="point">Other: {props.user.rewardPointOther}</h3>
             </div>
-            <a href="/MainFamilyPage/RewardShop"><button>Go shop some reward</button></a>
+            <div><a href="/MainFamilyPage/RewardShop"><button>Go shop some reward</button></a></div>
+
         </div>
     )
 }

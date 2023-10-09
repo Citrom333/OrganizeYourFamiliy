@@ -67,7 +67,7 @@ const Calendar = (props) => {
             let length = Math.ceil(getDifferenceInDays(programStart, programEnd)) + 1;
             if (programStart < first_day_of_the_week && programEnd >= first_day_of_the_week && date.valueOf() === first_day_of_the_week.valueOf()) {
 
-                length -= Math.ceil(getDifferenceInDays(programStart, new Date(first_day_of_the_week - 1))) + 1;
+                length -= Math.ceil(getDifferenceInDays(programStart, new Date(first_day_of_the_week - 1)));
                 actualPrograms[props.programs[i].id] = length;
             } else
                 if (date.getDate() === programDate.getDate() && date.getMonth() === programDate.getMonth() && date.getFullYear() === programDate.getFullYear()) {
@@ -92,7 +92,7 @@ const Calendar = (props) => {
                             getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id)}>{t.taskName}</div>)
                             : "" : ""}
                     {Object.keys(getPrograms(currentDate)).length > 0 ?
-                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId]} onClick={(e) => showProgram(index)}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
+                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId] > 7 ? "7" : getPrograms(currentDate)[pId]} onClick={(e) => showProgram(index)}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
                         : ""}
                 </div>
 

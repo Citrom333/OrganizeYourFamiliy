@@ -162,8 +162,3 @@ div[data-span="7"] {
     grid-column-end: span 7;
     background: sandybrown;
 }
-
-div[data-span="1"] {
-    grid-column-end: span 1;
-    background: sandybrown;
-}
