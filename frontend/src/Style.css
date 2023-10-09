@@ -96,6 +96,10 @@ body {
     position: fixed;
 }
 
+.footer a {
+    color: rgb(54, 98, 121);
+}
+
 .avatarPic {
     border: 4px solid;
     border-color: antiquewhite;
