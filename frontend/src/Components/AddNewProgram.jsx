@@ -8,23 +8,30 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
     const [end, setEnd] = useState("");
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
-    const [isChecked, setIsChecked] = useState([]);
+    const [isChecked, setIsChecked] = useState(new Array(users.length).fill(false));
     const fetchProgram = () => {
 
     };
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         fetchProgram();
         console.log(participants);
     };
     const handleCheckboxChange = (e) => {
-        console.log(isChecked);
-        setIsChecked(!isChecked);
-        if (isChecked) {
-            setParticipants((current) => [...current, e.target.value]);
+        let change = [...isChecked];
+        change[e.target.value.split(",")[0]] = !isChecked[e.target.value.split(",")[0]];
+        setIsChecked(change);
+        console.log(e.target.value);
+        if (change[e.target.value[0]]) {
+            console.log("checked");
+            setParticipants((current) => [...current, e.target.value.split(",")[1]]);
         }
-        else setParticipants(oldValues => {
-            return oldValues.filter(partip => partip !== e.target.value)
-        })
+        else {
+            console.log("not checked");
+            setParticipants(oldValues => {
+                return oldValues.filter(partip => partip !== e.target.value.split(",")[1]);
+            })
+        }
     };
     return (
         <div className="modal-overlay">
@@ -57,8 +64,8 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
                         <label>
                             <p>Type</p>
                             {users.length > 0 ? users.map((u, index) => {
-                                setIsChecked(curr => [...curr, false]); return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
-                                    value={u.id} onChange={handleCheckboxChange} /></div>
+                                return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
+                                    value={[index, u.id]} onChange={handleCheckboxChange} /></div>
                             }) : ""}
                         </label>
                         <label>
