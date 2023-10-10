@@ -9,12 +9,38 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
     const [isChecked, setIsChecked] = useState(new Array(users.length).fill(false));
-    const fetchProgram = () => {
-
+    const fetchAddProgram = async () => {
+        try {
+            let res = await fetch(`/api/ScheduledProgram`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "name": name,
+                    "start": start,
+                    "end": end,
+                    "cost": cost,
+                    "participantIds": participants
+                }),
+            });
+            if (res.status === 200) {
+                setName("");
+                setStart("");
+                setEnd("");
+                setCost("");
+                setParticipants([]);
+                setIsChecked(new Array(users.length).fill(false))
+            } else {
+                // setMessage("Some error occured");
+            }
+        } catch (err) {
+            // setMessage(err);
+        }
     };
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetchProgram();
+        fetchAddProgram();
         console.log(participants);
     };
     const handleCheckboxChange = (e) => {
