@@ -83,6 +83,8 @@ public class ScheduledProgramService : IScheduledProgramService
                     programToUpdate.Start = prog.Start;
                 if (prog.End != null)
                     programToUpdate.End = prog.End;
+                if (!string.IsNullOrEmpty(prog.Place))
+                    programToUpdate.Place = prog.Place;
                 if (prog.Cost != null)
                     programToUpdate.Cost = prog.Cost;
                 if (prog.ParticipantIds != null)
