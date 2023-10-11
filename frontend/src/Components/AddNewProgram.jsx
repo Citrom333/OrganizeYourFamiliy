@@ -6,6 +6,7 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
     const [name, setName] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [place, setPlace] = useState("");
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
     const [isChecked, setIsChecked] = useState(new Array(users.length).fill(false));
@@ -20,6 +21,7 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
                     "name": name,
                     "start": start,
                     "end": end,
+                    "place": place,
                     "cost": cost,
                     "participantIds": participants
                 }),
@@ -28,6 +30,7 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
                 setName("");
                 setStart("");
                 setEnd("");
+                setPlace("");
                 setCost("");
                 setParticipants([]);
                 setIsChecked(new Array(users.length).fill(false))
