@@ -1,15 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import "../AddNewProgram.css"
-const AddNewProgram = ({ isOpen, onClose, users, }) => {
-    if (!isOpen) return null;
+
+const AddNewProgram = (props) => {
     const [name, setName] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [place, setPlace] = useState("");
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
-    const [isChecked, setIsChecked] = useState(new Array(users.length).fill(false));
+    const [isChecked, setIsChecked] = useState(new Array(props.users.length).fill(false));
     const fetchAddProgram = async () => {
         try {
             let res = await fetch(`/api/ScheduledProgram`, {
@@ -33,7 +32,9 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
                 setPlace("");
                 setCost("");
                 setParticipants([]);
-                setIsChecked(new Array(users.length).fill(false))
+                setIsChecked(new Array(props.users.length).fill(false))
+                props.setAddedNew(true);
+
             } else {
                 // setMessage("Some error occured");
             }
@@ -44,6 +45,7 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         fetchAddProgram();
+        console.log(props.change);
         console.log(participants);
     };
     const handleCheckboxChange = (e) => {
@@ -63,52 +65,56 @@ const AddNewProgram = ({ isOpen, onClose, users, }) => {
         }
     };
     return (
-        <div className="modal-overlay">
-            <div className="modal">
+        <div>
+            <form className="form" onSubmit={handleSubmit}>
+                <label>
+                    <p>Program name</p>
+                    <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Start</p>
+                    <input
+                        value={start}
+                        type="datetime-local"
+                        onChange={(e) => setStart(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>End</p>
+                    <input
+                        value={end}
+                        type="datetime-local"
+                        onChange={(e) => setEnd(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Participants</p>
+                    {props.users.length > 0 ? props.users.map((u, index) => {
+                        return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
+                            value={[index, u.id]} onChange={handleCheckboxChange} /></div>
+                    }) : ""}
+                </label>
+                <label>
+                    <p>Place (optional)</p>
+                    <input
+                        value={place}
+                        onChange={(e) => setPlace(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Cost</p>
+                    <input
+                        value={cost}
+                        onChange={(e) => setCost(e.target.value)}
+                    />
+                </label>
                 <div>
-                    <button className="close-button" onClick={onClose}>X</button>
+                    <input className="submit" type="submit" value="Add program" />
                 </div>
-                <div>
-                    <form className="form" onSubmit={handleSubmit}>
-                        <label>
-                            <p>Program name</p>
-                            <input
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <p>Start</p>
-                            <input
-                                type="datetime-local"
-                                onChange={(e) => setStart(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <p>End</p>
-                            <input
-                                type="datetime-local"
-                                onChange={(e) => setEnd(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <p>Type</p>
-                            {users.length > 0 ? users.map((u, index) => {
-                                return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
-                                    value={[index, u.id]} onChange={handleCheckboxChange} /></div>
-                            }) : ""}
-                        </label>
-                        <label>
-                            <p>Cost</p>
-                            <input
-                                onChange={(e) => setCost(e.target.value)}
-                            />
-                        </label>
-                        <div>
-                            <input className="submit" type="submit" value="Add program" />
-                        </div>
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
     );
 };
