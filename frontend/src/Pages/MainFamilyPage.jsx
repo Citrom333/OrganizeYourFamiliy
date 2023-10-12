@@ -7,12 +7,16 @@ import Calendar from "../Components/Calendar";
 import Modal from "../Components/Modal";
 import AddNewProgram from "../Components/AddNewProgram";
 import ProgramDetails from "../Components/ProgramDetails";
+import Delete from "../Components/Delete";
+import Update from "../Components/Update";
 function MainFamilyPage() {
     const location = useLocation();
     const [members, setMembers] = useState([]);
     const [programs, setPrograms] = useState([]);
     const [addProgIsOpen, setAddProgIsOpen] = useState(false);
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
+    const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+    const [updateIsOpen, setUpdateIsOpen] = useState(false);
     const [change, setChange] = useState(false);
     const [selectedProg, setSelectedProg] = useState("");
     const fetchMembers = () =>
@@ -40,7 +44,6 @@ function MainFamilyPage() {
     useEffect(() => {
         fetchMembers();
         fetchPrograms();
-        console.log(change)
         setChange(false);
     }, [members.length, programs.length, change])
     return (
@@ -55,12 +58,15 @@ function MainFamilyPage() {
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
-                            <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={prog => updateFunction(prog)} handleDelete={prog => deleteFunction(prog)} />} />
+                            <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
+                            <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete program={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} />} />
+                            <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
+
                             <button onClick={e => setAddProgIsOpen(true)}>Add new program</button>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
-                    <Outlet />
+                    <Outlet users={members} />
                     <Footer />
                 </div>
             </div>
