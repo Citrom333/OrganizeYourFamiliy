@@ -45,20 +45,15 @@ const AddNewProgram = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         fetchAddProgram();
-        console.log(props.change);
-        console.log(participants);
     };
     const handleCheckboxChange = (e) => {
         let change = [...isChecked];
         change[e.target.value.split(",")[0]] = !isChecked[e.target.value.split(",")[0]];
         setIsChecked(change);
-        console.log(e.target.value);
         if (change[e.target.value[0]]) {
-            console.log("checked");
             setParticipants((current) => [...current, e.target.value.split(",")[1]]);
         }
         else {
-            console.log("not checked");
             setParticipants(oldValues => {
                 return oldValues.filter(partip => partip !== e.target.value.split(",")[1]);
             })
