@@ -29,7 +29,7 @@ export default function Delete(props) {
                     <h2>Do you really want to delete?</h2>
                     <button onClick={finalDelete}>Yes</button>
                     <button
-                    // onClick={e => setConfirmed(false)}
+                        onClick={props.onClose}
                     >No</button>
                 </div>
             }
