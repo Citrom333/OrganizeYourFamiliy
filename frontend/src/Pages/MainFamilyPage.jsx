@@ -59,14 +59,14 @@ function MainFamilyPage() {
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
                             <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
-                            <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete program={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} />} />
+                            <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
 
                             <button onClick={e => setAddProgIsOpen(true)}>Add new program</button>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
-                    <Outlet users={members} />
+                    <Outlet />
                     <Footer />
                 </div>
             </div>
