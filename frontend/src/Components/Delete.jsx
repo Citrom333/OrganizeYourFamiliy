@@ -9,11 +9,11 @@ export default function Delete(props) {
             let res = await fetch(url, {
                 method: "DELETE"
             })
+            console.log(res.status)
             if (res.status === 200) {
-                props.setChange(true);
+                props.change(true);
                 setMessage("Successfully deleted")
             } else {
-                console.log(res.status);
                 setMessage("Some error occured");
             }
         }
