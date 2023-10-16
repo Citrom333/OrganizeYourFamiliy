@@ -12,21 +12,7 @@ export default function AddTodo(props) {
         e.preventDefault();
         console.log(`: ${taskName}, : ${description}, : ${deadline}, type: ${toDoType}, : ${userId}`);
         try {
-            let res = await fetch(`/api/ToDo`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "taskName": taskName,
-                    "description": description,
-                    "deadline": deadline,
-                    "type": parseInt(toDoType),
-                    "rewardPoint": rewardPoint,
-                    "ready": false,
-                    "ownerID": userId
-                }),
-            });
+            let res = await postTodo(taskName, description, deadline, toDoType, rewardPoint, userId);
             if (res.status === 200) {
                 setTaskName("");
                 setDescription("");
