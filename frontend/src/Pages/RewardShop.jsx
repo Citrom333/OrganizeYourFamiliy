@@ -64,6 +64,8 @@ export default function RewardShop() {
             </div>
             <p>Selected Option: {selectedOption}</p>
             <button onClick={handleSubmit}>Submit</button>
+            <div> <a href="/MainFamilyPage/MyPage"><button>Back</button></a></div>
+
         </div>
     );
 };

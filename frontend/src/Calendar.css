@@ -45,6 +45,11 @@ table {
 
 .day-of-week {
     width: 11.4vw;
+    grid-row: none;
+}
+
+.dayNames {
+    display: grid;
 
 }
 

@@ -71,10 +71,12 @@ public class ScheduledProgramService : IScheduledProgramService
 
     public async Task<bool> UpdateProgram(ScheduledProgramDTO prog)
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await GetAllUsers();
+        var participants = users.Where(u => prog.ParticipantIds.Contains(u.Id)).ToList();
+
         try
         {
-            var programToUpdate = await _context.ScheduledPrograms.FirstOrDefaultAsync(p => p.Id == prog.Id);
+            var programToUpdate = await _context.ScheduledPrograms.Include(p => p.Participants).FirstOrDefaultAsync(p => p.Id == prog.Id);
             if (programToUpdate != null)
             {
                 if (!string.IsNullOrEmpty(prog.Name))
@@ -83,24 +85,23 @@ public class ScheduledProgramService : IScheduledProgramService
                     programToUpdate.Start = prog.Start;
                 if (prog.End != null)
                     programToUpdate.End = prog.End;
+                if (!string.IsNullOrEmpty(prog.Place))
+                    programToUpdate.Place = prog.Place;
                 if (prog.Cost != null)
                     programToUpdate.Cost = prog.Cost;
                 if (prog.ParticipantIds != null)
                 {
-                    programToUpdate.Participants = prog.ParticipantIds
-                        .Select(partId => users.FirstOrDefault(u => u?.Id == partId))
-                        .Where(user => user != null)
-                        .ToList();
+                    programToUpdate.Participants = participants;
                 }
 
                 await _context.SaveChangesAsync();
                 return true;
             }
-
             return false;
         }
         catch (Exception e)
         {
+            Console.WriteLine(e.StackTrace);
             return false;
         }
     }

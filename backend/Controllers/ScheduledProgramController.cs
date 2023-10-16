@@ -88,7 +88,21 @@ public class ScheduledProgramController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> UpdateProgram([FromBody] ScheduledProgramDTO program)
     {
-        bool success = await _scheduledProgramService.UpdateProgram(program);
-        return success ? Ok("Program updated") : StatusCode(400, ErrorMessage);
+        try
+        {
+            bool success = await _scheduledProgramService.UpdateProgram(program);
+            if (success)
+            {
+                return Ok("Program updated");
+            }
+            else
+            {
+                   return BadRequest("Failed to update program");
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }

@@ -1,62 +1,115 @@
 import React from 'react';
 import { useState } from 'react';
-import "../AddNewProgram.css"
-const AddNewProgram = ({ isOpen, onClose, users, }) => {
-    if (!isOpen) return null;
+
+const AddNewProgram = (props) => {
     const [name, setName] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [place, setPlace] = useState("");
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
-    const fetchProgram = () => {
+    const [isChecked, setIsChecked] = useState(new Array(props.users.length).fill(false));
+    const fetchAddProgram = async () => {
+        try {
+            let res = await fetch(`/api/ScheduledProgram`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "name": name,
+                    "start": start,
+                    "end": end,
+                    "place": place,
+                    "cost": cost,
+                    "participantIds": participants
+                }),
+            });
+            if (res.status === 200) {
+                setName("");
+                setStart("");
+                setEnd("");
+                setPlace("");
+                setCost("");
+                setParticipants([]);
+                setIsChecked(new Array(props.users.length).fill(false))
+                props.setAddedNew(true);
 
-    }
-    const handleSubmit = () => {
-        fetchProgram();
-    }
+            } else {
+                // setMessage("Some error occured");
+            }
+        } catch (err) {
+            // setMessage(err);
+        }
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetchAddProgram();
+    };
+    const handleCheckboxChange = (e) => {
+        let change = [...isChecked];
+        change[e.target.value.split(",")[0]] = !isChecked[e.target.value.split(",")[0]];
+        setIsChecked(change);
+        if (change[e.target.value[0]]) {
+            setParticipants((current) => [...current, e.target.value.split(",")[1]]);
+        }
+        else {
+            setParticipants(oldValues => {
+                return oldValues.filter(partip => partip !== e.target.value.split(",")[1]);
+            })
+        }
+    };
     return (
-        <div className="modal-overlay">
-            <div className="modal">
-                <button className="close-button" onClick={onClose}>&times;</button>
-                <form className="form" onSubmit={handleSubmit}>
-                    <label>
-                        <p>Program name</p>
-                        <input
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Start</p>
-                        <input
-                            type="datetime-local"
-                            onChange={(e) => setStart(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>End</p>
-                        <input
-                            type="datetime-local"
-                            onChange={(e) => setEnd(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Type</p>
-                        <select isMulti onChange={(e) => setParticipants(e.target.value)}>
-                            <option value=""></option>
-                            {users.length > 0 ? users.map(u => <option value={u.id}>u.name</option>) : ""}
-                        </select>
-                    </label>
-                    <label>
-                        <p>Cost</p>
-                        <input
-                            onChange={(e) => setCost(e.target.value)}
-                        />
-                    </label>
-                    <div>
-                        <input className="submit" type="submit" value="Add program" />
-                    </div>
-                </form>
-            </div>
+        <div>
+            <form className="form" onSubmit={handleSubmit}>
+                <label>
+                    <p>Program name</p>
+                    <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Start</p>
+                    <input
+                        value={start}
+                        type="datetime-local"
+                        onChange={(e) => setStart(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>End</p>
+                    <input
+                        value={end}
+                        type="datetime-local"
+                        onChange={(e) => setEnd(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Participants</p>
+                    {props.users.length > 0 ? props.users.map((u, index) => {
+                        return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
+                            value={[index, u.id]} onChange={handleCheckboxChange} /></div>
+                    }) : ""}
+                </label>
+                <label>
+                    <p>Place (optional)</p>
+                    <input
+                        value={place}
+                        onChange={(e) => setPlace(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Cost</p>
+                    <input
+                        value={cost}
+                        onChange={(e) => setCost(e.target.value)}
+                    />
+                </label>
+                <div>
+                    <input className="submit" type="submit" value="Add program" />
+                </div>
+            </form>
         </div>
     );
 };
