@@ -49,7 +49,7 @@ table {
 }
 
 .dayNames {
-    display: grid;
+    display: flex;
 
 }
 
