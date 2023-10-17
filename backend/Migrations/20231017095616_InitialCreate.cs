@@ -10,34 +10,35 @@ namespace backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ScheduledPrograms",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Start = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    End = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Place = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScheduledPrograms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Families",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LeaderOfFamilyId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Families", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ScheduledPrograms",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Place = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Start = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    End = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ScheduledPrograms", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,6 +140,13 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Families_LeaderOfFamilyId",
+                table: "Families",
+                column: "LeaderOfFamilyId",
+                unique: true,
+                filter: "[LeaderOfFamilyId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rewards_OwnerId",
                 table: "Rewards",
                 column: "OwnerId");
@@ -157,10 +165,21 @@ namespace backend.Migrations
                 name: "IX_Users_FamilyId",
                 table: "Users",
                 column: "FamilyId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Families_Users_LeaderOfFamilyId",
+                table: "Families",
+                column: "LeaderOfFamilyId",
+                principalTable: "Users",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Families_Users_LeaderOfFamilyId",
+                table: "Families");
+
             migrationBuilder.DropTable(
                 name: "Rewards");
 

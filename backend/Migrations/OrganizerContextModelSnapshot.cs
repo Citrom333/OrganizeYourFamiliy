@@ -30,6 +30,9 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
+                    b.Property<long?>("LeaderOfFamilyId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -39,6 +42,10 @@ namespace backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LeaderOfFamilyId")
+                        .IsUnique()
+                        .HasFilter("[LeaderOfFamilyId] IS NOT NULL");
 
                     b.ToTable("Families");
                 });
@@ -78,19 +85,19 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<decimal>("Cost")
+                    b.Property<decimal?>("Cost")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("End")
+                    b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Place")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Start")
+                    b.Property<DateTime?>("Start")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -196,6 +203,16 @@ namespace backend.Migrations
                     b.HasIndex("ProgramsId");
 
                     b.ToTable("ScheduledProgramUser");
+                });
+
+            modelBuilder.Entity("backend.Model.Entities.Family", b =>
+                {
+                    b.HasOne("backend.Model.Entities.User", "LeaderOfFamily")
+                        .WithOne()
+                        .HasForeignKey("backend.Model.Entities.Family", "LeaderOfFamilyId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("LeaderOfFamily");
                 });
 
             modelBuilder.Entity("backend.Model.Entities.Reward", b =>
