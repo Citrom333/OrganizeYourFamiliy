@@ -30,6 +30,7 @@ function LoginAsFamilyMember() {
             .then((data) => {
                 localStorage.setItem("userName", data.name);
                 localStorage.setItem("userId", id);
+                localStorage.setItem("isAdult", members.find(mem => mem.id == id).familyRole === "0");
                 data.name === undefined
                     ? setMessage("Something is wrong, please try again")
                     : navigate("/MainFamilyPage/MyPage");
@@ -38,6 +39,7 @@ function LoginAsFamilyMember() {
     const handleLogin = async () => {
         localStorage.setItem("userName", "");
         localStorage.setItem("userId", "");
+        localStorage.setItem("isAdult", "");
         await fetchLogin(name, password, id);
     }
     const handleMemberSelect = (e) => {
