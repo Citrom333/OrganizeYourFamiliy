@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using backend.Model;
 using backend.Model.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -53,7 +54,7 @@ public class FamilyService : IFamilyService
         }
     }
 
-    public async Task<bool> DeleteFamily(int id)
+    public async Task<bool> DeleteFamily(long id)
     {
         try
         {
@@ -64,6 +65,34 @@ public class FamilyService : IFamilyService
         }
         catch (Exception e)
         {
+            return false;
+        }
+    }
+
+    public async Task<bool> SetLeader(long familyId, long userId)
+    {
+        Console.WriteLine("Set leader");
+        try
+        {
+            Family family = await _context.Families.Include(family => family.FamilyMembers).FirstAsync(fam => fam.Id == familyId);
+            Console.WriteLine(family.FamilyMembers[0].Id);
+            Console.WriteLine(userId);
+            if (family.FamilyMembers.Select(mem => mem.Id).Contains(userId))
+            {
+                family.LeaderOfFamilyId = userId;
+                family.LeaderOfFamily = family.FamilyMembers.Find(mem => mem.Id == userId);
+            }
+            else
+            {
+                Console.WriteLine("NEM TALÁLTA A USERT");
+                throw new Exception("Not member of this family");
+            }
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
             return false;
         }
     }
