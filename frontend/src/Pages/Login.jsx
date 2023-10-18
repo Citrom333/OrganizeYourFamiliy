@@ -12,6 +12,7 @@ function Login() {
         }).then((response) => response.json())
             .then((json) => {
                 localStorage.setItem("familyId", json.id);
+                localStorage.setItem("leader", json.leaderOfFamilyId);
             });
     const fetchLogin = async (familyname, password) => {
         await fetch("/api/Family/login", {

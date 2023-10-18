@@ -29,7 +29,7 @@ export default function Navbar() {
             <div><a href="/MainFamilyPage"><p>This is {localStorage.getItem("familyName")} family</p></a></div>
             <div><h3>This is the Great Family Organizer</h3></div>
             <div className="navbuttons">
-                <div> <a href="/MainFamilyPage/AddFamilyMember"><button>Add new member</button></a></div>
+                {localStorage.getItem("isAdult") == "false" ? "" : <div> <a href="/MainFamilyPage/AddFamilyMember"><button>Add new member</button></a></div>}
                 {localStorage.getItem("userName") !== "" && localStorage.getItem("userName") !== null ?
                     <div> <a href="/MainFamilyPage/MyPage"><button>{localStorage.getItem("userName")}'s profile</button></a></div>
                     :

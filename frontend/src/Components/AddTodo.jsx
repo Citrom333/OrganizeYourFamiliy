@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import postTodo from "../CostumHooks/postTodo";
+import mostFreqToDos from "../CostumHooks/mostFreqToDos";
 export default function AddTodo(props) {
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");
@@ -6,27 +8,14 @@ export default function AddTodo(props) {
     const [toDoType, setToDoType] = useState("");
     const [rewardPoint, setRewardpoint] = useState("");
     const [message, setMessage] = useState("");
-    let userId = localStorage.getItem("userId");
+
+    let userId = props.userId;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(`: ${taskName}, : ${description}, : ${deadline}, type: ${toDoType}, : ${userId}`);
         try {
-            let res = await fetch(`/api/ToDo`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "taskName": taskName,
-                    "description": description,
-                    "deadline": deadline,
-                    "type": parseInt(toDoType),
-                    "rewardPoint": rewardPoint,
-                    "ready": false,
-                    "ownerID": userId
-                }),
-            });
+            let res = await postTodo(taskName, description, deadline, toDoType, rewardPoint, userId);
             if (res.status === 200) {
                 setTaskName("");
                 setDescription("");
@@ -39,30 +28,53 @@ export default function AddTodo(props) {
                 setMessage("Some error occured");
             }
         } catch (err) {
-            console.log(err);
             setMessage("Some error occured");
+            console.log(err)
         }
     };
     return (
         <div className="toDos">
-            <h3>Add todo</h3>
+            <h3>Add new todo</h3>
+            <h3>Or choose from the most frequents</h3>
+            <select onChange={e => {
+                if (e.target.value === "") {
+                    setTaskName("");
+                    setDescription("");
+                    setDeadline("");
+                    setToDoType("");
+                    setRewardpoint("");
+                }
+                else {
+                    setTaskName(props.todos.find(t => t.id == e.target.value).taskName);
+                    setToDoType(props.todos.find(t => t.id == e.target.value).type);
+                    setDescription(props.todos.find(t => t.id == e.target.value).description);
+                    setRewardpoint(props.todos.find(t => t.id == e.target.value).rewardPoint);
+                    // console.log(props.todos.find(t => t.id == e.target.value))
+                }
+            }}>
+                <option value={""}></option>
+                {props.todos.length > 0 ? mostFreqToDos(props.todos).map(t => <option value={t.id} key={t.id}>{t.taskName}</option>) : ""}
+            </select>
             <div>
                 <form className="form" onSubmit={handleSubmit}>
                     <label>
                         <p>Name</p>
                         <input
+                            value={taskName}
                             onChange={(e) => setTaskName(e.target.value)}
                         />
                     </label>
                     <label>
                         <p>Description</p>
                         <input
+                            value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
                     <label>
                         <p>Deadline</p>
                         <input
+                            value={deadline}
                             type="date"
                             onChange={(e) => setDeadline(e.target.value)}
                         />
@@ -70,7 +82,7 @@ export default function AddTodo(props) {
                     <label>
                         <p>Type</p>
                         <select onChange={(e) => setToDoType(e.target.value)}>
-                            <option value=""></option>
+                            <option value={toDoType}>{toDoType === 0 ? "Housework" : toDoType === 1 ? "Job" : toDoType === 2 ? "School" : toDoType === 3 ? "Other" : ""}</option>
                             <option value={0}>Housework</option>
                             <option value={1}>Job</option>
                             <option value={2}>School</option>
@@ -80,6 +92,7 @@ export default function AddTodo(props) {
                     <label>
                         <p>Rewardpoint</p>
                         <input
+                            value={rewardPoint}
                             onChange={(e) => setRewardpoint(e.target.value)}
                         />
                     </label>
@@ -90,6 +103,6 @@ export default function AddTodo(props) {
             </div>
 
             {message ? <p>{message}</p> : ""}
-        </div>
+        </div >
     )
 }

@@ -17,6 +17,8 @@ public class User
     public List<ScheduledProgram> Programs { get; set; }
     public string AvatarPic { get; set; }
     public List<Reward> Rewards { get; set; }
+    [ForeignKey("Family")]
+    public long FamilyId { get; set; }
     public Family Family { get; set; }
     public int RewardPointHousework { get; set; }
     public int RewardPointJob{ get; set; }

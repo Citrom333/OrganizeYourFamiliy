@@ -8,6 +8,22 @@ namespace backend.Model
         public OrganizerContext(DbContextOptions<OrganizerContext> options) : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Family>()
+                .HasMany(family => family.FamilyMembers)
+                .WithOne(user => user.Family)
+                .HasForeignKey(user => user.FamilyId);
+
+            modelBuilder.Entity<Family>()
+                .HasOne(family => family.LeaderOfFamily)
+                .WithOne()
+                .HasForeignKey<Family>(family => family.LeaderOfFamilyId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+        }
         public DbSet<Family> Families { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ScheduledProgram> ScheduledPrograms { get; set; }

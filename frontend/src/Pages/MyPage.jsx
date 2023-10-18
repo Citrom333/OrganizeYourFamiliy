@@ -8,10 +8,12 @@ import AddTodo from "../Components/AddTodo";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
+import SetLeader from "../Components/SetLeader";
 function MyPage() {
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
+    const [setLeaderIsOpen, setSetLeaderIsOpen] = useState(false);
     const [toDos, setToDos] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [change, setChange] = useState(false);
@@ -19,8 +21,10 @@ function MyPage() {
     const [selectedProg, setSelectedProg] = useState("");
     const [programs, setPrograms] = useState([]);
     const [members, setMembers] = useState([]);
-    let userId = localStorage.getItem("userId");
+    let userId = parseInt(localStorage.getItem("userId"));
+    let familyId = parseInt(localStorage.getItem("familyId"));
     const [user, setUser] = useState("");
+    const isLeader = localStorage.getItem("leader") == userId;
     const fetchMembers = () =>
         fetch("/api/User", {
             method: "GET",
@@ -28,7 +32,6 @@ function MyPage() {
         }).then((response) => response.json())
             .then((json) => {
                 setMembers(json);
-
             });
     const fetchUser = async () =>
         await fetch(`/api/User/${userId}`, {
@@ -81,14 +84,15 @@ function MyPage() {
                     <div key={user.id}><img className="userAvatarPic" src={user.avatarPic} /><div>{user.name}</div></div>
                 </div>
                 <h1>My page</h1>
-
+                {isLeader ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>Be the leader</button>}
                 <div>
                     <Rewardpoints user={user} />
                     <button onClick={e => setShowAddForm(true)}>Add todo</button>
+                    <Modal isOpen={setLeaderIsOpen} onClose={e => setSetLeaderIsOpen(false)} child={<SetLeader userId={userId} familyId={familyId} onClose={e => setSetLeaderIsOpen(false)} />} />
                     <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
                     <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                     <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
-                    <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo toDos={toDos} setAddedNew={setChange} />} />
+                    <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo toDos={toDos} setAddedNew={setChange} userId={userId} todos={toDos} />} />
                     <Modal isOpen={selectedTodo !== ""} onClose={e => setSelectedTodo("")} child={<TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />} />
                     <Calendar isMainPage={false} toDos={toDos} handleClick={(id, type) => handleClick(id, type)} toDo={selectedTodo} programs={programs} />
                 </div>

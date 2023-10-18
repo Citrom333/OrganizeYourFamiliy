@@ -11,5 +11,8 @@ public class Family
 
     public string Name { get; set; }
     public string Password { get; set; }
+   
     public List<User> FamilyMembers { get; set; }
+    public long? LeaderOfFamilyId { get; set; }
+    public User? LeaderOfFamily { get; set; }
 }

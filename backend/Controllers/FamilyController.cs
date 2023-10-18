@@ -46,7 +46,7 @@ public class FamilyController : ControllerBase
 
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteFamily(int id)
+    public async Task<IActionResult> DeleteFamily(long id)
     {
         try
         {
@@ -57,6 +57,22 @@ public class FamilyController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
+    }
+
+    [HttpPut("/Leader/{familyId}/{userId}")]
+    public async Task<IActionResult> SetLeader(int familyId, int userId)
+    {
+        try
+        {
+            bool success = await _familyService.SetLeader(familyId, userId);
+            return success ? Ok() : StatusCode(404,"Error, wrong details");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
+       
     }
    
 }
