@@ -1,25 +1,7 @@
 import { useState, useEffect } from "react"
+import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 export default function TodoDetails(props) {
     const [isChecked, setIsChecked] = useState(props.toDo.ready)
-    const fetchRewardpoints = async () => {
-        let point = !isChecked ? props.toDo.rewardPoint : -1 * props.toDo.rewardPoint;
-        try {
-            let res = await fetch(`/api/user/RewardPoint/${localStorage.getItem("userId")}/${point}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: props.toDo.type.toString(),
-            });
-            if (res.status === 200) {
-                console.log("Reward added");
-            } else {
-                console.log("Some error occured");
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }
     const handleCheckboxChange = async () => {
         setIsChecked(!isChecked);
         try {
@@ -41,7 +23,7 @@ export default function TodoDetails(props) {
             });
             if (res.status === 200) {
                 console.log("Todo updated");
-                fetchRewardpoints();
+                fetchRewardpoints(!isChecked ? 1 : -1, props.toDo.type);
             } else {
                 console.log("Some error occured");
             }
