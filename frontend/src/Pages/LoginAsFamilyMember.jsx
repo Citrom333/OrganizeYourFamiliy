@@ -55,7 +55,7 @@ function LoginAsFamilyMember() {
                     <p>Choose member</p>
                     <select onChange={handleMemberSelect}>
                         <option value="">Choose your name</option>
-                        {members.map(member => <option value={[member.id, member.name]}>{member.name}</option>)}
+                        {members.map(member => <option key={member.id} value={[member.id, member.name]}>{member.name}</option>)}
                     </select>
                 </label>
                 <label>

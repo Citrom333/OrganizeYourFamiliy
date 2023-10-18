@@ -9,6 +9,7 @@ import AddNewProgram from "../Components/AddNewProgram";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
+import AddTodo from "../Components/AddTodo";
 function MainFamilyPage() {
     const location = useLocation();
     const [members, setMembers] = useState([]);
@@ -19,6 +20,10 @@ function MainFamilyPage() {
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
     const [change, setChange] = useState(false);
     const [selectedProg, setSelectedProg] = useState("");
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [selectedMember, setSelectedMember] = useState("");
+    const [message, setMessage] = useState("");
+    const [toDos, setToDos] = useState([]);
     const fetchMembers = () =>
         fetch("/api/User", {
             method: "GET",
@@ -26,6 +31,15 @@ function MainFamilyPage() {
         }).then((response) => response.json())
             .then((json) => {
                 setMembers(json);
+
+            });
+    const fetchAllToDos = () =>
+        fetch(`/api/ToDo/`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => response.json())
+            .then((json) => {
+                setToDos(json);
 
             });
     const fetchPrograms = () =>
@@ -45,7 +59,9 @@ function MainFamilyPage() {
         fetchMembers();
         fetchPrograms();
         setChange(false);
-    }, [members.length, programs.length, change])
+        setMessage("");
+        fetchAllToDos();
+    }, [members.length, programs.length, change, toDos.length])
     return (
         <>
             <div>
@@ -54,15 +70,17 @@ function MainFamilyPage() {
                     {location.pathname == '/MainFamilyPage' ?
                         <div><div><h1>This is my family</h1>
                             <div className="memberAvatars">
-                                {members.length > 0 ? members.map(mem => <div key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
+                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
                             <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
                             <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
-
-                            <button onClick={e => setAddProgIsOpen(true)}>Add new program</button>
+                            <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo todos={toDos} setAddedNew={setChange} userId={selectedMember.id} />} />
+                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => setAddProgIsOpen(true)}>Add new program</button> : ""}
+                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>Add todo for {selectedMember.name}</button> : ""}
+                            <p>{message}</p>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
@@ -70,7 +88,6 @@ function MainFamilyPage() {
                     <Footer />
                 </div>
             </div>
-
         </>
     )
 }

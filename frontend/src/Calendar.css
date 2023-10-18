@@ -103,6 +103,10 @@ table {
     border-radius: 8%;
 }
 
+.event {
+    border: solid coral 2px;
+}
+
 .day:nth-child(1)>.event {
     grid-column-start: 1;
 }

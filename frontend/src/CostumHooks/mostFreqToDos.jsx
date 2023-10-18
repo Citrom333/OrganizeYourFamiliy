@@ -19,5 +19,5 @@ export default function mostFreqToDos(todos) {
 
     result = arrayUniqueByKey;
 
-    return result.slice(0, 5);
+    return result.slice(0, 8);
 }

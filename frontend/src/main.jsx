@@ -11,6 +11,7 @@ import MyPage from './Pages/MyPage.jsx';
 import MyRewards from './Pages/MyRewards.jsx';
 import LoginAsFamilyMember from './Pages/LoginAsFamilyMember.jsx';
 import RewardShop from './Pages/RewardShop.jsx';
+import WrongPage from './Pages/WrongPage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,8 +49,16 @@ const router = createBrowserRouter([
             path: "MyRewards",
             element: <MyRewards />
           },
+          {
+            path: "*",
+            element: <WrongPage />
+          },
         ]
-      }
+      },
+      {
+        path: "*",
+        element: <WrongPage />
+      },
     ],
   },
 ]);

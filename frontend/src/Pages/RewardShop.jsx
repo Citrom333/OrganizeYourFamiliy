@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-export default function RewardShop() {
+import postTodo from "../CostumHooks/postTodo";
+import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
+import { useNavigate } from "react-router-dom";
+export default function RewardShop(props) {
+    const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
     const [selectedOption, setSelectedOption] = useState(null);
@@ -17,30 +21,47 @@ export default function RewardShop() {
 
             });
     useEffect(() => {
+        if (localStorage.getItem("isAdult") == "true") {
+            navigate("/Wrongpage");
+        }
         fetchUser();
 
     }, [])
-    const fetchRewardpoints = async () => {
-        let point = -1 * rewards[selectedOption];
-        try {
-            let res = await fetch(`/api/user/RewardPoint/${localStorage.getItem("userId")}/${point}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: props.toDo.type.toString(),
-            });
-            if (res.status === 200) {
-                console.log("Reward added");
-            } else {
-                console.log("Some error occured");
-            }
-        } catch (err) {
-            console.log(err);
-        }
+    const sendExchangeToLeader = async () => {
+        await postTodo(`Add reward to ${localStorage.getItem("userName")}`, selectedOption, new Date(), 3, 0, localStorage.getItem("leader"))
     }
-    const handleSubmit = () => {
-        fetchRewardpoints();
+    const handleRemovingpoints = (price) => {
+        let pointToRemoveFromHousework = 0;
+        let pointToRemoveFromSchool = 0;
+        let pointToRemoveFromJob = 0;
+        let pointToRemoveFromOther = 0;
+        while (price > 0) {
+            if (user.rewardPointHousework > pointToRemoveFromHousework && price > 0) {
+                pointToRemoveFromHousework++;
+                price--;
+            }
+            if (user.rewardPointSchool > pointToRemoveFromSchool && price > 0) {
+                pointToRemoveFromSchool++;
+                price--;
+            }
+            if (user.rewardPointJob > pointToRemoveFromJob && price > 0) {
+                pointToRemoveFromJob++;
+                price--;
+            }
+            if (user.rewardPointOther > pointToRemoveFromOther && price > 0) {
+                pointToRemoveFromOther++;
+                price--;
+            }
+        }
+        let pointsToRemove = [pointToRemoveFromHousework, pointToRemoveFromSchool, pointToRemoveFromJob, pointToRemoveFromOther]
+        return pointsToRemove;
+    }
+
+    const handleSubmit = async () => {
+        for (let i = 0; i < handleRemovingpoints(rewards[selectedOption]).length; i++) {
+            await fetchRewardpoints(-1, handleRemovingpoints(rewards[selectedOption])[i], i);
+        }
+        sendExchangeToLeader();
     }
     const points = user.rewardPointHousework + user.rewardPointJob + user.rewardPointSchool + user.rewardPointOther;
     return (

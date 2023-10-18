@@ -2,7 +2,6 @@ import { useState } from "react";
 export default function SetLeader(props) {
     const [message, setMessage] = useState("")
     const setAsLeader = async () => {
-        console.log(props.userId);
         try {
             let res = await fetch(`/api/Leader/${props.familyId}/${props.userId}`, {
                 method: "PUT",
