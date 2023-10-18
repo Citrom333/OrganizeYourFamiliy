@@ -10,7 +10,6 @@ export default function AddTodo(props) {
     const [message, setMessage] = useState("");
 
     let userId = props.userId;
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(`: ${taskName}, : ${description}, : ${deadline}, type: ${toDoType}, : ${userId}`);
@@ -49,7 +48,6 @@ export default function AddTodo(props) {
                     setToDoType(props.todos.find(t => t.id == e.target.value).type);
                     setDescription(props.todos.find(t => t.id == e.target.value).description);
                     setRewardpoint(props.todos.find(t => t.id == e.target.value).rewardPoint);
-                    // console.log(props.todos.find(t => t.id == e.target.value))
                 }
             }}>
                 <option value={""}></option>
