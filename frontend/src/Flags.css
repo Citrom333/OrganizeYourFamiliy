@@ -1,0 +1,40 @@
+.flag-dropdown-content {
+    display: grid;
+    gap: 4px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 11;
+}
+
+.flag {
+
+    grid-column: 1;
+    width: 70px;
+    border-radius: 10%;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes slideIn {
+
+    0% {
+        transform: translateY(-500%) translateX(0);
+
+    }
+
+    100% {
+        transform: translateY(0) translateX(5);
+
+    }
+}
+
+.language {
+    z-index: 20;
+}
+
+.other {
+    animation: 1s ease-out 0s 1 slideIn;
+}
