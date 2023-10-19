@@ -1,3 +1,4 @@
+import data from "../translator.json"
 import { useEffect, useState } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import "../Style.css"
@@ -11,6 +12,7 @@ import Delete from "../Components/Delete";
 import Update from "../Components/Update";
 import AddTodo from "../Components/AddTodo";
 function MainFamilyPage() {
+    const language = localStorage.getItem("language");
     const location = useLocation();
     const [members, setMembers] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -61,14 +63,14 @@ function MainFamilyPage() {
         setChange(false);
         setMessage("");
         fetchAllToDos();
-    }, [members.length, programs.length, change, toDos.length])
+    }, [members.length, programs.length, change, toDos.length, language])
     return (
         <>
             <div>
                 <Navbar />
                 <div className="mainPageDiv">
                     {location.pathname == '/MainFamilyPage' ?
-                        <div><div><h1>This is my family</h1>
+                        <div><div><h1>{data["This is my family"][language]}</h1>
                             <div className="memberAvatars">
                                 {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
                             </div>
@@ -78,7 +80,7 @@ function MainFamilyPage() {
                             <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
                             <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo todos={toDos} setAddedNew={setChange} userId={selectedMember.id} />} />
-                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => setAddProgIsOpen(true)}>Add new program</button> : ""}
+                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button> : ""}
                             {localStorage.getItem("isAdult") == "true" ? <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>Add todo for {selectedMember.name}</button> : ""}
                             <p>{message}</p>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>

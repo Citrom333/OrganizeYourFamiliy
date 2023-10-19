@@ -1,7 +1,9 @@
+import data from "../translator.json"
 import React, { useState, useEffect } from 'react';
 import '../Calendar.css';
 
 const Calendar = (props) => {
+    const language = localStorage.getItem("language");
     let userId = localStorage.getItem("userId");
     const date_today = new Date();
     let starter = new Date(date_today.setDate(date_today.getDate() - date_today.getDay()));
@@ -20,7 +22,7 @@ const Calendar = (props) => {
             <div className='dayNames'>
                 {days.map((day) =>
                 (<div key={day} className="day-of-week">
-                    {day}
+                    {data[day][language]}
                 </div>
                 ))}
             </div>
@@ -106,11 +108,11 @@ const Calendar = (props) => {
         <div className="calendar">
             <div className="header">
                 <button className="prev" onClick={handlePrev}>
-                    Previous
+                    {data["Previous"][language]}
                 </button>
-                <h2>{months[month]}</h2>
+                <h2>{data[months[month]][language]}</h2>
                 <button className="next" onClick={handleNext}>
-                    Next
+                    {data["Next"][language]}
                 </button>
             </div>
             <div className="weekCalendar">

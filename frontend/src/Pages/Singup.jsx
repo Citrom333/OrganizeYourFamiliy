@@ -1,6 +1,8 @@
+import data from "../translator.json"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 function SignUp() {
+    const language = localStorage.getItem("language");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -9,7 +11,7 @@ function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (name === "" || password === "" || password2 === "") {
-            message === "" ? setMessage("Please fill the fields correctly") : "";
+            message === "" ? setMessage(data["Please fill the fields correctly"][language]) : "";
         }
         else {
             try {
@@ -28,9 +30,9 @@ function SignUp() {
                     setName("");
                     setPassword("");
                     setPassword2("");
-                    setMessage("Family created successfully");
+                    setMessage(data["Family created successfully"][language]);
                 } else {
-                    setMessage("Some error occured");
+                    setMessage(data["Some error occured"][language]);
                 }
             } catch (err) {
                 console.log(err);
@@ -43,28 +45,28 @@ function SignUp() {
             setMessage("")
         }
         else {
-            setMessage("The passwords are different")
+            setMessage(data["The passwords are different"][language])
         }
     }
     return (
         <>
             <div>
-                <h1>Sign up</h1>
+                <h1>{data["Sign up"][language]}</h1>
                 <form className="form" onSubmit={handleSubmit}>
                     <label>
-                        <p>Family identifier</p>
+                        <p>{data["Family identifier"][language]}</p>
                         <input
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Family password</p>
+                        <p>{data["Family password"][language]}</p>
                         <input
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Confirm password</p>
+                        <p>{data["Confirm password"][language]}</p>
                         <input
                             onChange={handlePasswordConfim}
                         />
@@ -77,7 +79,7 @@ function SignUp() {
                 <div>
                     <a href="/">
                         <button >
-                            Back
+                            {data["Back"][language]}
                         </button>
                     </a>
                 </div>

@@ -1,7 +1,9 @@
+import data from "../translator.json"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 
 function Login() {
+    const [language, setLanguage] = useState(localStorage.getItem("language"));
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -13,6 +15,7 @@ function Login() {
             .then((json) => {
                 localStorage.setItem("familyId", json.id);
                 localStorage.setItem("leader", json.leaderOfFamilyId);
+                localStorage.setItem("language", language);
             });
     const fetchLogin = async (familyname, password) => {
         await fetch("/api/Family/login", {
@@ -36,15 +39,15 @@ function Login() {
     return (
         <>
             <div>
-                <h1>Login</h1>
+                <h1>{data["Login"][language]}</h1>
                 <label>
-                    <p>Family identifier</p>
+                    <p>{data["Family identifier"][language]}</p>
                     <input
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
                 <label>
-                    <p>Family password</p>
+                    <p>{data["Family password"][language]}</p>
                     <input
                         onChange={(e) => setPassword(e.target.value)}
                         type="password"
@@ -52,13 +55,13 @@ function Login() {
                 </label>
                 <div>
                     <button onClick={handleLogin}>
-                        Login
+                        {data["Login"][language]}
                     </button>
                 </div>
                 <div>
                     <a href="/">
                         <button >
-                            Back
+                            {data["Back"][language]}
                         </button>
                     </a>
                 </div>

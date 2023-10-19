@@ -43,7 +43,7 @@ body {
 
 @media (min-width: 900px) {
     .avatarPics {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .mainPageDiv {
@@ -95,6 +95,7 @@ body {
     width: 100vw;
     left: 0;
     position: fixed;
+    color: cadetblue;
 }
 
 .footer a {
@@ -105,6 +106,7 @@ body {
     border: 4px solid;
     border-color: antiquewhite;
     border-radius: 10%;
+    width: 100px;
 }
 
 .avatarPic:active {
@@ -124,10 +126,15 @@ button {
     margin: 10px;
 }
 
+select,
 input {
-    background-color: beige;
-    border-radius: 10%;
-    scale: 1.5;
+    background: beige;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
 
 .submit {
@@ -140,7 +147,7 @@ input {
 
 select {
     background-color: beige;
-    scale: 1.5;
+    width: 200px;
 }
 
 .myPage ul {
@@ -174,4 +181,89 @@ a:focus,
 a:active {
     text-decoration: none;
     color: inherit;
+}
+
+.pagination {
+    padding-bottom: 20px;
+    display: grid;
+    justify-items: center;
+
+}
+
+.paginationElement {
+    align-self: center;
+    grid-row: 1;
+}
+
+.left {
+    transform-origin: center center;
+    transform: rotateY(180deg);
+}
+
+.arrow {
+    max-height: 80px;
+}
+
+.left:active {
+    transform: translateY(4px) rotateY(180deg);
+}
+
+.right:active {
+    transform: translateY(4px);
+}
+
+.inactive {
+    visibility: hidden;
+}
+
+.flag-dropdown-content {
+    display: grid;
+    gap: 4px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 11;
+}
+
+.flag {
+
+    grid-column: 1;
+    width: 70px;
+    border-radius: 10%;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes slideIn {
+
+    0% {
+        transform: translateY(-500%) translateX(0);
+
+    }
+
+    100% {
+        transform: translateY(0) translateX(5);
+
+    }
+}
+
+.language {
+    z-index: 20;
+}
+
+/* @keyframes slideOnward {
+    0% {
+        transform: translateZ(0);
+    }
+
+    100% {
+        transform: translateZ(15);
+    }
+} */
+
+.other {
+    animation: 1s ease-out 0s 1 slideIn;
+
 }

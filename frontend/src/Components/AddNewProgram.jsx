@@ -1,7 +1,9 @@
+import data from "../translator.json"
 import React from 'react';
 import { useState } from 'react';
 
 const AddNewProgram = (props) => {
+    const language = localStorage.getItem("language");
     const [name, setName] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
@@ -63,14 +65,14 @@ const AddNewProgram = (props) => {
         <div>
             <form className="form" onSubmit={handleSubmit}>
                 <label>
-                    <p>Program name</p>
+                    <p>{data["Program name"][language]}</p>
                     <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
                 <label>
-                    <p>Start</p>
+                    <p>{data["Start"][language]}</p>
                     <input
                         value={start}
                         type="datetime-local"
@@ -78,7 +80,7 @@ const AddNewProgram = (props) => {
                     />
                 </label>
                 <label>
-                    <p>End</p>
+                    <p>{data["End"][language]}</p>
                     <input
                         value={end}
                         type="datetime-local"
@@ -86,21 +88,21 @@ const AddNewProgram = (props) => {
                     />
                 </label>
                 <label>
-                    <p>Participants</p>
+                    <p>{data["Participants"][language]}</p>
                     {props.users.length > 0 ? props.users.map((u, index) => {
                         return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
                             value={[index, u.id]} onChange={handleCheckboxChange} /></div>
                     }) : ""}
                 </label>
                 <label>
-                    <p>Place (optional)</p>
+                    <p>{data["Place (optional)"][language]}</p>
                     <input
                         value={place}
                         onChange={(e) => setPlace(e.target.value)}
                     />
                 </label>
                 <label>
-                    <p>Cost</p>
+                    <p>{data["Cost"][language]}</p>
                     <input
                         value={cost}
                         onChange={(e) => setCost(e.target.value)}

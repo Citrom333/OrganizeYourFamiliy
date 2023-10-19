@@ -1,6 +1,8 @@
+import data from "../translator.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 function LoginAsFamilyMember() {
+    const language = localStorage.getItem("language");
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +34,7 @@ function LoginAsFamilyMember() {
                 localStorage.setItem("userId", id);
                 localStorage.setItem("isAdult", members.find(mem => mem.id == id).familyRole === "0");
                 data.name === undefined
-                    ? setMessage("Something is wrong, please try again")
+                    ? setMessage(data["Something is wrong, please try again"][language])
                     : navigate("/MainFamilyPage/MyPage");
             });
     };
@@ -50,23 +52,23 @@ function LoginAsFamilyMember() {
     return (
         <>
             <div>
-                <h1>Login</h1>
+                <h1>{data["Login"][language]}</h1>
                 <label>
-                    <p>Choose member</p>
+                    <p>{data["Choose member"][language]}</p>
                     <select onChange={handleMemberSelect}>
-                        <option value="">Choose your name</option>
+                        <option value="">{data["Choose your name"][language]}</option>
                         {members.map(member => <option key={member.id} value={[member.id, member.name]}>{member.name}</option>)}
                     </select>
                 </label>
                 <label>
-                    <p>Your password</p>
+                    <p>{data["Your password"][language]}</p>
                     <input
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
                 <div>
                     <button onClick={handleLogin} >
-                        Login
+                        {data["Login"][language]}
                     </button>
                 </div>
                 <div>
@@ -75,7 +77,7 @@ function LoginAsFamilyMember() {
                 <div>
                     <a href="/MainFamilyPage">
                         <button >
-                            Back
+                            {data["Back"][language]}
                         </button>
                     </a>
                 </div>
