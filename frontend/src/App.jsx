@@ -4,7 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import "./Flags.css"
 function App() {
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState(localStorage.getItem("language") ? localStorage.getItem("language") : "English");
   const [showFlags, setShowFlags] = useState(false);
   const flags = ["English", "Hungarian", "Deutsch", "Français", "Italiano", "Español"]
   const location = useLocation();
@@ -14,10 +14,10 @@ function App() {
   }, [language]);
   return (
     <>
-      <div class="flag-dropdown-content" onMouseEnter={() => setShowFlags(true)}
+      <div className="flag-dropdown-content" onMouseEnter={() => setShowFlags(true)}
         onMouseLeave={() => setShowFlags(false)}>
         <img className="flag language" src={`../public/images/flags/${language}.png`} ></img>
-        {showFlags ? flags.map(flag => <img className={language === flag ? "flag hidden" : "flag other"} onClick={e => setLanguage(flag)} src={`../public/images/flags/${flag}.png`} ></img>) : ""}
+        {showFlags ? flags.map(flag => <img key={flag} className={language === flag ? "flag hidden" : "flag other"} onClick={e => setLanguage(flag)} src={`../public/images/flags/${flag}.png`} ></img>) : ""}
       </div>
       <div>
         {location.pathname === "/" || location.pathname === "" ? <div>
