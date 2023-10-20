@@ -25,7 +25,7 @@ export default function TodoDetails(props) {
             });
             if (res.status === 200) {
                 console.log(data["Todo updated"][language]);
-                fetchRewardpoints(!isChecked ? 1 : -1, props.toDo.type);
+                fetchRewardpoints(!isChecked ? 1 : -1, props.toDo.rewardPoint, props.toDo.type);
             } else {
                 console.log(data["Some error occured"][language]);
             }
