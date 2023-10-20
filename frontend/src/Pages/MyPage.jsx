@@ -86,7 +86,7 @@ function MyPage() {
                 <h1>My page</h1>
                 {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>Be the leader</button>}
                 <div>
-                    <Rewardpoints user={user} />
+                    {localStorage.getItem("isAdult") == "false" ? <Rewardpoints user={user} /> : ""}
                     <button onClick={e => setShowAddForm(true)}>Add todo</button>
                     <Modal isOpen={setLeaderIsOpen} onClose={e => setSetLeaderIsOpen(false)} child={<SetLeader userId={userId} familyId={familyId} onClose={e => setSetLeaderIsOpen(false)} />} />
                     <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
