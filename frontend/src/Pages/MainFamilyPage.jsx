@@ -10,8 +10,10 @@ import AddNewProgram from "../Components/AddNewProgram";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
+import AddTodo from "../Components/AddTodo";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import RewardShopHandler from "../Components/RewardShopHandler";
 function MainFamilyPage() {
     const navigate = useNavigate();
     const [language, setLanguage] = useOutletContext();
@@ -22,6 +24,7 @@ function MainFamilyPage() {
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
+    const [rewardShopHandlerIsOpen, setRewardShopHandlerIsOpen] = useState(false);
     const [change, setChange] = useState(false);
     const [selectedProg, setSelectedProg] = useState("");
     const [showAddForm, setShowAddForm] = useState(false);
@@ -60,7 +63,7 @@ function MainFamilyPage() {
         setProgDetailIsOpen(true)
     }
     useEffect(() => {
-        if (localStorage.getItem("userId")) {
+        if (localStorage.getItem("familyId")) {
             fetchMembers();
             fetchPrograms();
             setChange(false);
@@ -85,10 +88,11 @@ function MainFamilyPage() {
                             <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
                             <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo todos={toDos} setAddedNew={setChange} userId={selectedMember.id} />} />
+                            <Modal isOpen={rewardShopHandlerIsOpen} onClose={e => setRewardShopHandlerIsOpen(false)} child={<RewardShopHandler />} />
                             {localStorage.getItem("isAdult") == "true" ?
-                                <div><button onClick={e => setAddProgIsOpen(true)}>Add new program</button>
-                                    <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>Add todo for {selectedMember.name}</button>
-                                    <a href=""><button >Handle rewardshop</button></a> </div> : ""}
+                                <div><button onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button>
+                                    <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>{data["Add todo for "][language]}{selectedMember.name}</button>
+                                    <button onClick={e => setRewardShopHandlerIsOpen(true)}>{data["Handle rewardshop"][language]}</button></div> : ""}
                             <p>{message}</p>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
