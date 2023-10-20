@@ -1,8 +1,9 @@
 import data from "../translator.json"
 import { useState, useEffect } from "react";
 import "../Style.css"
+import { useOutletContext } from "react-router-dom";
 function AddMember() {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
     useEffect(() => {

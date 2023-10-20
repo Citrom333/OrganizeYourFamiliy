@@ -11,8 +11,9 @@ import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
 import AddTodo from "../Components/AddTodo";
+import { useOutletContext } from "react-router-dom";
 function MainFamilyPage() {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     const location = useLocation();
     const [members, setMembers] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -86,7 +87,7 @@ function MainFamilyPage() {
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
-                    <Outlet />
+                    <Outlet context={[language, setLanguage]} />
                     <Footer />
                 </div>
             </div>

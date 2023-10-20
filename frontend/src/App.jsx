@@ -33,7 +33,7 @@ function App() {
             </a>
           </div>
         </div> :
-          <Outlet />
+          <Outlet context={[language, setLanguage]} />
         }
       </div>
 

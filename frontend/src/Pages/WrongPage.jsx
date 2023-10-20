@@ -1,6 +1,7 @@
 import data from "../translator.json"
+import { useOutletContext } from "react-router-dom";
 export default function WrongPage() {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     return (
         <div>
             <h1>{data["Wrong page"][language]}</h1>

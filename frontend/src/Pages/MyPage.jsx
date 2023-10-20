@@ -10,8 +10,9 @@ import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
 import SetLeader from "../Components/SetLeader";
+import { useOutletContext } from "react-router-dom";
 function MyPage() {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [updateIsOpen, setUpdateIsOpen] = useState(false);

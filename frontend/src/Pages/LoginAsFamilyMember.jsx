@@ -1,8 +1,9 @@
 import data from "../translator.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 function LoginAsFamilyMember() {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");

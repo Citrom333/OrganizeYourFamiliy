@@ -1,9 +1,9 @@
 import data from "../translator.json"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
-
+import { useOutletContext } from "react-router-dom";
 function Login() {
-    const [language, setLanguage] = useState(localStorage.getItem("language"));
+    const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");

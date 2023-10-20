@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 export default function RewardShop(props) {
-    const language = localStorage.getItem("language");
+    const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
