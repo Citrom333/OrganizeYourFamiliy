@@ -24,7 +24,8 @@ function SignUp() {
                     body: JSON.stringify({
                         name: name,
                         password: password2,
-                        familyMembers: []
+                        familyMembers: [],
+                        rewards: []
                     }),
                 });
                 if (res.status === 200) {
