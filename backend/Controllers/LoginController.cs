@@ -58,6 +58,7 @@ public class LoginController : ControllerBase
         if (FamilyOrUser == "Family")
         {
             var family = await _familyService.GetFamilyByName(name);
+            if (family == null) return false;
             return family.Password == password;
         }
         else
@@ -67,7 +68,8 @@ public class LoginController : ControllerBase
                 var family = await _familyService.GetFamilyByName(User.Identity.Name);
                 var users = await _userService.GetAllUsers();
                 var user = users.Where(u => u.FamilyId == family.Id).FirstOrDefault(u => u.Name == name);
-                return user.FamilyId == family.Id && user.Password == password;
+                if (user == null) return false;
+                   return user.FamilyId == family.Id && user.Password == password;
             }
 
             return false;
