@@ -1,3 +1,4 @@
+import data from "../translator.json"
 import { useEffect, useState } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import "../Style.css"
@@ -9,10 +10,11 @@ import AddNewProgram from "../Components/AddNewProgram";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
-import AddTodo from "../Components/AddTodo";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 function MainFamilyPage() {
     const navigate = useNavigate();
+    const [language, setLanguage] = useOutletContext();
     const location = useLocation();
     const [members, setMembers] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -66,14 +68,14 @@ function MainFamilyPage() {
             fetchAllToDos();
         }
         else navigate("/")
-    }, [members.length, programs.length, change, toDos.length])
+    }, [members.length, programs.length, change, toDos.length, language])
     return (
         <>
             <div>
                 <Navbar />
                 <div className="mainPageDiv">
                     {location.pathname == '/MainFamilyPage' ?
-                        <div><div><h1>This is my family</h1>
+                        <div><div><h1>{data["This is my family"][language]}</h1>
                             <div className="memberAvatars">
                                 {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
                             </div>
@@ -91,7 +93,7 @@ function MainFamilyPage() {
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
                         ""}
-                    <Outlet />
+                    <Outlet context={[language, setLanguage]} />
                     <Footer />
                 </div>
             </div>

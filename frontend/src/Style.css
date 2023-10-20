@@ -43,7 +43,7 @@ body {
 
 @media (min-width: 900px) {
     .avatarPics {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .mainPageDiv {
@@ -95,6 +95,7 @@ body {
     width: 100vw;
     left: 0;
     position: fixed;
+    color: cadetblue;
 }
 
 .footer a {
@@ -105,6 +106,7 @@ body {
     border: 4px solid;
     border-color: antiquewhite;
     border-radius: 10%;
+    width: 100px;
 }
 
 .avatarPic:active {
@@ -115,7 +117,7 @@ body {
     border: 4px solid;
     border-color: antiquewhite;
     border-radius: 10%;
-    scale: 200%;
+    width: 200px;
 }
 
 
@@ -124,23 +126,45 @@ button {
     margin: 10px;
 }
 
+select,
 input {
-    background-color: beige;
-    border-radius: 10%;
-    scale: 1.5;
+    background: beige;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+    box-shadow: inset 3px 3px 3px #cbced1, inset -3px -3px 3px white;
 }
 
 .submit {
-    background-color: beige;
-    border-radius: 20%;
-    scale: 1.5;
-    margin-top: 15px;
+    cursor: pointer;
+    /* position: relative; */
+    /* padding: 1.5rem; */
+    /* align-items: center; */
+    padding-right: 20px;
+    border-radius: 3.75rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid #012880;
+    background-image: linear-gradient(-180deg, #FF89D6 0%, #C01F9E 100%);
+    box-shadow: 0 1rem 1.25rem 0 rgba(22, 75, 195, 0.50),
+        0 -0.25rem 1.5rem rgba(110, 15, 155, 1) inset,
+        0 0.75rem 0.5rem rgba(255, 255, 255, 0.4) inset,
+        0 0.25rem 0.5rem 0 rgba(180, 70, 207, 1) inset;
 }
 
 
 select {
     background-color: beige;
-    scale: 1.5;
+    width: 200px;
 }
 
 .myPage ul {
@@ -174,4 +198,37 @@ a:focus,
 a:active {
     text-decoration: none;
     color: inherit;
+}
+
+.pagination {
+    padding-bottom: 20px;
+    display: grid;
+    justify-items: center;
+
+}
+
+.paginationElement {
+    align-self: center;
+    grid-row: 1;
+}
+
+.left {
+    transform-origin: center center;
+    transform: rotateY(180deg);
+}
+
+.arrow {
+    max-height: 80px;
+}
+
+.left:active {
+    transform: translateY(4px) rotateY(180deg);
+}
+
+.right:active {
+    transform: translateY(4px);
+}
+
+.inactive {
+    visibility: hidden;
 }

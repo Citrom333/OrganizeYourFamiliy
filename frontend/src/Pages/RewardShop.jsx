@@ -1,8 +1,11 @@
+import data from "../translator.json"
 import { useState, useEffect } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 export default function RewardShop(props) {
+    const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
@@ -28,7 +31,7 @@ export default function RewardShop(props) {
 
     }, [])
     const sendExchangeToLeader = async () => {
-        await postTodo(`Add reward to ${localStorage.getItem("userName")}`, selectedOption, new Date(), 3, 0, localStorage.getItem("leader"))
+        await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption, new Date(), 3, 0, localStorage.getItem("leader"))
     }
     const handleRemovingpoints = (price) => {
         let pointToRemoveFromHousework = 0;
@@ -66,26 +69,27 @@ export default function RewardShop(props) {
     const points = user.rewardPointHousework + user.rewardPointJob + user.rewardPointSchool + user.rewardPointOther;
     return (
         <div>
-            <h3>You can spend your points to rewards</h3>
-            <p>You have {points} total rewardpoints</p>
+            <h3>{data["You can spend your points to rewards"][language]}</h3>
+            <p>{data["You have "][language]}{points} {data["total rewardpoints"][language]}</p>
             <div className="shopitems">
                 {Object.keys(rewards).map((key, index) => (
                     <div className={`shopitem ${points < rewards[key] ? "disabled" : ""}`}>
                         <label>
                             <input
+                                className="checkbox"
                                 disabled={points < rewards[key]}
                                 type="checkbox"
                                 checked={selectedOption === key}
                                 onChange={() => handleCheckboxChange(key)}
                             />
-                            {key} : {rewards[key]} points
+                            {key} : {rewards[key]} {data["points"][language]}
                         </label>
                     </div>
                 ))}
             </div>
-            <p>Selected Option: {selectedOption}</p>
-            <button onClick={handleSubmit}>Submit</button>
-            <div> <a href="/MainFamilyPage/MyPage"><button>Back</button></a></div>
+            <p>{data["Selected Option: "][language]}{selectedOption}</p>
+            <button onClick={handleSubmit}>{data["Submit"][language]}</button>
+            <div> <a href="/MainFamilyPage/MyPage"><button>{data["Back"][language]}</button></a></div>
 
         </div>
     );

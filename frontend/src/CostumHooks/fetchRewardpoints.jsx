@@ -9,9 +9,9 @@ export default async function fetchRewardpoints(multiplier, rewardpoint, type) {
             body: type.toString(),
         });
         if (res.status === 200) {
-            console.log("Reward added");
+            console.log(data["Reward added"][language]);
         } else {
-            console.log("Some error occured");
+            console.log(data["Some error occured"][language]);
         }
     } catch (err) {
         console.log(err);

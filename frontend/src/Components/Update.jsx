@@ -1,7 +1,9 @@
+import data from "../translator.json"
 import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Update = (props) => {
+    const language = localStorage.getItem("language");
     const [name, setName] = useState(props.toUpdate.name);
     const [start, setStart] = useState(props.toUpdate.start);
     const [end, setEnd] = useState(props.toUpdate.end);
@@ -35,10 +37,10 @@ const Update = (props) => {
                 }),
             });
             if (res.status === 200) {
-                setMessage("Updated");
+                setMessage(data["Updated"][language]);
                 props.change(true);
             } else {
-                setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
             setMessage(err);
@@ -66,14 +68,14 @@ const Update = (props) => {
             <>{message === "" ?
                 <form className="form" onSubmit={handleSubmit}>
                     <label>
-                        <p>Program name</p>
+                        <p>{data["Program name"][language]}</p>
                         <input
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Start</p>
+                        <p>{data["Start"][language]}</p>
                         <input
                             value={start}
                             type="datetime-local"
@@ -81,7 +83,7 @@ const Update = (props) => {
                         />
                     </label>
                     <label>
-                        <p>End</p>
+                        <p>{data["End"][language]}</p>
                         <input
                             value={end}
                             type="datetime-local"
@@ -89,21 +91,21 @@ const Update = (props) => {
                         />
                     </label>
                     <label>
-                        <p>Participants</p>
+                        <p>{data["Participants"][language]}</p>
                         {props.users.length > 0 ? props.users.map((u, index) => {
                             return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
                                 value={[index, u.id]} onChange={handleCheckboxChange} /></div>
                         }) : ""}
                     </label>
                     <label>
-                        <p>Place (optional)</p>
+                        <p>{data["Place (optional)"][language]}</p>
                         <input
                             value={place}
                             onChange={(e) => setPlace(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Cost</p>
+                        <p>{data["Cost"][language]}</p>
                         <input
                             value={cost}
                             onChange={(e) => setCost(e.target.value)}
