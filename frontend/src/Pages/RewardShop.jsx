@@ -76,6 +76,7 @@ export default function RewardShop(props) {
                     <div className={`shopitem ${points < rewards[key] ? "disabled" : ""}`}>
                         <label>
                             <input
+                                className="checkbox"
                                 disabled={points < rewards[key]}
                                 type="checkbox"
                                 checked={selectedOption === key}
