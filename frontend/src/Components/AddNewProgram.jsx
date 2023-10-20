@@ -1,10 +1,20 @@
+import data from "../translator.json"
 import React from 'react';
 import { useState } from 'react';
-
+import ReactDatePicker from "react-datepicker";
+import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const AddNewProgram = (props) => {
+    registerLocale('English', enGB);
+    registerLocale("Français", fr);
+    registerLocale("Español", es);
+    registerLocale("Italiano", it);
+    registerLocale("Deutsch", de);
+    const language = localStorage.getItem("language");
     const [name, setName] = useState("");
-    const [start, setStart] = useState("");
-    const [end, setEnd] = useState("");
+    const [start, setStart] = useState(new Date());
+    const [end, setEnd] = useState(new Date());
     const [place, setPlace] = useState("");
     const [cost, setCost] = useState("");
     const [participants, setParticipants] = useState([]);
@@ -63,51 +73,69 @@ const AddNewProgram = (props) => {
         <div>
             <form className="form" onSubmit={handleSubmit}>
                 <label>
-                    <p>Program name</p>
+                    <p>{data["Program name"][language]}</p>
                     <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
                 <label>
-                    <p>Start</p>
-                    <input
-                        value={start}
-                        type="datetime-local"
-                        onChange={(e) => setStart(e.target.value)}
-                    />
+                    <p>{data["Start"][language]}</p>
+                    {language === "Hungarian" ?
+                        <input
+                            value={start}
+                            type="datetime-local"
+                            onChange={(e) => setStart(e.target.value)}
+                        /> :
+                        <ReactDatePicker
+                            selected={start}
+                            onChange={(date) => setStart(date)}
+                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
+                            timeInputLabel={data["Time"][language]}
+                            showTimeInput
+                            locale={language}
+                        />}
                 </label>
                 <label>
-                    <p>End</p>
-                    <input
-                        value={end}
-                        type="datetime-local"
-                        onChange={(e) => setEnd(e.target.value)}
-                    />
+                    <p>{data["End"][language]}</p>
+                    {language === "Hungarian" ?
+                        <input
+                            value={end}
+                            type="datetime-local"
+                            onChange={(e) => setEnd(e.target.value)}
+                        /> :
+                        <ReactDatePicker
+                            selected={end}
+                            onChange={(date) => setEnd(date)}
+                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
+                            timeInputLabel={data["Time"][language]}
+                            showTimeInput
+                            locale={language}
+                        />}
                 </label>
                 <label>
-                    <p>Participants</p>
+                    <p>{data["Participants"][language]}</p>
                     {props.users.length > 0 ? props.users.map((u, index) => {
-                        return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
+                        return <div key={u.id}><label htmlFor="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
                             value={[index, u.id]} onChange={handleCheckboxChange} /></div>
                     }) : ""}
                 </label>
                 <label>
-                    <p>Place (optional)</p>
+                    <p>{data["Place (optional)"][language]}</p>
                     <input
                         value={place}
                         onChange={(e) => setPlace(e.target.value)}
                     />
                 </label>
                 <label>
-                    <p>Cost</p>
+                    <p>{data["Cost"][language]}</p>
                     <input
                         value={cost}
                         onChange={(e) => setCost(e.target.value)}
                     />
                 </label>
                 <div>
-                    <input className="submit" type="submit" value="Add program" />
+                    <input className="submit" type="submit" value={data["Add program"][language]} />
                 </div>
             </form>
         </div>

@@ -1,3 +1,4 @@
+import data from "../translator.json"
 import ToDos from "../Components/ToDos"
 import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react";
@@ -9,7 +10,9 @@ import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
 import SetLeader from "../Components/SetLeader";
+import { useOutletContext } from "react-router-dom";
 function MyPage() {
+    const [language, setLanguage] = useOutletContext();
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
@@ -83,11 +86,11 @@ function MyPage() {
                 <div>
                     <div key={user.id}><img className="userAvatarPic" src={user.avatarPic} /><div>{user.name}</div></div>
                 </div>
-                <h1>My page</h1>
-                {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>Be the leader</button>}
+                <h1>{data["My page"][language]}</h1>
+                {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>{data["Be the leader"][language]}</button>}
                 <div>
                     <Rewardpoints user={user} />
-                    <button onClick={e => setShowAddForm(true)}>Add todo</button>
+                    <button onClick={e => setShowAddForm(true)}>{data["Add todo"][language]}</button>
                     <Modal isOpen={setLeaderIsOpen} onClose={e => setSetLeaderIsOpen(false)} child={<SetLeader userId={userId} familyId={familyId} onClose={e => setSetLeaderIsOpen(false)} />} />
                     <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
                     <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />

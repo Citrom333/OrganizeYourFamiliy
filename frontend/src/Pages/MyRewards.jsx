@@ -1,5 +1,7 @@
+import data from "../translator.json"
+import { useOutletContext } from "react-router-dom";
 function MyRewards() {
-
+    const [language, setLanguage] = useOutletContext();
 
     return (
         <>

@@ -1,5 +1,7 @@
+import data from "../translator.json"
 import { useState } from "react";
 export default function SetLeader(props) {
+    const language = localStorage.getItem("language");
     const [message, setMessage] = useState("")
     const setAsLeader = async () => {
         try {
@@ -11,13 +13,13 @@ export default function SetLeader(props) {
             });
             if (res.status === 200) {
                 localStorage.setItem("leader", props.userId);
-                setMessage(`Ok. But don't forget: With great power comes great responsibility`)
+                setMessage(data[`Ok. But don't forget: With great power comes great responsibility`][language])
             }
             else {
-                setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            setMessage("ERROR");
+            setMessage(data["ERROR"][language]);
             console.log(err)
         }
     }
@@ -25,11 +27,11 @@ export default function SetLeader(props) {
         <div>
             <div>
                 <h1> </h1>
-                <h3>Would you like to be set</h3>
-                <h3>as the leader of the family?</h3>
+                <h3>{data["Would you like to be set"][language]}</h3>
+                <h3>{data["as the leader of the family?"][language]}</h3>
             </div>
-            <button onClick={setAsLeader}>Yes</button>
-            <button onClick={props.onClose}>No</button>
+            <button onClick={setAsLeader}>{data["Yes"][language]}</button>
+            <button onClick={props.onClose}>{data["No"][language]}</button>
             <p>{message}</p>
         </div>
     )

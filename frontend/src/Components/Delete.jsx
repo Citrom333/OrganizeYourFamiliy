@@ -1,5 +1,7 @@
+import data from "../translator.json"
 import { useState } from "react"
 export default function Delete(props) {
+    const language = localStorage.getItem("language");
     const [confirmed, setConfirmed] = useState(false);
     const [message, setMessage] = useState("")
     const finalDelete = async () => {
@@ -12,13 +14,13 @@ export default function Delete(props) {
             console.log(res.status)
             if (res.status === 200) {
                 props.change(true);
-                setMessage("Successfully deleted")
+                setMessage(data["Successfully deleted"][language])
             } else {
-                setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         }
         catch (err) {
-            setMessage("Error")
+            setMessage(data["Error"][language])
         }
     }
     return (
@@ -26,11 +28,11 @@ export default function Delete(props) {
             {confirmed ?
                 <div><h1>{message}</h1></div>
                 : <div>
-                    <h2>Do you really want to delete?</h2>
-                    <button onClick={finalDelete}>Yes</button>
+                    <h2>{data["Do you really want to delete?"][language]}</h2>
+                    <button onClick={finalDelete}>{data["Yes"][language]}</button>
                     <button
                         onClick={props.onClose}
-                    >No</button>
+                    >{data["No"][language]}</button>
                 </div>
             }
         </div>

@@ -1,7 +1,18 @@
+import data from "../translator.json"
 import { useState, useEffect } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import mostFreqToDos from "../CostumHooks/mostFreqToDos";
+import ReactDatePicker from "react-datepicker";
+import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 export default function AddTodo(props) {
+    registerLocale('English', enGB);
+    registerLocale("Français", fr);
+    registerLocale("Español", es);
+    registerLocale("Italiano", it);
+    registerLocale("Deutsch", de);
+    const language = localStorage.getItem("language");
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
@@ -21,20 +32,20 @@ export default function AddTodo(props) {
                 setDeadline("");
                 setToDoType("");
                 setRewardpoint("");
-                setMessage("ToDo added successfully");
+                setMessage(data["ToDo added successfully"][language]);
                 props.setAddedNew(true);
             } else {
-                setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            setMessage("Some error occured");
+            setMessage(data["Some error occured"][language]);
             console.log(err)
         }
     };
     return (
         <div className="toDos">
-            <h3>Add new todo</h3>
-            <h3>Or choose from the most frequents</h3>
+            <h3>{data["Add new todo"][language]}</h3>
+            <h3>{data["Or choose from the most frequents"][language]}</h3>
             <select onChange={e => {
                 if (e.target.value === "") {
                     setTaskName("");
@@ -56,46 +67,55 @@ export default function AddTodo(props) {
             <div>
                 <form className="form" onSubmit={handleSubmit}>
                     <label>
-                        <p>Name</p>
+                        <p>{data["Name"][language]}</p>
                         <input
                             value={taskName}
                             onChange={(e) => setTaskName(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Description</p>
+                        <p>{data["Description"][language]}</p>
                         <input
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
                     <label>
-                        <p>Deadline</p>
-                        <input
-                            value={deadline}
-                            type="date"
-                            onChange={(e) => setDeadline(e.target.value)}
-                        />
+                        <p>{data["Deadline"][language]}</p>
+                        {language === "Hungarian" ?
+                            <input
+                                value={deadline}
+                                type="date"
+                                onChange={(e) => setDeadline(e.target.value)}
+                            /> :
+                            <ReactDatePicker
+                                selected={deadline}
+                                onChange={(date) => setDeadline(date)}
+                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
+                                // timeInputLabel={data["Time"][language]}
+                                // showTimeInput
+                                locale={language}
+                            />}
                     </label>
                     <label>
-                        <p>Type</p>
+                        <p>{data["Type"][language]}</p>
                         <select onChange={(e) => setToDoType(e.target.value)}>
                             <option value={toDoType}>{toDoType === 0 ? "Housework" : toDoType === 1 ? "Job" : toDoType === 2 ? "School" : toDoType === 3 ? "Other" : ""}</option>
-                            <option value={0}>Housework</option>
-                            <option value={1}>Job</option>
-                            <option value={2}>School</option>
-                            <option value={3}>Other</option>
+                            <option value={0}>{data["Housework"][language]}</option>
+                            <option value={1}>{data["Job"][language]}</option>
+                            <option value={2}>{data["School"][language]}</option>
+                            <option value={3}>{data["Other"][language]}</option>
                         </select>
                     </label>
                     <label>
-                        <p>Rewardpoint</p>
+                        <p>{data["Rewardpoint"][language]}</p>
                         <input
                             value={rewardPoint}
                             onChange={(e) => setRewardpoint(e.target.value)}
                         />
                     </label>
                     <div>
-                        <input className="submit" type="submit" value="Add task" />
+                        <input className="submit" type="submit" value={data["Add todo"][language]} />
                     </div>
                 </form>
             </div>
