@@ -232,3 +232,10 @@ a:active {
 .inactive {
     visibility: hidden;
 }
+
+.gridContainer {
+    display: grid;
+    justify-items: start;
+    grid-template-columns: 4fr 1fr 1fr;
+    gap: 1rem;
+}
