@@ -42,6 +42,27 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rewards",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    FamilyId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rewards", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rewards_Families_FamilyId",
+                        column: x => x.FamilyId,
+                        principalTable: "Families",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -65,28 +86,6 @@ namespace backend.Migrations
                         name: "FK_Users_Families_FamilyId",
                         column: x => x.FamilyId,
                         principalTable: "Families",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rewards",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    level = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OwnerId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rewards", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Rewards_Users_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -147,9 +146,9 @@ namespace backend.Migrations
                 filter: "[LeaderOfFamilyId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rewards_OwnerId",
+                name: "IX_Rewards_FamilyId",
                 table: "Rewards",
-                column: "OwnerId");
+                column: "FamilyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScheduledProgramUser_ProgramsId",

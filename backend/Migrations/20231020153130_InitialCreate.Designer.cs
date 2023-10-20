@@ -12,7 +12,7 @@ using backend.Model;
 namespace backend.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20231017095616_InitialCreate")]
+    [Migration("20231020153130_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,21 +60,19 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
 
-                    b.Property<long>("OwnerId")
+                    b.Property<long>("FamilyId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<int>("level")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("FamilyId");
 
                     b.ToTable("Rewards");
                 });
@@ -219,13 +217,13 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Model.Entities.Reward", b =>
                 {
-                    b.HasOne("backend.Model.Entities.User", "Owner")
+                    b.HasOne("backend.Model.Entities.Family", "Family")
                         .WithMany("Rewards")
-                        .HasForeignKey("OwnerId")
+                        .HasForeignKey("FamilyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Owner");
+                    b.Navigation("Family");
                 });
 
             modelBuilder.Entity("backend.Model.Entities.ToDo", b =>
@@ -266,12 +264,12 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Model.Entities.Family", b =>
                 {
                     b.Navigation("FamilyMembers");
+
+                    b.Navigation("Rewards");
                 });
 
             modelBuilder.Entity("backend.Model.Entities.User", b =>
                 {
-                    b.Navigation("Rewards");
-
                     b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
