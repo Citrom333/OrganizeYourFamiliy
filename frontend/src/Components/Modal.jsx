@@ -1,3 +1,4 @@
+import data from "../translator.json"
 import React from 'react';
 import { useState } from 'react';
 import "../Modal.css"

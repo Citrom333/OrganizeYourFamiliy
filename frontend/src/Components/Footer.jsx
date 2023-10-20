@@ -1,3 +1,4 @@
+import data from "../translator.json"
 import "../Style.css";
 export default function Footer() {
     return (
