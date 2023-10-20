@@ -16,7 +16,7 @@ public class User
     public List<ToDo> Tasks { get; set; }
     public List<ScheduledProgram> Programs { get; set; }
     public string AvatarPic { get; set; }
-    public List<Reward> Rewards { get; set; }
+    
     [ForeignKey("Family")]
     public long FamilyId { get; set; }
     public Family Family { get; set; }
