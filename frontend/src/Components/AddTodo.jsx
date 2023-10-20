@@ -2,7 +2,16 @@ import data from "../translator.json"
 import { useState, useEffect } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import mostFreqToDos from "../CostumHooks/mostFreqToDos";
+import ReactDatePicker from "react-datepicker";
+import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 export default function AddTodo(props) {
+    registerLocale('English', enGB);
+    registerLocale("Français", fr);
+    registerLocale("Español", es);
+    registerLocale("Italiano", it);
+    registerLocale("Deutsch", de);
     const language = localStorage.getItem("language");
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");
@@ -73,11 +82,20 @@ export default function AddTodo(props) {
                     </label>
                     <label>
                         <p>{data["Deadline"][language]}</p>
-                        <input
-                            value={deadline}
-                            type="date"
-                            onChange={(e) => setDeadline(e.target.value)}
-                        />
+                        {language === "Hungarian" ?
+                            <input
+                                value={deadline}
+                                type="date"
+                                onChange={(e) => setDeadline(e.target.value)}
+                            /> :
+                            <ReactDatePicker
+                                selected={deadline}
+                                onChange={(date) => setDeadline(date)}
+                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
+                                // timeInputLabel={data["Time"][language]}
+                                // showTimeInput
+                                locale={language}
+                            />}
                     </label>
                     <label>
                         <p>{data["Type"][language]}</p>
@@ -97,7 +115,7 @@ export default function AddTodo(props) {
                         />
                     </label>
                     <div>
-                        <input className="submit" type="submit" value="Add task" />
+                        <input className="submit" type="submit" value={data["Add todo"][language]} />
                     </div>
                 </form>
             </div>
