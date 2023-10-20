@@ -11,7 +11,7 @@ export default function ProgramDetails(props) {
             <h3>{data["End date: "][language]}{props.program.end.split("T")[0]}</h3>
             <h3>{data["End time: "][language]}{props.program.end.split("T")[1]}</h3>
             {props.program.place !== "" ? <h3>{data["Place: "][language]}{props.program.place}</h3> : ""}
-            <h3>{data["Participants:"][language]}{" "}
+            <h3>{data["Participants: "][language]}{" "}
                 {props.program.participants.map((user, index) => (
                     <span key={user.id}>
                         {user.name}

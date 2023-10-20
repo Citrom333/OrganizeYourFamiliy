@@ -37,7 +37,7 @@ public class FamilyService : IFamilyService
     {
         
         List<Family> families =
-            await _context.Families.Include(family=>family.FamilyMembers).ToListAsync();
+            await _context.Families.Include(family=>family.FamilyMembers).Include(fam=>fam.Rewards).ToListAsync();
         return families;
     }
 
@@ -45,7 +45,7 @@ public class FamilyService : IFamilyService
     {
         try
         {
-            Family fam = await _context.Families.Include(family => family.FamilyMembers).FirstAsync(f => f.Name == name);
+            Family fam = await _context.Families.Include(family => family.FamilyMembers).Include(fam=>fam.Rewards).FirstAsync(f => f.Name == name);
             return fam;
         }
         catch (Exception e)

@@ -16,7 +16,10 @@ namespace backend.Model
                 .HasMany(family => family.FamilyMembers)
                 .WithOne(user => user.Family)
                 .HasForeignKey(user => user.FamilyId);
-
+            modelBuilder.Entity<Family>()
+                .HasMany(family => family.Rewards)
+                .WithOne(reward=>reward.Family)
+                .HasForeignKey(reward => reward.FamilyId);
             modelBuilder.Entity<Family>()
                 .HasOne(family => family.LeaderOfFamily)
                 .WithOne()
@@ -29,5 +32,6 @@ namespace backend.Model
         public DbSet<ScheduledProgram> ScheduledPrograms { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Reward> Rewards { get; set; }
+        
     }
 }

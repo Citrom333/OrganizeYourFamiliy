@@ -18,24 +18,26 @@ function Login() {
                 localStorage.setItem("language", language);
             });
     const fetchLogin = async (familyname, password) => {
-        await fetch("/api/Family/login", {
+        return await fetch("/api/Family/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: familyname, password: password }),
         })
             .then((response) => response.json())
             .then((data) => {
-                localStorage.setItem("familyName", data.name);
-                return data != null;
+                if (data.name != null)
+                    localStorage.setItem("familyName", data.name);
+                return data.name != null;
             });
     };
     const handleLogin = async () => {
         localStorage.clear();
         let success = await fetchLogin(name, password);
         await fetchFamilyId();
-        success
-            ? navigate("/")
-            : navigate("/MainFamilyPage");
+        if (!success) {
+            navigate("/")
+        }
+        else navigate("/MainFamilyPage");
     }
     return (
         <>

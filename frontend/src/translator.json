@@ -495,6 +495,14 @@
         "Italiano": "Data di fine: ",
         "Français": "Date de fin: "
     },
+    "Place: ": {
+        "Hungarian": "Helyszín: ",
+        "English": "Place: ",
+        "Español": "Lugar: ",
+        "Deutsch": "Ort: ",
+        "Italiano": "Luogo: ",
+        "Français": "Place : "
+    },
     "End time: ": {
         "Hungarian": "Záró időpont: ",
         "English": "End time: ",
@@ -728,7 +736,7 @@
         "Français": "Voici ma famille"
     },
     "Add new program": {
-        "Hungarian": "Új programot hozzáadása",
+        "Hungarian": "Új program hozzáadása",
         "English": "Add new program",
         "Español": "Agregar nuevo programa",
         "Deutsch": "Neues Programm hinzufügen",
@@ -832,7 +840,7 @@
         "Français": " points de fidélité au total"
     },
     "points": {
-        "Hungarian": "pontok",
+        "Hungarian": "pont",
         "English": "points",
         "Español": "puntos",
         "Deutsch": "Punkte",
@@ -902,5 +910,85 @@
         "Deutsch": "Zeit",
         "Italiano": "Tempo",
         "Français": "L'heure"
+    },
+    "Create new reward": {
+        "Hungarian": "Hozz létre új jutalmat",
+        "English": "Create new reward",
+        "Español": "Crear nueva recompensa",
+        "Deutsch": "Neue Belohnung erstellen",
+        "Italiano": "Crea una nuova ricompensa",
+        "Français": "Not translated yet"
+    },
+    "Add new reward": {
+        "Hungarian": "Új jutalom hozzáadása",
+        "English": "Add new reward",
+        "Español": "Agregar nueva recompensa",
+        "Deutsch": "Neue Belohnung hinzufügen",
+        "Italiano": "Aggiungi una nuova ricompensa",
+        "Français": "Ajouter une nouvelle récompense"
+    },
+    "Update reward": {
+        "Hungarian": "Jutalom frissítése",
+        "English": "Update reward",
+        "Español": "Actualizar recompensa",
+        "Deutsch": "Belohnung aktualisieren",
+        "Italiano": "Aggiorna ricompensa",
+        "Français": "Mettre à jour la récompense"
+    },
+    "Theese are the rewards:": {
+        "Hungarian": "Ezek a jutalmak",
+        "English": "Theese are the rewards:",
+        "Español": "Estas son las recompensas:",
+        "Deutsch": "Das sind die Belohnungen:",
+        "Italiano": "Queste sono le ricompense:",
+        "Français": "Voici les récompenses :"
+    },
+    "for": {
+        "Hungarian": "",
+        "English": "for",
+        "Español": "para",
+        "Deutsch": "für",
+        "Italiano": "per",
+        "Français": "pour"
+    },
+    "Your family doesn't have any rewards yet. Create some to motivate the children!": {
+        "Hungarian": "A családodnak még nincs jutalma. Készíts néhányat, hogy motiváld a gyerekeket!",
+        "English": "Your family doesn't have any rewards yet. Create some to motivate the children!",
+        "Español": "Tu familia aún no tiene ninguna recompensa. ¡Crea algunos para motivar a los niños!",
+        "Deutsch": "Ihre Familie hat noch keine Belohnungen. Erstellen Sie welche, um die Kinder zu motivieren!",
+        "Italiano": "La tua famiglia non ha ancora alcun premio. Creane alcuni per motivare i bambini!",
+        "Français": "Votre famille n'a pas encore de récompenses. Créez-en pour motiver les enfants !"
+    },
+    "ért": {
+        "Hungarian": "ért",
+        "English": "",
+        "Español": "",
+        "Deutsch": "",
+        "Italiano": "",
+        "Français": ""
+    },
+    "Successfully deleted": {
+        "Hungarian": "Sikeresen törölve",
+        "English": "Successfully deleted",
+        "Español": "Eliminado exitosamente",
+        "Deutsch": "Erfolgreich gelöscht",
+        "Italiano": "Eliminato con successo",
+        "Français": "Supprimé avec succès"
+    },
+    "Handle rewardshop": {
+        "Hungarian": "Jutalom-bolt kezelése",
+        "English": "Handle rewardshop",
+        "Español": "Manejar tienda de recompensas",
+        "Deutsch": "Behandeln Sie den Belohnungsshop",
+        "Italiano": "Gestisci il negozio di premi",
+        "Français": "Gérer le magasin de récompenses"
+    },
+    "Family created successfully": {
+        "Hungarian": "Család létrehozva",
+        "English": "Family created successfully",
+        "Español": "Familia creada",
+        "Deutsch": "Familie erfolgreich erstellt",
+        "Italiano": "Famiglia creata con successo",
+        "Français": "Famille créée avec succès"
     }
 }
