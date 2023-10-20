@@ -35,7 +35,7 @@ export default function Navbar() {
             <div className="navbuttons">
                 {localStorage.getItem("isAdult") == "false" ? "" : <div> <a href="/MainFamilyPage/AddFamilyMember"><button>{data["Add new member"][language]}</button></a></div>}
                 {localStorage.getItem("userName") !== "" && localStorage.getItem("userName") !== null ?
-                    <div> <a href="/MainFamilyPage/MyPage"><button>{data["'s profile"][language]}{localStorage.getItem("userName")}{data["'s profile"][language]}</button></a></div>
+                    <div> <a href="/MainFamilyPage/MyPage"><button>{data["profile of "][language]}{localStorage.getItem("userName")}{data["'s profile"][language]}</button></a></div>
                     :
                     <div><a href="/MainFamilyPage/LoginAsFamilyMember"><button>{data["Member login"][language]}</button></a></div>}
                 <div><button onClick={handleLogout}>{data["Logout"][language]}</button></div>

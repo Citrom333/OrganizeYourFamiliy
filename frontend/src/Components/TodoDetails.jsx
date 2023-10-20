@@ -39,10 +39,10 @@ export default function TodoDetails(props) {
     return (
         <div>
             <h2>{props.toDo.taskName}</h2>
-            <h3>{data["Description: "][language]}{props.toDo.description}</h3>
-            <h3>{data["Deadline: "][language]}{props.toDo.deadline.split("T")[0]}</h3>
+            <h3>{data["Description"][language]}: {props.toDo.description}</h3>
+            <h3>{data["Deadline"][language]}: {props.toDo.deadline.split("T")[0]}</h3>
             <form>
-                <label htmlFor="ready">{data["Ready? :   "][language]}</label><input type="checkbox" id="ready" checked={isChecked}
+                <label htmlFor="ready">{data["Ready? :   "][language]}</label><input className="checkbox" type="checkbox" id="ready" checked={isChecked}
                     onChange={handleCheckboxChange} />
             </form>
             <button onClick={e => props.setSelected("")}>{data["Back"][language]}</button>

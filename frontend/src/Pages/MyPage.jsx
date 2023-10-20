@@ -87,7 +87,7 @@ function MyPage() {
                     <div key={user.id}><img className="userAvatarPic" src={user.avatarPic} /><div>{user.name}</div></div>
                 </div>
                 <h1>{data["My page"][language]}</h1>
-                {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>Be the leader</button>}
+                {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>{data["Be the leader"][language]}</button>}
                 <div>
                     <Rewardpoints user={user} />
                     <button onClick={e => setShowAddForm(true)}>{data["Add todo"][language]}</button>

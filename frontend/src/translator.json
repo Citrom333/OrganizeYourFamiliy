@@ -5,7 +5,7 @@
         "Español": "¡Hola! Este es el Gran Organizador Familiar",
         "Deutsch": "Hallo! Dies ist der Great Family Organizer",
         "Italiano": "Ciao! Questo è il Grande Organizzatore di Famiglia",
-        "Français": ""
+        "Français": "Bonjour ! Voici le Grand Organisateur Familial"
     },
     "Doesyourfamilyhaveanaccount?": {
         "Hungarian": "Van családi fiókod?",
@@ -13,7 +13,7 @@
         "Español": "¿Tiene su familia una cuenta?",
         "Deutsch": "Hat Ihre Familie ein Konto?",
         "Italiano": "La vostra famiglia ha un account?",
-        "Français": ""
+        "Français": "Votre famille dispose-t-elle d'un compte ?"
     },
     "Log in": {
         "Hungarian": "Jelentkezz be",
@@ -21,7 +21,7 @@
         "Español": "Conectarse",
         "Deutsch": "Einloggen",
         "Italiano": "Accedi",
-        "Français": ""
+        "Français": "Se connecter"
     },
     "If not, register now": {
         "Hungarian": "Ha nem, regisztrálj",
@@ -29,7 +29,7 @@
         "Español": "Si no, regístrese ahora",
         "Deutsch": "Wenn nicht, registrieren Sie sich jetzt",
         "Italiano": "Se non lo siete, registratevi ora",
-        "Français": ""
+        "Français": "Si ce n'est pas le cas, inscrivez-vous dès maintenant"
     },
     "Program name": {
         "Hungarian": "Program neve",
@@ -37,7 +37,7 @@
         "Español": "Nombre del programa",
         "Deutsch": "Name des Programms",
         "Italiano": "Il nome del programma",
-        "Français": ""
+        "Français": "Nom du programme"
     },
     "Start": {
         "Hungarian": "Kezdés",
@@ -45,7 +45,7 @@
         "Español": "Inicio",
         "Deutsch": "Start",
         "Italiano": "Avvio",
-        "Français": ""
+        "Français": "Démarrage"
     },
     "End": {
         "Hungarian": "Vége",
@@ -53,7 +53,7 @@
         "Español": "Finalizar",
         "Deutsch": "Ende",
         "Italiano": "Fino",
-        "Français": ""
+        "Français": "Fin"
     },
     "Participants": {
         "Hungarian": "Résztvevők",
@@ -61,7 +61,7 @@
         "Español": "Participantes",
         "Deutsch": "TeilnehmerInnen",
         "Italiano": "Partecipanti",
-        "Français": ""
+        "Français": "Les participants"
     },
     "Place (optional)": {
         "Hungarian": "Helyszín (opcionális)",
@@ -69,7 +69,7 @@
         "Español": "Lugar (opcional)",
         "Deutsch": "Ort (optional)",
         "Italiano": "Luogo (opzionale)",
-        "Français": ""
+        "Français": "Place (facultatif)"
     },
     "Cost": {
         "Hungarian": "Költség",
@@ -77,7 +77,7 @@
         "Español": "Coste",
         "Deutsch": "Kosten",
         "Italiano": "Costo",
-        "Français": ""
+        "Français": "Coût"
     },
     "Add new todo": {
         "Hungarian": "Új teendő hozzáadása",
@@ -85,7 +85,7 @@
         "Español": "Añadir nueva tarea",
         "Deutsch": "Neues ToDo hinzufügen",
         "Italiano": "Aggiungere un nuovo impegno",
-        "Français": ""
+        "Français": "Ajouter une nouvelle tâche"
     },
     "Or choose from the most frequents": {
         "Hungarian": "Vagy válassz a leggyakoribbak közül",
@@ -93,7 +93,7 @@
         "Español": "O elija entre los más frecuentes",
         "Deutsch": "Oder wählen Sie aus den meistbesuchten",
         "Italiano": "O scegliete tra i più frequenti",
-        "Français": ""
+        "Français": "Ou choisissez parmi les plus fréquents"
     },
     "Name": {
         "Hungarian": "Név",
@@ -101,7 +101,39 @@
         "Español": "Nombre",
         "Deutsch": " Name",
         "Italiano": "Nome",
-        "Français": ""
+        "Français": "Nom"
+    },
+    "Todo updated": {
+        "Hungarian": "Teendő frissítve",
+        "English": "Todo updated",
+        "Español": "Todo actualizado",
+        "Deutsch": "Todo aktualisiert",
+        "Italiano": "Todo aggiornato",
+        "Français": "Mise à jour de Todo"
+    },
+    "Go shop some reward": {
+        "Hungarian": "Válts be jutalmat",
+        "English": "Go shop some reward",
+        "Español": "Ve a comprar alguna recompensa",
+        "Deutsch": "Kaufen Sie eine Belohnung ein",
+        "Italiano": "Fare acquisti per ottenere un po' di ricompensa",
+        "Français": "Allez acheter des récompenses"
+    },
+    "Would you like to be set": {
+        "Hungarian": "Szeretnéd magad beállítani",
+        "English": "Would you like to be set",
+        "Español": "¿Te gustaría ser",
+        "Deutsch": "Möchten Sie als Familienoberhaupt",
+        "Italiano": "Vi piacerebbe essere",
+        "Français": "Souhaitez-vous être"
+    },
+    "as the leader of the family?": {
+        "Hungarian": "családfőnek?",
+        "English": "as the leader of the family?",
+        "Español": "el líder de la familia?",
+        "Deutsch": "eingesetzt werden?",
+        "Italiano": "definiti il leader della famiglia?",
+        "Français": "désigné comme chef de famille ?"
     },
     "Description": {
         "Hungarian": "Leírás",
@@ -109,7 +141,7 @@
         "Español": "Descripción",
         "Deutsch": "Beschreibung",
         "Italiano": "Descrizione",
-        "Français": ""
+        "Français": "Description"
     },
     "Deadline": {
         "Hungarian": "Határidő",
@@ -117,7 +149,7 @@
         "Español": "Plazo",
         "Deutsch": "Stichtag",
         "Italiano": "Scadenza",
-        "Français": ""
+        "Français": "Date limite"
     },
     "Type": {
         "Hungarian": "Típus",
@@ -125,7 +157,7 @@
         "Español": "Tipo",
         "Deutsch": "Typ",
         "Italiano": "Tipo",
-        "Français": ""
+        "Français": "Type"
     },
     "Housework": {
         "Hungarian": "Házimunka",
@@ -133,7 +165,7 @@
         "Español": "Tareas domésticas",
         "Deutsch": "Hausarbeit",
         "Italiano": "Lavori domestici",
-        "Français": ""
+        "Français": "Travaux ménagers"
     },
     "Job": {
         "Hungarian": "Munka",
@@ -141,7 +173,7 @@
         "Español": "Trabajo",
         "Deutsch": "Arbeit",
         "Italiano": "Lavoro",
-        "Français": ""
+        "Français": "Travail"
     },
     "School": {
         "Hungarian": "Iskola",
@@ -149,7 +181,7 @@
         "Español": "Escuela",
         "Deutsch": "Schule",
         "Italiano": "Scuola",
-        "Français": ""
+        "Français": "École"
     },
     "Other": {
         "Hungarian": "Egyéb",
@@ -157,7 +189,7 @@
         "Español": "Otro",
         "Deutsch": "Andere",
         "Italiano": "Altro",
-        "Français": ""
+        "Français": "Autres"
     },
     "Rewardpoint": {
         "Hungarian": "Jutalom",
@@ -165,7 +197,7 @@
         "Español": "Punto de recompensa",
         "Deutsch": "Belohnungspunkt",
         "Italiano": "Punto premio",
-        "Français": ""
+        "Français": "Point de récompense"
     },
     "ToDo added successfully": {
         "Hungarian": "Teendő sikeresen hozzáadva",
@@ -173,7 +205,7 @@
         "Español": "Hacer agregado exitosamente",
         "Deutsch": "Machen erfolgreich hinzugefügt",
         "Italiano": "Fare aggiunte con successo",
-        "Français": ""
+        "Français": "Ajout d'une tâche avec succès"
     },
     "Some error occured": {
         "Hungarian": "Valami hiba történt",
@@ -181,7 +213,7 @@
         "Español": "Algún error ocurrió",
         "Deutsch": "Es ist ein Fehler aufgetreten",
         "Italiano": "Si è verificato un errore",
-        "Français": ""
+        "Français": "Une erreur s'est produite"
     },
     "Sun": {
         "Hungarian": "Vasárnap",
@@ -189,7 +221,7 @@
         "Español": "Domingo",
         "Deutsch": "Sonntag",
         "Italiano": "Domenica",
-        "Français": ""
+        "Français": "Dimanche"
     },
     "Mon": {
         "Hungarian": "Hétfő",
@@ -197,7 +229,7 @@
         "Español": "Lunes",
         "Deutsch": "Montag",
         "Italiano": "Lunedì",
-        "Français": ""
+        "Français": "Lundi"
     },
     "Tue": {
         "Hungarian": "Kedd",
@@ -205,7 +237,7 @@
         "Español": "Martes",
         "Deutsch": "Dienstag",
         "Italiano": "Martedì",
-        "Français": ""
+        "Français": "Mardi"
     },
     "Wed": {
         "Hungarian": "Szerda",
@@ -213,7 +245,7 @@
         "Español": "Miércoles",
         "Deutsch": "Mittwoch",
         "Italiano": "Mercoledì",
-        "Français": ""
+        "Français": "Mercredi"
     },
     "Thu": {
         "Hungarian": "Csütörtök",
@@ -221,7 +253,7 @@
         "Español": "Jueves",
         "Deutsch": "Donnerstag",
         "Italiano": "Giovedì",
-        "Français": ""
+        "Français": "Jeudi"
     },
     "Fri": {
         "Hungarian": "Péntek",
@@ -229,7 +261,7 @@
         "Español": "Viernes",
         "Deutsch": "Freitag",
         "Italiano": "Venerdì",
-        "Français": ""
+        "Français": "Vendredi"
     },
     "Sat": {
         "Hungarian": "Szombat",
@@ -237,7 +269,7 @@
         "Español": "Sábado",
         "Deutsch": "Samstag",
         "Italiano": "Sabato",
-        "Français": ""
+        "Français": "Samedi"
     },
     "January": {
         "Hungarian": "Január",
@@ -245,7 +277,7 @@
         "Español": "Enero",
         "Deutsch": "Januar",
         "Italiano": "Gennaio",
-        "Français": ""
+        "Français": "Janvier"
     },
     "February": {
         "Hungarian": "Február",
@@ -253,7 +285,7 @@
         "Español": "Febrero",
         "Deutsch": "Februar",
         "Italiano": "Febbraio",
-        "Français": ""
+        "Français": "Février"
     },
     "March": {
         "Hungarian": "Március",
@@ -261,7 +293,7 @@
         "Español": "Marzo",
         "Deutsch": "März",
         "Italiano": "Marzo",
-        "Français": ""
+        "Français": "Mars"
     },
     "April": {
         "Hungarian": "Április",
@@ -269,7 +301,7 @@
         "Español": "Abril",
         "Deutsch": "April",
         "Italiano": "Aprile",
-        "Français": ""
+        "Français": "Avril"
     },
     "May": {
         "Hungarian": "Május",
@@ -277,7 +309,7 @@
         "Español": "Mayo",
         "Deutsch": "Mai",
         "Italiano": "Maggio",
-        "Français": ""
+        "Français": "Mai"
     },
     "June": {
         "Hungarian": "Június",
@@ -285,7 +317,7 @@
         "Español": "Junio",
         "Deutsch": "Juni",
         "Italiano": "Giugno",
-        "Français": ""
+        "Français": "Juin"
     },
     "July": {
         "Hungarian": "Július",
@@ -293,7 +325,7 @@
         "Español": "Julio",
         "Deutsch": "Juli",
         "Italiano": "Luglio",
-        "Français": ""
+        "Français": "Juillet"
     },
     "August": {
         "Hungarian": "Augusztus",
@@ -301,7 +333,7 @@
         "Español": "Agosto",
         "Deutsch": "August",
         "Italiano": "Agosto",
-        "Français": ""
+        "Français": "Août"
     },
     "September": {
         "Hungarian": "Szeptember",
@@ -309,7 +341,7 @@
         "Español": "Septiembre",
         "Deutsch": "September",
         "Italiano": "Settembre",
-        "Français": ""
+        "Français": "Septembre"
     },
     "October": {
         "Hungarian": "Október",
@@ -317,7 +349,7 @@
         "Español": "Octubre",
         "Deutsch": "Oktober",
         "Italiano": "Ottobre",
-        "Français": ""
+        "Français": "Octobre"
     },
     "November": {
         "Hungarian": "November",
@@ -325,7 +357,7 @@
         "Español": "Noviembre",
         "Deutsch": "November",
         "Italiano": "Novembre",
-        "Français": ""
+        "Français": "Novembre"
     },
     "December": {
         "Hungarian": "December",
@@ -333,7 +365,7 @@
         "Español": "Diciembre",
         "Deutsch": "Dezember",
         "Italiano": "Dicembre",
-        "Français": ""
+        "Français": "Décembre"
     },
     "Previous": {
         "Hungarian": "Előző",
@@ -341,7 +373,7 @@
         "Español": "Anterior",
         "Deutsch": "Vorherige",
         "Italiano": "Precedente",
-        "Français": ""
+        "Français": "Précédent"
     },
     "Next": {
         "Hungarian": "Következő",
@@ -349,7 +381,7 @@
         "Español": "Próxima",
         "Deutsch": "Nächste",
         "Italiano": "Prossima",
-        "Français": ""
+        "Français": "Suivant"
     },
     "Do you really want to delete?": {
         "Hungarian": "Tényleg törlöd?",
@@ -357,7 +389,7 @@
         "Español": "¿Realmente quieres eliminar?",
         "Deutsch": "Möchten Sie wirklich löschen?",
         "Italiano": "Vuoi davvero eliminare?",
-        "Français": ""
+        "Français": "Voulez-vous vraiment effacer ?"
     },
     "Yes": {
         "Hungarian": "Igen",
@@ -365,7 +397,7 @@
         "Español": "Sí",
         "Deutsch": "Ja",
         "Italiano": "Sì",
-        "Français": ""
+        "Français": "Oui"
     },
     "No": {
         "Hungarian": "Nem",
@@ -373,7 +405,7 @@
         "Español": "No",
         "Deutsch": "Nein",
         "Italiano": "No",
-        "Français": ""
+        "Français": "Non"
     },
     "This is ": {
         "Hungarian": "Ez a(z) ",
@@ -381,7 +413,7 @@
         "Español": "Este es la familia ",
         "Deutsch": "Das ist Familie ",
         "Italiano": "Questa è la famiglia ",
-        "Français": ""
+        "Français": "Voici la famille "
     },
     "family": {
         "Hungarian": " család",
@@ -397,7 +429,7 @@
         "Español": "Este es el gran organizador familiar",
         "Deutsch": "Dies ist der großartige Familienorganisator",
         "Italiano": "Questo è il Grande Organizzatore della Famiglia",
-        "Français": ""
+        "Français": "C'est le grand organisateur familial"
     },
     "Add new member": {
         "Hungarian": "Új családtag",
@@ -405,7 +437,7 @@
         "Español": "Agregar nuevo miembro",
         "Deutsch": "Neues Mitglied hinzufügen",
         "Italiano": "Aggiungi nuovo membro",
-        "Français": ""
+        "Français": "Ajouter un nouveau membre"
     },
     "profile of ": {
         "Hungarian": "",
@@ -413,7 +445,7 @@
         "Español": "Perfil de ",
         "Deutsch": "",
         "Italiano": "Il profilo di ",
-        "Français": ""
+        "Français": "Profil de "
     },
     "'s profile": {
         "Hungarian": " profilja",
@@ -429,7 +461,7 @@
         "Español": "Inicio de sesión de miembro",
         "Deutsch": "Login für Mitglieder",
         "Italiano": "Accesso membro",
-        "Français": ""
+        "Français": "Connexion des membres"
     },
     "Logout": {
         "Hungarian": "Kijelentkezés",
@@ -437,47 +469,47 @@
         "Español": "Cerrar sesión",
         "Deutsch": "Ausloggen",
         "Italiano": "Disconnettersi",
-        "Français": ""
+        "Français": "Déconnexion"
     },
     "Start date: ": {
         "Hungarian": "Kezdődátum: ",
-        "English": "Logout",
-        "Español": "Fecha de inicio",
-        "Deutsch": "Startdatum",
-        "Italiano": "Data d'inizio",
-        "Français": ""
+        "English": "Start date: ",
+        "Español": "Fecha de inicio: ",
+        "Deutsch": "Startdatum: ",
+        "Italiano": "Data d'inizio: ",
+        "Français": "Date de début: "
     },
     "Start time: ": {
         "Hungarian": "Kezdő időpont: ",
         "English": "Start time: ",
-        "Español": "Hora de inicio",
-        "Deutsch": "Startzeit",
-        "Italiano": "Ora di inizio",
-        "Français": ""
+        "Español": "Hora de inicio: ",
+        "Deutsch": "Startzeit: ",
+        "Italiano": "Ora di inizio: ",
+        "Français": "Heure de début: "
     },
     "End date: ": {
         "Hungarian": "Záródátum: ",
         "English": "End date: ",
-        "Español": "Fecha de finalización",
-        "Deutsch": "Endtermin",
-        "Italiano": "Data di fine",
-        "Français": ""
+        "Español": "Fecha de finalización: ",
+        "Deutsch": "Endtermin: ",
+        "Italiano": "Data di fine: ",
+        "Français": "Date de fin: "
     },
     "End time: ": {
         "Hungarian": "Záró időpont: ",
         "English": "End time: ",
-        "Español": "Hora de finalización",
-        "Deutsch": "Endzeit",
-        "Italiano": "Tempo scaduto",
-        "Français": ""
+        "Español": "Hora de finalización: ",
+        "Deutsch": "Endzeit: ",
+        "Italiano": "Tempo scaduto: ",
+        "Français": "Heure de fin : "
     },
     "Participants: ": {
         "Hungarian": "Résztvevők: ",
         "English": "Participants: ",
-        "Español": "Los participantes",
-        "Deutsch": "Partecipanti",
-        "Italiano": "Partecipanti",
-        "Français": ""
+        "Español": "Los participantes: ",
+        "Deutsch": "Partecipanti: ",
+        "Italiano": "Partecipanti: ",
+        "Français": "Les participants: "
     },
     "Cost: ": {
         "Hungarian": "Költség: ",
@@ -485,7 +517,7 @@
         "Español": "Costo: ",
         "Deutsch": "Kosten: ",
         "Italiano": "Costo: ",
-        "Français": ""
+        "Français": "Coût: "
     },
     "Update": {
         "Hungarian": "Módosítás",
@@ -493,7 +525,7 @@
         "Español": "Actualizar",
         "Deutsch": "Aktualisieren",
         "Italiano": "Aggiornamento",
-        "Français": ""
+        "Français": "Mise à jour"
     },
     "Delete": {
         "Hungarian": "Törlés",
@@ -501,7 +533,7 @@
         "Español": "Borrar",
         "Deutsch": "Löschen",
         "Italiano": "Eliminare",
-        "Français": ""
+        "Français": "Supprimer"
     },
     "Shop some reward": {
         "Hungarian": "Váltsd be a jutalmad",
@@ -509,7 +541,7 @@
         "Español": "Compra alguna recompensa",
         "Deutsch": "Kaufen Sie eine Belohnung",
         "Italiano": "Acquista qualche ricompensa",
-        "Français": ""
+        "Français": "Acheter des récompenses"
     },
     "Ok. But don't forget: With great power comes great responsibility": {
         "Hungarian": "Rendben, de ne feledd: nagyobb hatalom, nagyobb felelősség",
@@ -517,7 +549,7 @@
         "Español": "De acuerdo. Pero no lo olvide: un gran poder conlleva una gran responsabilidad.",
         "Deutsch": "OK. Aber vergessen Sie nicht: Mit großer Kraft geht große Verantwortung einher",
         "Italiano": "OK. Ma non dimenticare: da un grande potere derivano grandi responsabilità",
-        "Français": ""
+        "Français": "D'accord. Mais n'oubliez pas : Un grand pouvoir implique une grande responsabilité"
     },
     "ERROR": {
         "Hungarian": "HIBA",
@@ -525,7 +557,7 @@
         "Español": "ERROR",
         "Deutsch": "FEHLER",
         "Italiano": "ERRORE",
-        "Français": ""
+        "Français": "ERREUR"
     },
     "Ready? :   ": {
         "Hungarian": "Kész? :    ",
@@ -533,7 +565,7 @@
         "Español": "¿Listo? :   ",
         "Deutsch": "Bereit? :   ",
         "Italiano": "Pronto? :   ",
-        "Français": ""
+        "Français": "Prêt ? :   "
     },
     "Back": {
         "Hungarian": "Vissza",
@@ -541,7 +573,7 @@
         "Español": "Atrás",
         "Deutsch": "Zurück",
         "Italiano": "Indietro",
-        "Français": ""
+        "Français": "Retour"
     },
     "My todos:": {
         "Hungarian": "Feladataim",
@@ -549,15 +581,15 @@
         "Español": "Mis quehaceres",
         "Deutsch": "Meine Aufgaben",
         "Italiano": "Le mie cose da fare",
-        "Français": ""
+        "Français": "Mes tâches :"
     },
     "Updated": {
         "Hungarian": "Módosítva",
-        "English": "Program name",
+        "English": "Updated",
         "Español": "Actualizado",
         "Deutsch": "Aktualisiert",
         "Italiano": "Aggiornato",
-        "Français": ""
+        "Français": "Mise à jour"
     },
     "Reward added": {
         "Hungarian": "Jutalom megadva",
@@ -565,7 +597,7 @@
         "Español": "Recompensa agregada",
         "Deutsch": "Belohnung hinzugefügt",
         "Italiano": "Aggiunta ricompensa",
-        "Français": ""
+        "Français": "Récompense ajoutée"
     },
     "User created successfully": {
         "Hungarian": "Felhasználó sikeresen létrehozva",
@@ -573,7 +605,7 @@
         "Español": "Usuario creado con éxito",
         "Deutsch": "Benutzer erfolgreich erstellt",
         "Italiano": "Utente creato con successo",
-        "Français": ""
+        "Français": "Utilisateur créé avec succès"
     },
     "New member": {
         "Hungarian": "Új családtag",
@@ -581,7 +613,7 @@
         "Español": "Nuevo miembro",
         "Deutsch": "Neues Mitglied",
         "Italiano": "Nuovo membro",
-        "Français": ""
+        "Français": "Nouveau membre"
     },
     "Member pin": {
         "Hungarian": "Jelszó",
@@ -589,7 +621,7 @@
         "Español": "Contraseña de miembro",
         "Deutsch": "Mitgliedspasswort",
         "Italiano": "Password membro",
-        "Français": ""
+        "Français": "Mot de passe du membre"
     },
     "Member pin confirmation": {
         "Hungarian": "Jelszó megerősítés",
@@ -597,7 +629,7 @@
         "Español": "Confirmación de contraseña de miembro",
         "Deutsch": "Bestätigung des Mitgliedspassworts",
         "Italiano": "Conferma della password del membro",
-        "Français": ""
+        "Français": "Confirmation du mot de passe du membre"
     },
     "Date of birth": {
         "Hungarian": "Születési dátum",
@@ -605,7 +637,7 @@
         "Español": "Fecha de nacimiento",
         "Deutsch": "Geburtsdatum",
         "Italiano": "Data di nascita",
-        "Français": ""
+        "Français": "Date de naissance"
     },
     "Family role": {
         "Hungarian": "Szerepkör",
@@ -613,7 +645,7 @@
         "Español": "Rol familiar",
         "Deutsch": "Familienrolle",
         "Italiano": "Ruolo familiare",
-        "Français": ""
+        "Français": "Rôle dans la famille"
     },
     "Adult": {
         "Hungarian": "Felnőtt",
@@ -621,7 +653,7 @@
         "Español": "Adulto",
         "Deutsch": "Erwachsene",
         "Italiano": "Adulto",
-        "Français": ""
+        "Français": "Adulte"
     },
     "Child": {
         "Hungarian": "Gyerek",
@@ -629,7 +661,7 @@
         "Español": "Niño/Niña",
         "Deutsch": "Kind",
         "Italiano": "Bambino/Bambina",
-        "Français": ""
+        "Français": "Enfant"
     },
     "Choose an avatar picture": {
         "Hungarian": "Válassz avatár képet",
@@ -637,7 +669,7 @@
         "Español": "Elige una imagen de avatar",
         "Deutsch": "Wählen Sie ein Avatarbild",
         "Italiano": "Scegli un'immagine per l'avatar",
-        "Français": ""
+        "Français": "Choisir une image d'avatar"
     },
     "Login": {
         "Hungarian": "Bejelentkezés",
@@ -645,7 +677,7 @@
         "Español": "Acceso",
         "Deutsch": "Anmeldung",
         "Italiano": "Login",
-        "Français": ""
+        "Français": "Connexion"
     },
     "Family identifier": {
         "Hungarian": "Családi azonosító",
@@ -653,7 +685,7 @@
         "Español": "Identificador familiar",
         "Deutsch": "Familienkennung",
         "Italiano": "Identificativo della famiglia",
-        "Français": ""
+        "Français": "Identifiant de la famille"
     },
     "Family password": {
         "Hungarian": "Családi jelszó",
@@ -661,7 +693,7 @@
         "Español": "Contraseña familiar",
         "Deutsch": "Familienpasswort",
         "Italiano": "Parola d'ordine della famiglia",
-        "Français": ""
+        "Français": "Mot de passe familial"
     },
     "Choose member": {
         "Hungarian": "Válassz csqaládtagot",
@@ -669,7 +701,7 @@
         "Español": "Elige miembro",
         "Deutsch": "Mitglied auswählen",
         "Italiano": "Scegli membro",
-        "Français": ""
+        "Français": "Choisir un membre"
     },
     "Choose your name": {
         "Hungarian": "Válaszd ki a neved",
@@ -677,7 +709,7 @@
         "Español": "Elige tu nombre",
         "Deutsch": "Wähle deinen Namen",
         "Italiano": "Scegli il tuo nome",
-        "Français": ""
+        "Français": "Choisissez votre nom"
     },
     "Your password": {
         "Hungarian": "Jelszavad",
@@ -685,7 +717,7 @@
         "Español": "Tu contraseña",
         "Deutsch": "Ihr Passwort",
         "Italiano": "La tua password",
-        "Français": ""
+        "Français": "Votre mot de passe"
     },
     "This is my family": {
         "Hungarian": "Ez a családom",
@@ -693,7 +725,7 @@
         "Español": "Esta es mi familia",
         "Deutsch": "Das ist meine Familie",
         "Italiano": "Questa è la mia famiglia",
-        "Français": ""
+        "Français": "Voici ma famille"
     },
     "Add new program": {
         "Hungarian": "Új programot hozzáadása",
@@ -701,7 +733,7 @@
         "Español": "Agregar nuevo programa",
         "Deutsch": "Neues Programm hinzufügen",
         "Italiano": "Aggiungi nuovo programma",
-        "Français": ""
+        "Français": "Ajouter un nouveau programme"
     },
     "Choose a member first": {
         "Hungarian": "Először válassz családtagot",
@@ -709,7 +741,7 @@
         "Español": "Elige un miembro primero",
         "Deutsch": "Wählen Sie zuerst ein Mitglied",
         "Italiano": "Scegli prima un membro",
-        "Français": ""
+        "Français": "Choisissez d'abord un membre"
     },
     "Add todo for ": {
         "Hungarian": "Adj feladatot neki: ",
@@ -717,7 +749,7 @@
         "Español": "Añadir todo para",
         "Deutsch": "Aufgabe hinzufügen zu",
         "Italiano": "Aggiungi cose da fare per ",
-        "Français": ""
+        "Français": "Ajouter un todo pour "
     },
     "My page": {
         "Hungarian": "Saját oldalam",
@@ -725,7 +757,7 @@
         "Español": "Mi página",
         "Deutsch": "Meine Seite",
         "Italiano": "La mia pagina",
-        "Français": ""
+        "Français": "Ma page"
     },
     "Be the leader": {
         "Hungarian": "Légy családfő",
@@ -733,7 +765,7 @@
         "Español": "Ser el cabeza de familia",
         "Deutsch": "Sei das Oberhaupt der Familie",
         "Italiano": "Sii il capofamiglia",
-        "Français": ""
+        "Français": "Être le chef de famille"
     },
     "Add todo": {
         "Hungarian": "Új feladat hozzáadása",
@@ -741,7 +773,15 @@
         "Español": "Agregar tarea",
         "Deutsch": "Aufgabe hinzufügen",
         "Italiano": "Aggiungi attività",
-        "Français": ""
+        "Français": "Ajouter une tâche"
+    },
+    "Add program": {
+        "Hungarian": "Új program hozzáadása",
+        "English": "Add program",
+        "Español": "Añadir programa",
+        "Deutsch": "Programm hinzufügen",
+        "Italiano": "Aggiungi programma",
+        "Français": "Ajouter un programme"
     },
     "Add reward to ": {
         "Hungarian": "Adj jutalmat neki: ",
@@ -749,7 +789,7 @@
         "Español": "Agregar recompensa a",
         "Deutsch": "Belohnung hinzufügen zu",
         "Italiano": "Aggiungi ricompensa a",
-        "Français": ""
+        "Français": "Ajouter une récompense à "
     },
     "Rewards": {
         "Hungarian": "Jutalmak",
@@ -757,7 +797,7 @@
         "Español": "Recompensas",
         "Deutsch": "Belohnung",
         "Italiano": "Premi",
-        "Français": ""
+        "Français": "Récompenses"
     },
     "You can spend your points to rewards": {
         "Hungarian": "A pontjaidat jutalmakra válthatod",
@@ -765,7 +805,7 @@
         "Español": "Puedes gastar tus puntos en recompensas.",
         "Deutsch": "Sie können Ihre Punkte in Prämien einlösen",
         "Italiano": "Puoi spendere i tuoi punti per ottenere premi",
-        "Français": ""
+        "Français": "Vous pouvez utiliser vos points pour obtenir des récompenses"
     },
     "You have ": {
         "Hungarian": "Neked összesen ",
@@ -773,7 +813,15 @@
         "Español": "Tienes ",
         "Deutsch": "Sie haben insgesamt ",
         "Italiano": "Hai ",
-        "Français": ""
+        "Français": "Vous avez "
+    },
+    "Rewardpoints": {
+        "Hungarian": "Jutalompontok",
+        "English": "Rewardpoints",
+        "Español": "Punti de recompensa",
+        "Deutsch": "Belohnungspunkt",
+        "Italiano": "Punti premii",
+        "Français": "Points de fidélité"
     },
     "total rewardpoints": {
         "Hungarian": "pontod van",
@@ -781,7 +829,7 @@
         "Español": " puntos de recompensa en total",
         "Deutsch": " Prämienpunkte",
         "Italiano": " punti premio totali",
-        "Français": ""
+        "Français": " points de fidélité au total"
     },
     "points": {
         "Hungarian": "pontok",
@@ -789,7 +837,7 @@
         "Español": "puntos",
         "Deutsch": "Punkte",
         "Italiano": "punti",
-        "Français": ""
+        "Français": "points"
     },
     "Selected Option: ": {
         "Hungarian": "Választott lehetőség: ",
@@ -797,7 +845,7 @@
         "Español": "Opción seleccionada: ",
         "Deutsch": "Ausgewählte Option: ",
         "Italiano": "Opzione selezionata: ",
-        "Français": ""
+        "Français": "Option sélectionnée : "
     },
     "Submit": {
         "Hungarian": "Jóváhagy",
@@ -805,7 +853,7 @@
         "Español": "Entregar",
         "Deutsch": "Einreichen",
         "Italiano": "Invia",
-        "Français": ""
+        "Français": "Soumettre"
     },
     "The passwords are different": {
         "Hungarian": "A jelszavak nem egyeznek",
@@ -813,7 +861,7 @@
         "Español": "Las contraseñas son diferentes.",
         "Deutsch": "Die Passwörter sind unterschiedlich",
         "Italiano": "Le password sono diverse",
-        "Français": ""
+        "Français": "Les mots de passe sont différents"
     },
     "Sign up": {
         "Hungarian": "Regisztrálj",
@@ -821,7 +869,7 @@
         "Español": "Inscribirse",
         "Deutsch": "Melden Sie sich an",
         "Italiano": "Iscrizione",
-        "Français": ""
+        "Français": "S'inscrire"
     },
     "Confirm password": {
         "Hungarian": "Jelszó megerősítése",
@@ -829,7 +877,7 @@
         "Español": "Confirmar Contraseña",
         "Deutsch": "Bestätige das Passwort",
         "Italiano": "Conferma password",
-        "Français": ""
+        "Français": "Confirmer le mot de passe"
     },
     "Wrong page": {
         "Hungarian": "Hibás oldal",
@@ -837,7 +885,7 @@
         "Español": "Página equivocada",
         "Deutsch": "Falsche Seite",
         "Italiano": "Pagina sbagliata",
-        "Français": ""
+        "Français": "Mauvaise page"
     },
     "Back to main page": {
         "Hungarian": "Vissza a főoldalra",
@@ -845,6 +893,14 @@
         "Español": "Volver a la página principal",
         "Deutsch": "Zurück zur Hauptseite",
         "Italiano": "Torna alla pagina principale",
-        "Français": ""
+        "Français": "Retour à la page principale"
+    },
+    "Time": {
+        "Hungarian": "Idő",
+        "English": "Time",
+        "Español": "Hora",
+        "Deutsch": "Zeit",
+        "Italiano": "Tempo",
+        "Français": "L'heure"
     }
 }

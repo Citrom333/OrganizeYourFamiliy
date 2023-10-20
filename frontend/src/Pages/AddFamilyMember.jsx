@@ -46,9 +46,9 @@ function AddMember() {
                 setPassword1("");
                 setBirthdate("");
                 setChosenPic("");
-                setMessage("User created successfully");
+                setMessage(data["User created successfully"][language]);
             } else {
-                setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
             setMessage(err);
