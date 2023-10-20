@@ -26,15 +26,16 @@ function Login() {
             .then((response) => response.json())
             .then((data) => {
                 localStorage.setItem("familyName", data.name);
-                data == null
-                    ? navigate("/")
-                    : navigate("/MainFamilyPage");
+                return data != null;
             });
     };
     const handleLogin = async () => {
         localStorage.clear();
-        await fetchLogin(name, password);
+        let success = await fetchLogin(name, password);
         await fetchFamilyId();
+        success
+            ? navigate("/")
+            : navigate("/MainFamilyPage");
     }
     return (
         <>

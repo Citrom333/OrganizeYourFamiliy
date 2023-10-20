@@ -10,9 +10,10 @@ import AddNewProgram from "../Components/AddNewProgram";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
-import AddTodo from "../Components/AddTodo";
+import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 function MainFamilyPage() {
+    const navigate = useNavigate();
     const [language, setLanguage] = useOutletContext();
     const location = useLocation();
     const [members, setMembers] = useState([]);
@@ -59,11 +60,14 @@ function MainFamilyPage() {
         setProgDetailIsOpen(true)
     }
     useEffect(() => {
-        fetchMembers();
-        fetchPrograms();
-        setChange(false);
-        setMessage("");
-        fetchAllToDos();
+        if (localStorage.getItem("userId")) {
+            fetchMembers();
+            fetchPrograms();
+            setChange(false);
+            setMessage("");
+            fetchAllToDos();
+        }
+        else navigate("/")
     }, [members.length, programs.length, change, toDos.length, language])
     return (
         <>
@@ -81,8 +85,10 @@ function MainFamilyPage() {
                             <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
                             <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo todos={toDos} setAddedNew={setChange} userId={selectedMember.id} />} />
-                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button> : ""}
-                            {localStorage.getItem("isAdult") == "true" ? <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>{data["Add todo for "][language]}{selectedMember.name}</button> : ""}
+                            {localStorage.getItem("isAdult") == "true" ?
+                                <div><button onClick={e => setAddProgIsOpen(true)}>Add new program</button>
+                                    <button onClick={e => selectedMember === "" ? setMessage("Choose a member first") : setShowAddForm(true)}>Add todo for {selectedMember.name}</button>
+                                    <a href=""><button >Handle rewardshop</button></a> </div> : ""}
                             <p>{message}</p>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :
