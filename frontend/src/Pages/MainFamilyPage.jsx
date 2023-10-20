@@ -10,7 +10,9 @@ import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
 import Update from "../Components/Update";
 import AddTodo from "../Components/AddTodo";
+import { useNavigate } from "react-router-dom";
 function MainFamilyPage() {
+    const navigate = useNavigate();
     const location = useLocation();
     const [members, setMembers] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -56,11 +58,14 @@ function MainFamilyPage() {
         setProgDetailIsOpen(true)
     }
     useEffect(() => {
-        fetchMembers();
-        fetchPrograms();
-        setChange(false);
-        setMessage("");
-        fetchAllToDos();
+        if (localStorage.getItem("userId")) {
+            fetchMembers();
+            fetchPrograms();
+            setChange(false);
+            setMessage("");
+            fetchAllToDos();
+        }
+        else navigate("/")
     }, [members.length, programs.length, change, toDos.length])
     return (
         <>
