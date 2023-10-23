@@ -82,7 +82,7 @@ export default function RewardShop(props) {
             <h3>{data["You can spend your points to rewards"][language]}</h3>
             <p>{data["You have "][language]}{points} {data["total rewardpoints"][language]}</p>
             <div className="shopitems">
-                {rewards.map(reward => (
+                {rewards.sort((a, b) => a.cost - b.cost).map(reward => (
                     <div key={reward.id} className={`shopitem ${points < reward.cost ? "disabled" : ""}`}>
                         <label>
                             <input
@@ -95,7 +95,7 @@ export default function RewardShop(props) {
                             {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
-                )).sort((a, b) => { b.cost - a.cost })};
+                ))};
             </div>
             <p>{data["Selected Option: "][language]}{selectedOption}</p>
             <button onClick={handleSubmit}>{data["Submit"][language]}</button>
