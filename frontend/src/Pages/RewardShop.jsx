@@ -13,7 +13,8 @@ export default function RewardShop(props) {
     const handleCheckboxChange = (option) => {
         setSelectedOption(option);
     };
-    const rewards = { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
+    const [rewards, setRewards] = useState([]);
+    // { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
     const fetchUser = async () =>
         await fetch(`/api/User/${userId}`, {
             method: "GET",
@@ -23,11 +24,20 @@ export default function RewardShop(props) {
                 setUser(json);
 
             });
+    const fetchRewards = async () =>
+        await fetch("/api/Reward", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => response.json())
+            .then((json) => {
+                setRewards(json);
+            });
     useEffect(() => {
         if (localStorage.getItem("isAdult") == "true") {
             navigate("/Wrongpage");
         }
         fetchUser();
+        fetchRewards();
 
     }, [])
     const sendExchangeToLeader = async () => {
@@ -72,20 +82,20 @@ export default function RewardShop(props) {
             <h3>{data["You can spend your points to rewards"][language]}</h3>
             <p>{data["You have "][language]}{points} {data["total rewardpoints"][language]}</p>
             <div className="shopitems">
-                {Object.keys(rewards).map((key, index) => (
-                    <div className={`shopitem ${points < rewards[key] ? "disabled" : ""}`}>
+                {rewards.map(reward => (
+                    <div key={reward.id} className={`shopitem ${points < reward.cost ? "disabled" : ""}`}>
                         <label>
                             <input
                                 className="checkbox"
-                                disabled={points < rewards[key]}
+                                disabled={points < reward.cost}
                                 type="checkbox"
-                                checked={selectedOption === key}
-                                onChange={() => handleCheckboxChange(key)}
+                                checked={selectedOption === reward.name}
+                                onChange={() => handleCheckboxChange(reward.name)}
                             />
-                            {key} : {rewards[key]} {data["points"][language]}
+                            {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
-                ))}
+                )).sort((a, b) => { b.cost - a.cost })};
             </div>
             <p>{data["Selected Option: "][language]}{selectedOption}</p>
             <button onClick={handleSubmit}>{data["Submit"][language]}</button>
