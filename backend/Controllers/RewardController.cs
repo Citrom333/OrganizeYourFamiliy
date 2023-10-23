@@ -17,7 +17,7 @@ public class RewardController:ControllerBase
         _rewardService = rewardService;
     }
     [HttpPost]
-    public async Task<IActionResult> AddUser([FromBody] RewardDTO reward)
+    public async Task<IActionResult> AddReward([FromBody] RewardDTO reward)
     {
         try
         {
