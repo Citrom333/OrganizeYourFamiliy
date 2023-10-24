@@ -9,7 +9,7 @@ export default function RewardShop(props) {
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("");
     const handleCheckboxChange = (option) => {
         setSelectedOption(option);
     };
@@ -41,7 +41,7 @@ export default function RewardShop(props) {
 
     }, [])
     const sendExchangeToLeader = async () => {
-        await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption, new Date(), 3, 0, localStorage.getItem("leader"))
+        await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption.name, new Date(), 3, 0, localStorage.getItem("leader"))
     }
     const handleRemovingpoints = (price) => {
         let pointToRemoveFromHousework = 0;
@@ -71,8 +71,8 @@ export default function RewardShop(props) {
     }
 
     const handleSubmit = async () => {
-        for (let i = 0; i < handleRemovingpoints(rewards[selectedOption]).length; i++) {
-            await fetchRewardpoints(-1, handleRemovingpoints(rewards[selectedOption])[i], i);
+        for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
+            await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
         }
         sendExchangeToLeader();
     }
@@ -89,15 +89,15 @@ export default function RewardShop(props) {
                                 className="checkbox"
                                 disabled={points < reward.cost}
                                 type="checkbox"
-                                checked={selectedOption === reward.name}
-                                onChange={() => handleCheckboxChange(reward.name)}
+                                checked={selectedOption === reward}
+                                onChange={() => handleCheckboxChange(reward)}
                             />
                             {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
                 ))};
             </div>
-            <p>{data["Selected Option: "][language]}{selectedOption}</p>
+            <p>{data["Selected Option: "][language]}{selectedOption == "" ? "" : selectedOption.name}</p>
             <button onClick={handleSubmit}>{data["Submit"][language]}</button>
             <div> <a href="/MainFamilyPage/MyPage"><button>{data["Back"][language]}</button></a></div>
 
