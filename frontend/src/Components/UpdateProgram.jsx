@@ -2,7 +2,7 @@ import data from "../translator.json"
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-const Update = (props) => {
+const UpdateProgram = (props) => {
     const language = localStorage.getItem("language");
     const [name, setName] = useState(props.toUpdate.name);
     const [start, setStart] = useState(props.toUpdate.start);
@@ -17,7 +17,7 @@ const Update = (props) => {
             const newIsChecked = isChecked.map((_, index) => participants.includes(props.users[index].id));
             setIsChecked(newIsChecked);
         }
-    }, []);
+    }, [language]);
     const fetchUpdateProgram = async () => {
         console.log(`id: ${props.toUpdate.id}, name: ${name}, start: ${start}, end: ${end}, place: ${place}, cost: ${cost}, participants: ${participants.map(participant => participant.id)}`)
         try {
@@ -120,4 +120,4 @@ const Update = (props) => {
     );
 };
 
-export default Update;
+export default UpdateProgram;
