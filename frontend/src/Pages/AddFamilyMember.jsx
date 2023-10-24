@@ -1,18 +1,27 @@
-import data from "../translator.json"
+import data from "../translator.json";
 import { useState, useEffect } from "react";
-import "../Style.css"
 import { useOutletContext } from "react-router-dom";
-function AddMember() {
+import ReactDatePicker from "react-datepicker";
+import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+export default function AddMember() {
+    registerLocale('English', enGB);
+    registerLocale("Français", fr);
+    registerLocale("Español", es);
+    registerLocale("Italiano", it);
+    registerLocale("Deutsch", de);
+
     const [language, setLanguage] = useOutletContext();
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
     useEffect(() => {
-        let newList = []
+        let newList = [];
         for (let i = 1; i <= 9; i++) {
-            newList.push(`../images/set${page}/avatar0${i}.png`)
+            newList.push(`../images/set${page}/avatar0${i}.png`);
         };
         setAvatarpics(newList);
-    }, [page, language])
+    }, [page, language]);
     const [name, setName] = useState("");
     const [password1, setPassword1] = useState("");
     const [password, setPassword] = useState("confirmation");
@@ -46,7 +55,7 @@ function AddMember() {
                 setPassword1("");
                 setBirthdate("");
                 setChosenPic("");
-                setMessage(data["User created successfully"][language]);
+                setMessage(data["Success"][language]);
             } else {
                 setMessage(data["Some error occured"][language]);
             }
@@ -79,10 +88,20 @@ function AddMember() {
                     </label>
                     <label>
                         <p>{data["Date of birth"][language]}</p>
-                        <input
-                            type="date"
-                            onChange={(e) => setBirthdate(e.target.value)}
-                        />
+                        {language === "Hungarian" ?
+                            <input
+                                value={birthDate}
+                                type="datetime-local"
+                                onChange={(e) => setBirthdate(e.target.value)}
+                            /> :
+                            <ReactDatePicker
+                                selected={birthDate}
+                                onChange={(date) => setBirthdate(date)}
+                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
+                                timeInputLabel={data["Time"][language]}
+                                showTimeInput
+                                locale={language}
+                            />}
                     </label>
                     <label>
                         <p>{data["Family role"][language]}</p>
@@ -112,13 +131,13 @@ function AddMember() {
                         </div>
                     </label>
                     <div>
-                        <input className="submit" type="submit" value="Add member" />
+                        <input className="submit" type="submit" value={data["Add member"][language]} />
                     </div>
                 </form>
                 <div><p>{message}</p></div>
                 <div>
                     <a href="/MainFamilyPage">
-                        <button >
+                        <button>
                             {data["Back"][language]}
                         </button>
                     </a>
@@ -126,7 +145,5 @@ function AddMember() {
             </div>
 
         </>
-    )
+    );
 }
-
-export default AddMember;        
