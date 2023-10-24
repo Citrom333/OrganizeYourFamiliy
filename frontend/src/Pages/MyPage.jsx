@@ -8,7 +8,7 @@ import Modal from "../Components/Modal";
 import AddTodo from "../Components/AddTodo";
 import ProgramDetails from "../Components/ProgramDetails";
 import Delete from "../Components/Delete";
-import Update from "../Components/Update";
+import UpdateProgram from "../Components/UpdateProgram";
 import SetLeader from "../Components/SetLeader";
 import { useOutletContext } from "react-router-dom";
 function MyPage() {
@@ -94,7 +94,7 @@ function MyPage() {
                     <Modal isOpen={setLeaderIsOpen} onClose={e => setSetLeaderIsOpen(false)} child={<SetLeader userId={userId} familyId={familyId} onClose={e => setSetLeaderIsOpen(false)} />} />
                     <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
                     <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
-                    <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<Update toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
+                    <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<UpdateProgram toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
                     <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo setAddedNew={setChange} userId={userId} todos={toDos} />} />
                     <Modal isOpen={selectedTodo !== ""} onClose={e => setSelectedTodo("")} child={<TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />} />
                     <Calendar isMainPage={false} toDos={toDos} handleClick={(id, type) => handleClick(id, type)} toDo={selectedTodo} programs={programs} />

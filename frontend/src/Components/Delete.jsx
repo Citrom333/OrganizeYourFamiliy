@@ -7,7 +7,7 @@ export default function Delete(props) {
     const finalDelete = async () => {
         setConfirmed(true);
         try {
-            let url = props.type === "program" ? `/api/ScheduledProgram/${props.toDelete.id}` : `/api/ToDo/${props.toDelete.id}`;
+            let url = props.type === "program" ? `/api/ScheduledProgram/${props.toDelete.id}` : "member" ? `api/User/${props.toDelete.id}` : `/api/ToDo/${props.toDelete.id}`;
             let res = await fetch(url, {
                 method: "DELETE"
             })

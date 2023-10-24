@@ -998,5 +998,53 @@
         "Deutsch": "Neue Belohnung hinzugefügt",
         "Italiano": "Aggiunta nuova ricompensa",
         "Français": "Nouvelle récompense ajoutée"
+    },
+    "Update details of ": {
+        "Hungarian": "Frissítsd ",
+        "English": "Update details of ",
+        "Español": "Actualizar detalles de ",
+        "Deutsch": "",
+        "Italiano": "Aggiorna i dettagli di ",
+        "Français": "Mettre à jour les détails de "
+    },
+    "Update details of 2": {
+        "Hungarian": "adatait",
+        "English": "",
+        "Español": "",
+        "Deutsch": "'s Daten aktualisieren",
+        "Italiano": "",
+        "Français": ""
+    },
+    "Delete member": {
+        "Hungarian": "Töröld a csalából őt:",
+        "English": "Delete",
+        "Español": "Eliminar a",
+        "Deutsch": "",
+        "Italiano": "Elimina",
+        "Français": "Supprimer"
+    },
+    "from family": {
+        "Hungarian": "",
+        "English": "from family",
+        "Español": "de la familia",
+        "Deutsch": "aus der Familie löschen",
+        "Italiano": "dalla famiglia",
+        "Français": "de la famille"
+    },
+    "Add member": {
+        "Hungarian": "Új családtag",
+        "English": "Add member",
+        "Español": "not translated yet",
+        "Deutsch": "not translated yet",
+        "Italiano": "not translated yet",
+        "Français": "not translated yet"
+    },
+    "Success": {
+        "Hungarian": "Sikerült",
+        "English": "Success",
+        "Español": "not translated yet",
+        "Deutsch": "not translated yet",
+        "Italiano": "not translated yet",
+        "Français": "not translated yet"
     }
 }

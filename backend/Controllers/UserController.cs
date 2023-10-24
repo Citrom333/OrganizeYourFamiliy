@@ -66,7 +66,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUser(long id)
+    public async Task<IActionResult> DeleteUserAndAllToDosAndPrograms(long id)
     {
         try
         {

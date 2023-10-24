@@ -45,3 +45,12 @@
 form {
     padding-top: 20px;
 }
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.centralize {
+    align-items: center;
+}
