@@ -990,5 +990,13 @@
         "Deutsch": "Familie erfolgreich erstellt",
         "Italiano": "Famiglia creata con successo",
         "Français": "Famille créée avec succès"
+    },
+    "New reward added": {
+        "Hungarian": "Új jutalom létrehozva",
+        "English": "New reward added",
+        "Español": "Nueva recompensa agregada",
+        "Deutsch": "Neue Belohnung hinzugefügt",
+        "Italiano": "Aggiunta nuova ricompensa",
+        "Français": "Nouvelle récompense ajoutée"
     }
 }

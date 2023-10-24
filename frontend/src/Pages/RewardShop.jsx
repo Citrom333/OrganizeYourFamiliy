@@ -9,11 +9,12 @@ export default function RewardShop(props) {
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("");
     const handleCheckboxChange = (option) => {
         setSelectedOption(option);
     };
-    const rewards = { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
+    const [rewards, setRewards] = useState([]);
+    // { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
     const fetchUser = async () =>
         await fetch(`/api/User/${userId}`, {
             method: "GET",
@@ -23,15 +24,24 @@ export default function RewardShop(props) {
                 setUser(json);
 
             });
+    const fetchRewards = async () =>
+        await fetch("/api/Reward", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => response.json())
+            .then((json) => {
+                setRewards(json);
+            });
     useEffect(() => {
         if (localStorage.getItem("isAdult") == "true") {
             navigate("/Wrongpage");
         }
         fetchUser();
+        fetchRewards();
 
     }, [])
     const sendExchangeToLeader = async () => {
-        await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption, new Date(), 3, 0, localStorage.getItem("leader"))
+        await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption.name, new Date(), 3, 0, localStorage.getItem("leader"))
     }
     const handleRemovingpoints = (price) => {
         let pointToRemoveFromHousework = 0;
@@ -61,8 +71,8 @@ export default function RewardShop(props) {
     }
 
     const handleSubmit = async () => {
-        for (let i = 0; i < handleRemovingpoints(rewards[selectedOption]).length; i++) {
-            await fetchRewardpoints(-1, handleRemovingpoints(rewards[selectedOption])[i], i);
+        for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
+            await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
         }
         sendExchangeToLeader();
     }
@@ -72,22 +82,22 @@ export default function RewardShop(props) {
             <h3>{data["You can spend your points to rewards"][language]}</h3>
             <p>{data["You have "][language]}{points} {data["total rewardpoints"][language]}</p>
             <div className="shopitems">
-                {Object.keys(rewards).map((key, index) => (
-                    <div className={`shopitem ${points < rewards[key] ? "disabled" : ""}`}>
+                {rewards.sort((a, b) => a.cost - b.cost).map(reward => (
+                    <div key={reward.id} className={`shopitem ${points < reward.cost ? "disabled" : ""}`}>
                         <label>
                             <input
                                 className="checkbox"
-                                disabled={points < rewards[key]}
+                                disabled={points < reward.cost}
                                 type="checkbox"
-                                checked={selectedOption === key}
-                                onChange={() => handleCheckboxChange(key)}
+                                checked={selectedOption === reward}
+                                onChange={() => handleCheckboxChange(reward)}
                             />
-                            {key} : {rewards[key]} {data["points"][language]}
+                            {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
-                ))}
+                ))};
             </div>
-            <p>{data["Selected Option: "][language]}{selectedOption}</p>
+            <p>{data["Selected Option: "][language]}{selectedOption == "" ? "" : selectedOption.name}</p>
             <button onClick={handleSubmit}>{data["Submit"][language]}</button>
             <div> <a href="/MainFamilyPage/MyPage"><button>{data["Back"][language]}</button></a></div>
 

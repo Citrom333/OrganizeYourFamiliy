@@ -11,6 +11,7 @@ export default function RewardShopHandler() {
     const [selected, setSelected] = useState("");
     const [rewardName, setRewardName] = useState("");
     const [rewardCost, setRewardCost] = useState("");
+    const [changed, setChanged] = useState(false);
     const familyId = localStorage.getItem("familyId");
     const fetchRewards = async () => {
         await fetch("/api/Reward", {
@@ -30,6 +31,9 @@ export default function RewardShopHandler() {
             console.log(res.status)
             if (res.status === 200) {
                 setMessage(data["Successfully deleted"][language])
+                setConfirmed(true);
+                setSelected("");
+                setChanged(true);
             } else {
                 setMessage(data["Some error occured"][language]);
             }
@@ -38,11 +42,13 @@ export default function RewardShopHandler() {
             setMessage(data["Error"][language])
         }
     };
-    const updateReward = async () => {
+    const updateReward = async (e) => {
+        e.preventDefault();
         setUpdater(false);
+        setChanged(true);
         try {
-            const response = await fetch(`/api/Reward`, {
-                method: "POST",
+            const response = await fetch(`/api/Reward/`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -56,15 +62,18 @@ export default function RewardShopHandler() {
             if (response.ok) {
                 setRewardName("");
                 setRewardCost("");
+                setSelected("");
                 return response;
             } else {
                 throw new Error(`Error status: ${response.status}`);
             }
         } catch (error) {
             throw error;
-        }
+        };
     };
-    const createReward = async () => {
+    const createReward = async (e) => {
+        e.preventDefault();
+        setChanged(true);
         setCreator(false);
         console.log("")
         try {
@@ -82,6 +91,7 @@ export default function RewardShopHandler() {
             if (response.ok) {
                 setRewardName("");
                 setRewardCost("");
+                setMessage(data["New reward added"][language])
                 return response;
             } else {
                 throw new Error(`Error status: ${response.status}`);
@@ -92,7 +102,8 @@ export default function RewardShopHandler() {
     };
     useEffect(() => {
         fetchRewards();
-    }, [rewards.length, selected, creator])
+        setChanged(false);
+    }, [rewards.length, selected, creator, changed])
     return (
         <div>
             {creator ?
@@ -109,18 +120,19 @@ export default function RewardShopHandler() {
                 updater ?
                     <div>
                         <form onSubmit={updateReward}>
-                            <label> <p>{data["Name"][language]}</p><input value={selected.Name} onChange={e => setRewardName(e.target.value)} /></label>
-                            <label> <p>{data["Cost"][language]}</p><input value={selected.cost} onChange={e => setRewardCost(e.target.value)} /></label>
+                            <label> <p>{data["Name"][language]}</p><input value={rewardName} onChange={e => setRewardName(e.target.value)} /></label>
+                            <label> <p>{data["Cost"][language]}</p><input value={rewardCost} onChange={e => setRewardCost(e.target.value)} /></label>
                             <div>
                                 <label><input className="submit" type="submit" value={data["Update reward"][language]} /></label>
                             </div>
-                            <label><input className="submit" type="submit" value={data["Update reward"][language]} /></label>
                         </form>
                     </div> :
                     deleter ?
                         <div>
                             {confirmed ?
-                                <div><h1>{message}</h1></div>
+                                <div>
+                                    {/* <h1>{message}</h1> */}
+                                </div>
                                 : <div>
                                     <h2>{data["Do you really want to delete?"][language]}</h2>
                                     <button onClick={deleteReward}>{data["Yes"][language]}</button>
@@ -136,7 +148,7 @@ export default function RewardShopHandler() {
                                     <h1> </h1>
                                     <h2>{data["Theese are the rewards:"][language]}</h2>
                                     <div >
-                                        {rewards.map(reward => <div key={reward.id} className="gridContainer"><p className="grindContent">{reward.name} {data["for"][language]} {reward.cost} {data["points"][language]}{data["ért"][language]} </p><button className="grindContent gridbutton" onClick={e => setUpdater(true)}>{data["Update"][language]}</button><button className="grindContent gridbutton" onClick={e => setDeleter(true)}>{data["Delete"][language]}</button></div>)}</div>
+                                        {rewards.map(reward => <div key={reward.id} className="gridContainer"><p className="grindContent">{reward.name} {data["for"][language]} {reward.cost} {data["points"][language]}{data["ért"][language]} </p><button className="grindContent gridbutton" onClick={e => { setUpdater(true); setSelected(reward); setRewardName(reward.name); setRewardCost(reward.cost) }}>{data["Update"][language]}</button><button className="grindContent gridbutton" onClick={e => { setDeleter(true); setSelected(reward) }}>{data["Delete"][language]}</button></div>)}</div>
                                 </div> :
                                 <div>
                                     <h1> </h1>

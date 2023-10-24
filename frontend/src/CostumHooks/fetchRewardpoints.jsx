@@ -1,4 +1,6 @@
+import data from "../translator.json"
 export default async function fetchRewardpoints(multiplier, rewardpoint, type) {
+    const language = localStorage.getItem("language");
     let point = multiplier * rewardpoint;
     try {
         let res = await fetch(`/api/user/RewardPoint/${localStorage.getItem("userId")}/${point}`, {
