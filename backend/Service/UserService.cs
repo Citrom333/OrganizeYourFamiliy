@@ -93,6 +93,25 @@ public class UserService : IUserService
         try
         {
             User user =await _context.Users.FirstAsync(u => u.Id == id);
+            List < ToDo > todosOfUser= await _context.ToDos.Include(todo => todo.Owner).Where(todo => todo.Owner == user)
+                .ToListAsync();
+            List<ScheduledProgram> programs = await _context.ScheduledPrograms.Include(prog => prog.Participants)
+                .Where(prog => prog.Participants.Contains(user)).ToListAsync();
+            foreach (var todo in todosOfUser)
+            {
+                _context.ToDos.Remove(todo);
+            }
+            foreach (var program in programs)
+            {
+                if (program.Participants.Count() > 1)
+                {
+                    program.Participants.Remove(user);
+                }
+                else
+                {
+                    _context.ScheduledPrograms.Remove(program);
+                }
+            }
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return true;
