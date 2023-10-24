@@ -107,8 +107,7 @@ public class UserService : IUserService
     {
         try
         {
-            User user =await _context.Users.FirstAsync(u => u.Id == id);
-            Console.WriteLine(user.Name);
+            User user = await _context.Users.FirstAsync(u => u.Id == id);
             if (task == ToDoType.Housework)
                 user.RewardPointHousework += point;
             if (task == ToDoType.School)
