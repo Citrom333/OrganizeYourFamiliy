@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Organize::333
+    ports:
+      - 1433:1433
+    volumes:
+      - db_data:/var/opt/mssql
+    networks:
+      - mynetwork
+  backend:
+    build: ./backend
+    ports:
+      - 7176:7176
+    depends_on:
+      - database
+    networks:
+    - mynetwork
+  frontend:
+    build: ./frontend
+    ports:
+      - 5100:5100
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+volumes:
+  db_data:
+    
