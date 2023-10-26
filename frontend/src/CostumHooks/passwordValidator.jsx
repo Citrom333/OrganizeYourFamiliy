@@ -4,7 +4,7 @@ export default function passwordValidator(e, setMessage, passwordType, setPasswo
     let number = false;
     let letter = false;
     if (e.target.value.length < minLength) {
-        setMessage(`${data[passwordLength1][language]} ${minLength} ${data[passwordLength2][language]}`);
+        setMessage(`${data["passwordLength1"][language]} ${minLength} ${data["passwordLength2"][language]}`);
     }
     else {
         for (let i = 0; i < e.target.value.length; i++) {
