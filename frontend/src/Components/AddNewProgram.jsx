@@ -3,11 +3,6 @@ import React from 'react';
 import { useState } from 'react';
 import DateInput from "./DateInput";
 const AddNewProgram = (props) => {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
     const language = localStorage.getItem("language");
     const [name, setName] = useState("");
     const [start, setStart] = useState(new Date());
