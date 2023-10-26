@@ -89,7 +89,7 @@ export default function RewardShop(props) {
                             {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
-                ))};
+                ))}
             </div>
             <p>{data["Selected Option: "][language]}{selectedOption == "" ? "" : selectedOption.name}</p>
             <button className="candyButton" onClick={handleSubmit}>{data["Submit"][language]}</button>
