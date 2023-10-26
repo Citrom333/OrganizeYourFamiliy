@@ -695,6 +695,14 @@
         "Italiano": "Identificativo della famiglia",
         "Français": "Identifiant de la famille"
     },
+    "Family password": {
+        "Hungarian": "Családi jelszó",
+        "English": "Family password ",
+        "Español": "Contraseña familiar ",
+        "Deutsch": "Familienpasswort ",
+        "Italiano": "Parola d'ordine della famiglia ",
+        "Français": "Mot de passe familial "
+    },
     "Family password (Min. 6 characters letters and numbers)": {
         "Hungarian": "Családi jelszó (min. 6 karakter, betűk és számok)",
         "English": "Family password (Min. 6 characters letters and numbers)",
