@@ -45,10 +45,6 @@ const router = createBrowserRouter([
             element: <RewardShop />
           },
           {
-            path: "MyRewards",
-            element: <MyRewards />
-          },
-          {
             path: "*",
             element: <WrongPage />
           },
