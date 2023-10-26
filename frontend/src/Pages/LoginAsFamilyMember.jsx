@@ -2,6 +2,7 @@ import data from "../translator.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 function LoginAsFamilyMember() {
     const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
@@ -10,17 +11,8 @@ function LoginAsFamilyMember() {
     const [id, setId] = useState("");
     const [members, setMembers] = useState([]);
     const [message, setMessage] = useState("");
-    const fetchMembers = () =>
-        fetch("/api/User", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setMembers(json);
-            });
-
     useEffect(() => {
-        fetchMembers();
+        fetchGetAll("members", setMembers)
     }, [members.length])
 
     const fetchLogin = async (username, password, id) => {
