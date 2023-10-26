@@ -9,6 +9,7 @@ export default function RewardShop(props) {
     const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
+    let familyId = localStorage.getItem("familyId");
     const [user, setUser] = useState("");
     const [selectedOption, setSelectedOption] = useState("");
     const [message, setMessage] = useState("");
@@ -56,10 +57,18 @@ export default function RewardShop(props) {
     }
 
     const handleSubmit = async () => {
-        for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
-            await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
+        if (localStorage.getItem("leader") === undefined) {
+            setMessage(data["There is no leader of the family, You can' exchange rewards at the moment."][language]);
         }
-        sendExchangeToLeader();
+        else {
+            for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
+                await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
+            }
+            sendExchangeToLeader();
+            setMessage(data["Reward request was sent."][language])
+            setChange(true);
+        }
+
     }
     const points = user.rewardPointHousework + user.rewardPointJob + user.rewardPointSchool + user.rewardPointOther;
     return (
@@ -83,9 +92,9 @@ export default function RewardShop(props) {
                 ))};
             </div>
             <p>{data["Selected Option: "][language]}{selectedOption == "" ? "" : selectedOption.name}</p>
-            <button onClick={handleSubmit}>{data["Submit"][language]}</button>
-            <div> <a href="/MainFamilyPage/MyPage"><button>{data["Back"][language]}</button></a></div>
-
+            <button className="candyButton" onClick={handleSubmit}>{data["Submit"][language]}</button>
+            <div> <a href="/MainFamilyPage/MyPage"><button className="candyButton">{data["Back"][language]}</button></a></div>
+            <p>{message}</p>
         </div>
     );
 };
