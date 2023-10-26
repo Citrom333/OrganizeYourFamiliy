@@ -35,7 +35,7 @@ namespace backend.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -46,6 +46,9 @@ namespace backend.Migrations
                     b.HasIndex("LeaderOfFamilyId")
                         .IsUnique()
                         .HasFilter("[LeaderOfFamilyId] IS NOT NULL");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Families");
                 });
@@ -59,11 +62,9 @@ namespace backend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("Cost")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<long>("FamilyId")
-                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")

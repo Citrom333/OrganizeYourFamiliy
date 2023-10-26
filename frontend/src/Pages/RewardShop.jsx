@@ -4,42 +4,28 @@ import postTodo from "../CostumHooks/postTodo";
 import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 export default function RewardShop(props) {
     const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
+    let familyId = localStorage.getItem("familyId");
     const [user, setUser] = useState("");
     const [selectedOption, setSelectedOption] = useState("");
+    const [message, setMessage] = useState("");
+    const [change, setChange] = useState(false);
     const handleCheckboxChange = (option) => {
         setSelectedOption(option);
     };
     const [rewards, setRewards] = useState([]);
-    // { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
-    const fetchUser = async () =>
-        await fetch(`/api/User/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setUser(json);
-
-            });
-    const fetchRewards = async () =>
-        await fetch("/api/Reward", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setRewards(json);
-            });
     useEffect(() => {
         if (localStorage.getItem("isAdult") == "true") {
             navigate("/Wrongpage");
         }
-        fetchUser();
-        fetchRewards();
-
-    }, [])
+        fetchGetAll("rewards", setRewards, `/${familyId}`);
+        fetchGetAll("members", setUser, `/${userId}`);
+        setChange(false);
+    }, [change])
     const sendExchangeToLeader = async () => {
         await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption.name, new Date(), 3, 0, localStorage.getItem("leader"))
     }
@@ -71,10 +57,18 @@ export default function RewardShop(props) {
     }
 
     const handleSubmit = async () => {
-        for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
-            await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
+        if (localStorage.getItem("leader") === undefined) {
+            setMessage(data["There is no leader of the family, You can' exchange rewards at the moment."][language]);
         }
-        sendExchangeToLeader();
+        else {
+            for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
+                await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
+            }
+            sendExchangeToLeader();
+            setMessage(data["Reward request was sent."][language])
+            setChange(true);
+        }
+
     }
     const points = user.rewardPointHousework + user.rewardPointJob + user.rewardPointSchool + user.rewardPointOther;
     return (
@@ -95,12 +89,12 @@ export default function RewardShop(props) {
                             {reward.name} : {reward.cost} {data["points"][language]}
                         </label>
                     </div>
-                ))};
+                ))}
             </div>
             <p>{data["Selected Option: "][language]}{selectedOption == "" ? "" : selectedOption.name}</p>
-            <button onClick={handleSubmit}>{data["Submit"][language]}</button>
-            <div> <a href="/MainFamilyPage/MyPage"><button>{data["Back"][language]}</button></a></div>
-
+            <button className="candyButton" onClick={handleSubmit}>{data["Submit"][language]}</button>
+            <div> <a href="/MainFamilyPage/MyPage"><button className="candyButton">{data["Back"][language]}</button></a></div>
+            <p>{message}</p>
         </div>
     );
 };

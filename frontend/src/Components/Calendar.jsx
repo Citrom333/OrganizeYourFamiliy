@@ -9,9 +9,6 @@ const Calendar = (props) => {
     let starter = new Date(date_today.setDate(date_today.getDate() - date_today.getDay()));
     starter.setHours(0, 0, 0, 0);
     const [first_day_of_the_week, setFirst_day_of_the_week] = useState(starter);
-    const showProgram = () => {
-
-    }
     function getDifferenceInDays(date1, date2) {
         const diffInMs = Math.abs(date2 - date1);
         return diffInMs / (1000 * 60 * 60 * 24);

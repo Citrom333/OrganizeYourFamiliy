@@ -8,7 +8,6 @@ export default function Navbar() {
     useEffect(() => {
     }, [language])
     const handleLogout = async () => {
-        localStorage.clear();
         try {
             let res = await fetch("/api/Family/logout", {
                 method: "POST",
@@ -19,7 +18,7 @@ export default function Navbar() {
                 }),
             });
             if (res.status === 200) {
-                localStorage.Clear();
+                localStorage.clear();
             } else {
                 console.log(data["Some error occured"][language]);
             }

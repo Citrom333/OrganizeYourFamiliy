@@ -1,16 +1,9 @@
 import data from "../translator.json"
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "./DateInput";
+import passwordValidator from "../CostumHooks/passwordValidator";
 const UpdateMember = (props) => {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
     const language = localStorage.getItem("language");
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
@@ -23,8 +16,6 @@ const UpdateMember = (props) => {
     const [changeAvatar, setChangeAvatar] = useState(false);
     const [message, setMessage] = useState("");
     useEffect(() => {
-        console.log(birthDate.split("T")[0]);
-        console.log(new Date(Date.parse(birthDate)));
         let newList = [];
         for (let i = 1; i <= 9; i++) {
             newList.push(`../images/set${page}/avatar0${i}.png`);
@@ -32,7 +23,6 @@ const UpdateMember = (props) => {
         setAvatarpics(newList);
     }, [page, language]);
     const fetchUpdateMember = async () => {
-        // console.log(`id: ${props.toUpdate.id}, name: ${name}, start: ${start}, end: ${end}, place: ${place}, cost: ${cost}, participants: ${participants.map(participant => participant.id)}`)
         try {
             let res = await fetch("/api/User", {
                 method: "PUT",
@@ -67,25 +57,30 @@ const UpdateMember = (props) => {
     return (
         <>
             <div>
-                {changeAvatar ? <> <div className="pagination ">
-                    <img onClick={e => page > 1 ? setPage(page - 1) : ""} className={page === 1 ? "arrow left paginationElement inactive" : "arrow left paginationElement"} src="../images/arrow.png" />
-                    <p className="pageNumber paginationElement">{page}</p>
-                    <img onClick={e => page < 10 ? setPage(page + 1) : ""} className={page === 10 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
-                </div>
-                    <div className="avatarPics wrapper">
-                        {avatarPics.map((pic, index) => <div key={index}>
-                            <img
-                                className="avatarPic"
-                                id={chosenPic === pic ? "chosenPicture" : ""}
-                                src={pic}
-                                onClick={() => setChosenPic(pic)}>
-                            </img>
-                        </div>)}
-                    </div>
-                    <button onClick={e => setChangeAvatar(false)}>{data["Back"][language]}</button></> :
+                {changeAvatar ?
+                    <>
+                        <div className="pagination ">
+                            <img onClick={e => page > 1 ? setPage(page - 1) : ""} className={page === 1 ? "arrow left paginationElement inactive" : "arrow left paginationElement"} src="../images/arrow.png" />
+                            <p className="pageNumber paginationElement">{page}</p>
+                            <img onClick={e => page < 10 ? setPage(page + 1) : ""} className={page === 10 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
+                        </div>
+                        <div className="avatarPics wrapper">
+                            {avatarPics.map((pic, index) => <div key={index}>
+                                <img
+                                    className="avatarPic"
+                                    id={chosenPic === pic ? "chosenPicture" : ""}
+                                    src={pic}
+                                    onClick={() => setChosenPic(pic)}>
+                                </img>
+                            </div>)}
+                        </div>
+                        <button className="candyButton" onClick={e => setChangeAvatar(false)}>{data["Back"][language]}</button>
+                    </> :
                     <div>
                         <form className="form" onSubmit={handleSubmit}>
                             <h1>{data["Update"][language]}</h1>
+                            <div><p>{message}</p></div>
+
                             <label>
                                 <p>{data["Name"][language]}</p>
                                 <input
@@ -95,23 +90,13 @@ const UpdateMember = (props) => {
                             <label>
                                 <p>{data["Member pin"][language]}</p>
                                 <input
-                                    value={password1}
-                                    onChange={(e) => setPassword1(e.target.value)} />
+                                    onChange={(e) => passwordValidator(e, setMessage, "member", setPassword1, language)}
+                                    type="password"
+                                />
                             </label>
                             <label>
                                 <p>{data["Date of birth"][language]}</p>
-                                {language === "Hungarian" ?
-                                    <input
-                                        value={birthDate.split("T")[0]}
-                                        type="date"
-                                        onChange={(e) => setBirthdate(e.target.value)}
-                                    /> :
-                                    <ReactDatePicker
-                                        selected={new Date(Date.parse(birthDate))}
-                                        onChange={(date) => setBirthdate(date)}
-                                        dateFormat={language === "Deutsch" ? "yyyy.MM.dd " : "dd.MM.yyyy "}
-                                        locale={language}
-                                    />}
+                                <DateInput value={birthDate.split("T")[0]} selected={new Date(Date.parse(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
                             </label>
                             <label>
                                 <p>{data["Family role"][language]}</p>
@@ -139,7 +124,7 @@ const UpdateMember = (props) => {
                         <div><p>{message}</p></div>
                         <div>
                             <a href="/MainFamilyPage">
-                                <button>
+                                <button className="candyButton">
                                     {data["Back"][language]}
                                 </button>
                             </a>

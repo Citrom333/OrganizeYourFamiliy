@@ -1,27 +1,13 @@
 import data from "../translator.json";
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "../Components/DateInput";
+import passwordValidator from "../CostumHooks/passwordValidator";
 export default function AddMember() {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
-
     const [language, setLanguage] = useOutletContext();
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
-    useEffect(() => {
-        let newList = [];
-        for (let i = 1; i <= 9; i++) {
-            newList.push(`../images/set${page}/avatar0${i}.png`);
-        };
-        setAvatarpics(newList);
-    }, [page, language]);
+    const [adult, setAdult] = useState(false);
     const [name, setName] = useState("");
     const [password1, setPassword1] = useState("");
     const [password, setPassword] = useState("confirmation");
@@ -29,6 +15,14 @@ export default function AddMember() {
     const [familyRole, setFamilyRole] = useState("");
     const [chosenPic, setChosenPic] = useState("");
     const [message, setMessage] = useState("");
+    useEffect(() => {
+        let newList = [];
+        for (let i = 1; i <= 9; i++) {
+            newList.push(`../images/set${page}/avatar0${i}.png`);
+        };
+        setAvatarpics(newList);
+        canBeAdult();
+    }, [page, language, birthDate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,14 +54,37 @@ export default function AddMember() {
                 setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            setMessage(err);
+            setMessage(data["ERROR"][language]);
+            console.log(err);
         }
     };
+    const handlePasswordConfim = (e) => {
+        if (e.target.value === password1) {
+            setPassword(e.target.value)
+            setMessage("")
+        }
+        else {
+            setMessage(data["The passwords are different"][language])
+        }
+    }
+    const canBeAdult = () => {
+        let date = new Date();
+        if (birthDate !== "") {
+            let bDay = new Date(birthDate);
+            var age = date.getFullYear() - bDay.getFullYear();
+            var m = date.getMonth() - bDay.getMonth();
+            if (m < 0 || (m === 0 && date.getDate() < bDay.getDate())) {
+                age--;
+            }
+            setAdult(age >= 16);
+        }
+    }
     return (
         <>
             <div>
                 <form className="form" onSubmit={handleSubmit}>
                     <h1>{data["New member"][language]}</h1>
+                    <div><p>{message}</p></div>
                     <label>
                         <p>{data["Name"][language]}</p>
                         <input
@@ -75,39 +92,28 @@ export default function AddMember() {
                         />
                     </label>
                     <label>
-                        <p>{data["Member pin"][language]}</p>
+                        <p>{data["Member pin"][language]} {[data]["(Min. 4 characters, just numbers)"][language]} </p>
                         <input
-                            onChange={(e) => setPassword1(e.target.value)}
+                            onChange={(e) => passwordValidator(e, setMessage, "member", setPassword1, language)}
+                            type="password"
                         />
                     </label>
                     <label>
                         <p>{data["Member pin confirmation"][language]}</p>
                         <input
-                            onChange={(e) => e.target.value === password1 ? setPassword(e.target.value) : setMessage("The passwords are different")}
+                            onChange={(e) => handlePasswordConfim(e)}
+                            type="password"
                         />
                     </label>
                     <label>
                         <p>{data["Date of birth"][language]}</p>
-                        {language === "Hungarian" ?
-                            <input
-                                value={birthDate}
-                                type="datetime-local"
-                                onChange={(e) => setBirthdate(e.target.value)}
-                            /> :
-                            <ReactDatePicker
-                                selected={birthDate}
-                                onChange={(date) => setBirthdate(date)}
-                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                                timeInputLabel={data["Time"][language]}
-                                showTimeInput
-                                locale={language}
-                            />}
+                        <DateInput value={birthDate} selected={Date.parse(new Date(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
                     </label>
                     <label>
                         <p>{data["Family role"][language]}</p>
                         <select onChange={(e) => setFamilyRole(e.target.value)}>
                             <option value=""></option>
-                            <option value={0}>{data["Adult"][language]}</option>
+                            {adult ? <option value={0}>{data["Adult"][language]}</option> : ""}
                             <option value={1}>{data["Child"][language]}</option>
                         </select>
                     </label>
@@ -137,7 +143,7 @@ export default function AddMember() {
                 <div><p>{message}</p></div>
                 <div>
                     <a href="/MainFamilyPage">
-                        <button>
+                        <button className="candyButton">
                             {data["Back"][language]}
                         </button>
                     </a>

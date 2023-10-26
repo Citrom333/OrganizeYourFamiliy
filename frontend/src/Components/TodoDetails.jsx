@@ -45,7 +45,7 @@ export default function TodoDetails(props) {
                 <label htmlFor="ready">{data["Ready? :   "][language]}</label><input className="checkbox" type="checkbox" id="ready" checked={isChecked}
                     onChange={handleCheckboxChange} />
             </form>
-            <button onClick={e => props.setSelected("")}>{data["Back"][language]}</button>
+            <button className="candyButton" onClick={e => props.setSelected("")}>{data["Back"][language]}</button>
         </div>
     )
 }

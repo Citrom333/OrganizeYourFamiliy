@@ -25,6 +25,9 @@ namespace backend.Model
                 .WithOne()
                 .HasForeignKey<Family>(family => family.LeaderOfFamilyId)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Family>()
+                .HasIndex(f => f.Name) 
+                .IsUnique(); 
 
         }
         public DbSet<Family> Families { get; set; }

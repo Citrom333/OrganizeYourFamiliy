@@ -631,6 +631,14 @@
         "Italiano": "Password membro",
         "Français": "Mot de passe du membre"
     },
+    "(Min. 4 characters, just numbers)": {
+        "Hungarian": "(min. 4 karakter, csak számok)",
+        "English": "(Min. 4 characters, just numbers)",
+        "Español": "(Mínimo 4 caracteres, sólo números)",
+        "Deutsch": "(mind. 4 Zeichen, nur Zahlen)",
+        "Italiano": "(Min. 4 caratteri, solo numeri)",
+        "Français": "(4 caractères minimum, uniquement des chiffres)"
+    },
     "Member pin confirmation": {
         "Hungarian": "Jelszó megerősítés",
         "English": "Member password confirmation",
@@ -697,14 +705,22 @@
     },
     "Family password": {
         "Hungarian": "Családi jelszó",
-        "English": "Family password",
-        "Español": "Contraseña familiar",
-        "Deutsch": "Familienpasswort",
-        "Italiano": "Parola d'ordine della famiglia",
-        "Français": "Mot de passe familial"
+        "English": "Family password ",
+        "Español": "Contraseña familiar ",
+        "Deutsch": "Familienpasswort ",
+        "Italiano": "Parola d'ordine della famiglia ",
+        "Français": "Mot de passe familial "
+    },
+    "(Min. 6 characters letters and numbers)": {
+        "Hungarian": "(min. 6 karakter, betűk és számok)",
+        "English": "(Min. 6 characters letters and numbers)",
+        "Español": "(Mínimo 6 caracteres, letras y números)",
+        "Deutsch": "(mind. 6 Zeichen, Buchstaben und Zahlen)",
+        "Italiano": "(Min. 6 caratteri lettere e numeri)",
+        "Français": "(Min. 6 caractères lettres et chiffres)"
     },
     "Choose member": {
-        "Hungarian": "Válassz csqaládtagot",
+        "Hungarian": "Válassz családtagot",
         "English": "Choose member",
         "Español": "Elige miembro",
         "Deutsch": "Mitglied auswählen",
@@ -1034,17 +1050,97 @@
     "Add member": {
         "Hungarian": "Új családtag",
         "English": "Add member",
-        "Español": "not translated yet",
-        "Deutsch": "not translated yet",
-        "Italiano": "not translated yet",
-        "Français": "not translated yet"
+        "Español": "Añadir familiar",
+        "Deutsch": "Familienmitglied hinzufügen",
+        "Italiano": "Aggiungi un membro della famiglia",
+        "Français": "Ajouter un membre de la famille"
     },
     "Success": {
         "Hungarian": "Sikerült",
         "English": "Success",
-        "Español": "not translated yet",
-        "Deutsch": "not translated yet",
-        "Italiano": "not translated yet",
-        "Français": "not translated yet"
+        "Español": "Éxito",
+        "Deutsch": "Erfolg",
+        "Italiano": "Successo",
+        "Français": "Succès"
+    },
+    "passwordLength1": {
+        "Hungarian": "A jelszónak legalább",
+        "English": "Password must contain at least",
+        "Español": "La contraseña debe contener al menos",
+        "Deutsch": "Das Passwort muss mindestens",
+        "Italiano": "La password deve contenere almeno",
+        "Français": "Le mot de passe doit contenir au moins"
+    },
+    "passwordLength2": {
+        "Hungarian": "karaktert kell tartalmaznia",
+        "English": "characters",
+        "Español": "caracteres",
+        "Deutsch": "Zeichen enthalten",
+        "Italiano": "caratteri",
+        "Français": "caractères"
+    },
+    "Good password": {
+        "Hungarian": "Megfelelő jelszó",
+        "English": "Good password",
+        "Español": "Buena contraseña",
+        "Deutsch": "nGutes Passwort",
+        "Italiano": "Buona password",
+        "Français": "Bon mot de passe"
+    },
+    "Password must contain at least one number and one letter": {
+        "Hungarian": "A jelszónak legalább egy számot és egy betűt kell tartalmaznia.",
+        "English": "Password must contain at least one number and one letter",
+        "Español": "La contraseña debe contener al menos un número y una letra",
+        "Deutsch": "Das Passwort muss mindestens eine Zahl und einen Buchstaben enthalten",
+        "Italiano": "La password deve contenere almeno un numero e una lettera.",
+        "Français": "Le mot de passe doit contenir au moins un chiffre et une lettre."
+    },
+    "Password must only contain numbers": {
+        "Hungarian": "A jelszó csak számokat tartalmazhat",
+        "English": "Password must only contain numbers",
+        "Español": "La contraseña sólo debe contener números",
+        "Deutsch": "Das Passwort darf nur Zahlen enthalten",
+        "Italiano": "La password deve contenere solo numeri",
+        "Français": "Le mot de passe ne doit contenir que des chiffres"
+    },
+    "Wrong login details": {
+        "Hungarian": "Rossz bejelentkezési adatok",
+        "English": "Wrong login details",
+        "Español": "Datos de acceso erróneos",
+        "Deutsch": "Falsche Anmeldedaten",
+        "Italiano": "Dati di accesso errati",
+        "Français": "Données de connexion erronées"
+    },
+    "Wrong password for this user": {
+        "Hungarian": "Hibás bejelentkezési adatok",
+        "English": "Wrong password for this user",
+        "Español": "Contraseña incorrecta para este usuario",
+        "Deutsch": "Falsches Passwort für diesen Benutzer",
+        "Italiano": "Password errata per questo utente",
+        "Français": "Mauvais mot de passe pour cet utilisateur"
+    },
+    "There is no leader of the family, You can' exchange rewards at the moment.": {
+        "Hungarian": "Nincs családfő, a jutalmak beváltása jelenleg nem lehetséges.",
+        "English": "There is no leader of the family, You can' exchange rewards at the moment.",
+        "Español": "No hay líder de la familia, no puedes intercambiar recompensas por el momento.",
+        "Deutsch": "Es gibt kein Familienoberhaupt, Sie können im Moment keine Belohnungen austauschen.",
+        "Italiano": "Non c'è un leader della famiglia, al momento non si possono scambiare ricompense.",
+        "Français": "Il n'y a pas de chef de famille, vous pouvez échanger des récompenses pour le moment."
+    },
+    "Reward request was sent.": {
+        "Hungarian": "A jutalomkérelmet elküldted.",
+        "English": "Reward request was sent.",
+        "Español": "Se ha enviado la solicitud de recompensa.",
+        "Deutsch": "Eine Belohnungsanfrage wurde gesendet.",
+        "Italiano": "La richiesta di ricompensa è stata inviata.",
+        "Français": "La demande de récompense a été envoyée."
+    },
+    "This name is already used": {
+        "Hungarian": "Ez név már foglalt",
+        "English": "This name is already used",
+        "Español": "Este nombre ya se utiliza",
+        "Deutsch": "Dieser Name wird bereits verwendet",
+        "Italiano": "Questo nome è già utilizzato",
+        "Français": "Ce nom est déjà utilisé"
     }
 }

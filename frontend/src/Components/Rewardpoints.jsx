@@ -1,5 +1,4 @@
 import data from "../translator.json"
-import { useState, useEffect } from "react";
 export default function Rewardpoints(props) {
     const language = localStorage.getItem("language");
 
@@ -12,7 +11,7 @@ export default function Rewardpoints(props) {
                 <h3 className="point">{data["School"][language]}: {props.user.rewardPointSchool}</h3>
                 <h3 className="point">{data["Other"][language]}: {props.user.rewardPointOther}</h3>
             </div>
-            {localStorage.getItem("isAdult") == "false" ? <div><a href="/MainFamilyPage/RewardShop"><button>{data["Go shop some reward"][language]}</button></a></div> : ""}
+            {localStorage.getItem("isAdult") == "false" ? <div><a href="/MainFamilyPage/RewardShop"><button className="candyButton">{data["Go shop some reward"][language]}</button></a></div> : ""}
 
         </div>
     )

@@ -1,16 +1,8 @@
 import data from "../translator.json"
 import React from 'react';
 import { useState } from 'react';
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "./DateInput";
 const AddNewProgram = (props) => {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
     const language = localStorage.getItem("language");
     const [name, setName] = useState("");
     const [start, setStart] = useState(new Date());
@@ -46,10 +38,11 @@ const AddNewProgram = (props) => {
                 props.setAddedNew(true);
 
             } else {
-                // setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            // setMessage(err);
+            setMessage(data["ERROR"][language]);
+            console.log(err);
         }
     };
     const handleSubmit = (e) => {
@@ -81,44 +74,22 @@ const AddNewProgram = (props) => {
                 </label>
                 <label>
                     <p>{data["Start"][language]}</p>
-                    {language === "Hungarian" ?
-                        <input
-                            value={start}
-                            type="datetime-local"
-                            onChange={(e) => setStart(e.target.value)}
-                        /> :
-                        <ReactDatePicker
-                            selected={start}
-                            onChange={(date) => setStart(date)}
-                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                            timeInputLabel={data["Time"][language]}
-                            showTimeInput
-                            locale={language}
-                        />}
+                    <DateInput value={start} selected={start} setter={setStart} timeNeeded={true} language={language} />
                 </label>
                 <label>
                     <p>{data["End"][language]}</p>
-                    {language === "Hungarian" ?
-                        <input
-                            value={end}
-                            type="datetime-local"
-                            onChange={(e) => setEnd(e.target.value)}
-                        /> :
-                        <ReactDatePicker
-                            selected={end}
-                            onChange={(date) => setEnd(date)}
-                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                            timeInputLabel={data["Time"][language]}
-                            showTimeInput
-                            locale={language}
-                        />}
+                    <DateInput value={end} selected={end} setter={setEnd} timeNeeded={true} language={language} />
                 </label>
-                <label>
+                <label >
                     <p>{data["Participants"][language]}</p>
-                    {props.users.length > 0 ? props.users.map((u, index) => {
-                        return <div key={u.id}><label htmlFor="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
-                            value={[index, u.id]} onChange={handleCheckboxChange} /></div>
-                    }) : ""}
+                    <div className="centerForced">
+                        <div className="checkBoxContainer">
+                            {props.users.length > 0 ? props.users.map((u, index) => {
+                                return <div key={u.id}><label htmlFor="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
+                                    value={[index, u.id]} onChange={handleCheckboxChange} /></div>
+                            }) : ""}
+                        </div>
+                    </div>
                 </label>
                 <label>
                     <p>{data["Place (optional)"][language]}</p>

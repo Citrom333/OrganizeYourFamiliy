@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(163, 125, 113);
+    background-color: rgb(224, 207, 200);
     color: rgb(34, 61, 76);
 }
 
@@ -14,6 +14,20 @@ body {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.crown {
+    max-width: 40px;
+    z-index: 1;
+    position: absolute;
+    transform: translateY(-20px) translateX(-20px);
+}
+
+.userCrown {
+    max-width: 80px;
+    z-index: 1;
+    position: absolute;
+    transform: translateY(-40px) translateX(-40px);
 }
 
 .avatarPics {
@@ -64,7 +78,7 @@ body {
 }
 
 #chosenPicture {
-    border: 3px solid rgb(94, 6, 6);
+    border: 5px solid rgb(94, 6, 6);
 }
 
 .navbar {
@@ -109,6 +123,11 @@ body {
     width: 100px;
 }
 
+.avatarPic:hover {
+    filter: drop-shadow(10px -10px 3px black);
+    transform: translateY(5%)
+}
+
 .avatarPic:active {
     transform: scale(0.9);
 }
@@ -137,28 +156,40 @@ input {
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
 
+.centerForced {
+    display: flex;
+    justify-content: center;
+}
+
+.checkBoxContainer {
+    display: grid;
+    justify-items: end;
+    width: max-content;
+}
+
 .checkbox {
+
     width: 30px;
     height: 30px;
     box-shadow: inset 3px 3px 3px #cbced1, inset -3px -3px 3px white;
 }
 
+.candyButton,
 .submit {
+    margin-top: 20px;
     cursor: pointer;
-    /* position: relative; */
-    /* padding: 1.5rem; */
-    /* align-items: center; */
     padding-right: 20px;
     border-radius: 3.75rem;
     line-height: 1.5rem;
     font-size: 1rem;
+    color: antiquewhite;
     font-weight: 600;
-    border: 1px solid #012880;
-    background-image: linear-gradient(-180deg, #FF89D6 0%, #C01F9E 100%);
-    box-shadow: 0 1rem 1.25rem 0 rgba(22, 75, 195, 0.50),
-        0 -0.25rem 1.5rem rgba(110, 15, 155, 1) inset,
+    border: 1px solid #073441;
+    background-image: linear-gradient(-180deg, #89aeff 0%, rgb(34, 61, 76));
+    box-shadow: 0 1rem 1.25rem 0 rgba(57, 22, 195, 0.5),
+        0 -0.25rem 1.5rem rgb(15, 71, 155) inset,
         0 0.75rem 0.5rem rgba(255, 255, 255, 0.4) inset,
-        0 0.25rem 0.5rem 0 rgba(180, 70, 207, 1) inset;
+        0 0.25rem 0.5rem 0 rgb(93, 70, 207) inset;
 }
 
 

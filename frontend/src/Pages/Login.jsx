@@ -7,6 +7,7 @@ function Login() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
     const fetchFamilyId = async () =>
         await fetch(`/api/Family/${localStorage.getItem("familyName")}`, {
             method: "GET",
@@ -23,11 +24,18 @@ function Login() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: familyname, password: password }),
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.status !== 200) {
+                    setMessage(data["Wrong login details"][language]);
+                    return null;
+                }
+                else return response.json()
+            })
             .then((data) => {
-                if (data.name != null)
+                if (data != null)
                     localStorage.setItem("familyName", data.name);
-                return data.name != null;
+                else setMessage(data["Wrong login details"][language]);
+                return data != null;
             });
     };
     const handleLogin = async () => {
@@ -35,7 +43,7 @@ function Login() {
         let success = await fetchLogin(name, password);
         await fetchFamilyId();
         if (!success) {
-            navigate("/")
+            setMessage(data["Wrong login details"][language]);
         }
         else navigate("/MainFamilyPage");
     }
@@ -61,6 +69,7 @@ function Login() {
                         {data["Login"][language]}
                     </button>
                 </div>
+                <p>{message}</p>
                 <div>
                     <a href="/">
                         <button >

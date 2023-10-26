@@ -2,25 +2,18 @@ import data from "../translator.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 function LoginAsFamilyMember() {
     const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [expectedPassword, setExpectedPassword] = useState("");
     const [id, setId] = useState("");
     const [members, setMembers] = useState([]);
     const [message, setMessage] = useState("");
-    const fetchMembers = () =>
-        fetch("/api/User", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setMembers(json);
-            });
-
     useEffect(() => {
-        fetchMembers();
+        fetchGetAll("members", setMembers)
     }, [members.length])
 
     const fetchLogin = async (username, password, id) => {
@@ -40,14 +33,20 @@ function LoginAsFamilyMember() {
             });
     };
     const handleLogin = async () => {
-        localStorage.setItem("userName", "");
-        localStorage.setItem("userId", "");
-        localStorage.setItem("isAdult", "");
-        await fetchLogin(name, password, id);
+        if (password !== expectedPassword) {
+            setMessage(data["Wrong password for this user"][language]);
+        }
+        else {
+            localStorage.setItem("userName", "");
+            localStorage.setItem("userId", "");
+            localStorage.setItem("isAdult", "");
+            await fetchLogin(name, password, id);
+        }
     }
     const handleMemberSelect = (e) => {
         setName(e.target.value.split(",")[1]);
         setId(e.target.value.split(",")[0]);
+        setExpectedPassword(e.target.value.split(",")[2]);
     }
 
     return (
@@ -58,17 +57,18 @@ function LoginAsFamilyMember() {
                     <p>{data["Choose member"][language]}</p>
                     <select onChange={handleMemberSelect}>
                         <option value="">{data["Choose your name"][language]}</option>
-                        {members.map(member => <option key={member.id} value={[member.id, member.name]}>{member.name}</option>)}
+                        {members.map(member => <option key={member.id} value={[member.id, member.name, member.password]}>{member.name}</option>)}
                     </select>
                 </label>
                 <label>
                     <p>{data["Your password"][language]}</p>
                     <input
+                        type="password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
                 <div>
-                    <button onClick={handleLogin} >
+                    <button className="candyButton" onClick={handleLogin} >
                         {data["Login"][language]}
                     </button>
                 </div>
@@ -77,7 +77,7 @@ function LoginAsFamilyMember() {
                 </div>
                 <div>
                     <a href="/MainFamilyPage">
-                        <button >
+                        <button className="candyButton">
                             {data["Back"][language]}
                         </button>
                     </a>

@@ -31,16 +31,19 @@ public class RewardController:ControllerBase
             // BadRequest(ex.Message);
         }
     }
-
-    [HttpGet("{id}")]
+    
+    [HttpGet("{familyId}")]
     public async Task<IActionResult> GetRewardsOfFamily(long familyId)
     {
-        if (User.Identity.IsAuthenticated)
+        try
         {
             var rewards = await _rewardService.GetRewardsOfFamily(familyId);
-            return Ok(rewards);
+            return StatusCode(200, rewards);
         }
-        return BadRequest();
+        catch (Exception ex)
+        {
+            return StatusCode(444, ex.Message);
+        }
     }
 
     [HttpDelete("{id}")]
