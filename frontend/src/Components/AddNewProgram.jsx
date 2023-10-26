@@ -1,10 +1,7 @@
 import data from "../translator.json"
 import React from 'react';
 import { useState } from 'react';
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "./DateInput";
 const AddNewProgram = (props) => {
     registerLocale('English', enGB);
     registerLocale("Français", fr);
@@ -81,37 +78,11 @@ const AddNewProgram = (props) => {
                 </label>
                 <label>
                     <p>{data["Start"][language]}</p>
-                    {language === "Hungarian" ?
-                        <input
-                            value={start}
-                            type="datetime-local"
-                            onChange={(e) => setStart(e.target.value)}
-                        /> :
-                        <ReactDatePicker
-                            selected={start}
-                            onChange={(date) => setStart(date)}
-                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                            timeInputLabel={data["Time"][language]}
-                            showTimeInput
-                            locale={language}
-                        />}
+                    <DateInput value={start} selected={start} setter={setStart} timeNeeded={true} language={language} />
                 </label>
                 <label>
                     <p>{data["End"][language]}</p>
-                    {language === "Hungarian" ?
-                        <input
-                            value={end}
-                            type="datetime-local"
-                            onChange={(e) => setEnd(e.target.value)}
-                        /> :
-                        <ReactDatePicker
-                            selected={end}
-                            onChange={(date) => setEnd(date)}
-                            dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                            timeInputLabel={data["Time"][language]}
-                            showTimeInput
-                            locale={language}
-                        />}
+                    <DateInput value={end} selected={end} setter={setEnd} timeNeeded={true} language={language} />
                 </label>
                 <label>
                     <p>{data["Participants"][language]}</p>

@@ -2,10 +2,7 @@ import data from "../translator.json"
 import { useState, useEffect } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import mostFreqToDos from "../CostumHooks/mostFreqToDos";
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "./DateInput";
 export default function AddTodo(props) {
     registerLocale('English', enGB);
     registerLocale("Français", fr);
@@ -82,20 +79,7 @@ export default function AddTodo(props) {
                     </label>
                     <label>
                         <p>{data["Deadline"][language]}</p>
-                        {language === "Hungarian" ?
-                            <input
-                                value={deadline}
-                                type="date"
-                                onChange={(e) => setDeadline(e.target.value)}
-                            /> :
-                            <ReactDatePicker
-                                selected={deadline}
-                                onChange={(date) => setDeadline(date)}
-                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                                // timeInputLabel={data["Time"][language]}
-                                // showTimeInput
-                                locale={language}
-                            />}
+                        <DateInput value={deadline} selected={deadline} setter={setDeadline} timeNeeded={false} language={language} />
                     </label>
                     <label>
                         <p>{data["Type"][language]}</p>

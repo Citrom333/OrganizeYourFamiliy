@@ -1,17 +1,9 @@
 import data from "../translator.json";
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import ReactDatePicker from "react-datepicker";
-import { enGB, fr, de, it, es, } from 'date-fns/esm/locale';
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateInput from "../Components/DateInput";
+import passwordValidator from "../CostumHooks/passwordValidator";
 export default function AddMember() {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
-
     const [language, setLanguage] = useOutletContext();
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
@@ -88,20 +80,7 @@ export default function AddMember() {
                     </label>
                     <label>
                         <p>{data["Date of birth"][language]}</p>
-                        {language === "Hungarian" ?
-                            <input
-                                value={birthDate}
-                                type="datetime-local"
-                                onChange={(e) => setBirthdate(e.target.value)}
-                            /> :
-                            <ReactDatePicker
-                                selected={birthDate}
-                                onChange={(date) => setBirthdate(date)}
-                                dateFormat={language === "Deutsch" ? "yyyy.MM.dd HH:mm" : "dd.MM.yyyy HH:mm"}
-                                timeInputLabel={data["Time"][language]}
-                                showTimeInput
-                                locale={language}
-                            />}
+                        <DateInput value={birthDate} selected={Date.parse(new Date(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
                     </label>
                     <label>
                         <p>{data["Family role"][language]}</p>
