@@ -11,6 +11,7 @@ import Delete from "../Components/Delete";
 import UpdateProgram from "../Components/UpdateProgram";
 import SetLeader from "../Components/SetLeader";
 import { useOutletContext } from "react-router-dom";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 function MyPage() {
     const [language, setLanguage] = useOutletContext();
     const [progDetailIsOpen, setProgDetailIsOpen] = useState(false);
@@ -28,47 +29,11 @@ function MyPage() {
     let familyId = parseInt(localStorage.getItem("familyId"));
     const [user, setUser] = useState("");
     const isLeader = localStorage.getItem("leader") == userId;
-    const fetchMembers = () =>
-        fetch("/api/User", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setMembers(json);
-            });
-    const fetchUser = async () =>
-        await fetch(`/api/User/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setUser(json);
-
-            });
-
-    const fetchToDos = () =>
-        fetch(`/api/ToDo/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setToDos(json);
-
-            });
-    const fetchPrograms = () =>
-        fetch(`/api/ScheduledProgram/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setPrograms(json);
-
-            });
     useEffect(() => {
-        fetchMembers();
-        fetchUser();
-        fetchToDos();
-        fetchPrograms();
+        fetchGetAll("members", setMembers);
+        fetchGetAll("members", setUser, `/${userId}`);
+        fetchGetAll("todos", setToDos, `/${userId}`);
+        fetchGetAll("programs", setPrograms, `/${userId}`);
         setChange(false);
     }, [toDos.length, change, selectedTodo])
 

@@ -15,6 +15,7 @@ import AddTodo from "../Components/AddTodo";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import RewardShopHandler from "../Components/RewardShopHandler";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 function MainFamilyPage() {
     const navigate = useNavigate();
     const [language, setLanguage] = useOutletContext();
@@ -67,11 +68,11 @@ function MainFamilyPage() {
     }
     useEffect(() => {
         if (localStorage.getItem("familyId")) {
-            fetchMembers();
-            fetchPrograms();
+            fetchGetAll("members", setMembers);
+            fetchGetAll("programs", setPrograms);
+            fetchGetAll("todos", setToDos);
             setChange(false);
             setMessage("");
-            fetchAllToDos();
         }
         else navigate("/")
     }, [members.length, programs.length, change, toDos.length, language])

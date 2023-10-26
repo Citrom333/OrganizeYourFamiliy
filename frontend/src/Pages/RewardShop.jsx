@@ -4,12 +4,15 @@ import postTodo from "../CostumHooks/postTodo";
 import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 export default function RewardShop(props) {
     const [language, setLanguage] = useOutletContext();
     const navigate = useNavigate();
     let userId = localStorage.getItem("userId");
     const [user, setUser] = useState("");
     const [selectedOption, setSelectedOption] = useState("");
+    const [message, setMessage] = useState("");
+    const [change, setChange] = useState(false);
     const handleCheckboxChange = (option) => {
         setSelectedOption(option);
     };
@@ -36,10 +39,10 @@ export default function RewardShop(props) {
         if (localStorage.getItem("isAdult") == "true") {
             navigate("/Wrongpage");
         }
-        fetchUser();
-        fetchRewards();
-
-    }, [])
+        fetchGetAll("rewards", setRewards, `/${familyId}`);
+        fetchGetAll("members", setUser, `/${userId}`);
+        setChange(false);
+    }, [change])
     const sendExchangeToLeader = async () => {
         await postTodo(`${data["Add reward to "][language]}${localStorage.getItem("userName")}`, selectedOption.name, new Date(), 3, 0, localStorage.getItem("leader"))
     }

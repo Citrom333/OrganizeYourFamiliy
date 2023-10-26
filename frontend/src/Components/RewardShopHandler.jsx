@@ -1,5 +1,6 @@
 import data from "../translator.json"
 import { useState, useEffect } from "react";
+import fetchGetAll from "../CostumHooks/fetchGetAll";
 export default function RewardShopHandler() {
     const language = localStorage.getItem("language");
     const [message, setMessage] = useState("")
@@ -13,15 +14,7 @@ export default function RewardShopHandler() {
     const [rewardCost, setRewardCost] = useState("");
     const [changed, setChanged] = useState(false);
     const familyId = localStorage.getItem("familyId");
-    const fetchRewards = async () => {
-        await fetch("/api/Reward", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setRewards(json);
-            });
-    };
+
     const deleteReward = async () => {
         setConfirmed(true);
         try {
@@ -75,7 +68,6 @@ export default function RewardShopHandler() {
         e.preventDefault();
         setChanged(true);
         setCreator(false);
-        console.log("")
         try {
             const response = await fetch(`/api/Reward`, {
                 method: "POST",
@@ -101,7 +93,7 @@ export default function RewardShopHandler() {
         }
     };
     useEffect(() => {
-        fetchRewards();
+        fetchGetAll("rewards", setRewards, `/${parseInt(familyId)}`);
         setChanged(false);
     }, [rewards.length, selected, creator, changed])
     return (
@@ -131,7 +123,6 @@ export default function RewardShopHandler() {
                         <div>
                             {confirmed ?
                                 <div>
-                                    {/* <h1>{message}</h1> */}
                                 </div>
                                 : <div>
                                     <h2>{data["Do you really want to delete?"][language]}</h2>
