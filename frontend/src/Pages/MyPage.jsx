@@ -1,5 +1,4 @@
 import data from "../translator.json"
-import ToDos from "../Components/ToDos"
 import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react";
 import TodoDetails from "../Components/TodoDetails";
@@ -25,6 +24,7 @@ function MyPage() {
     const [selectedProg, setSelectedProg] = useState("");
     const [programs, setPrograms] = useState([]);
     const [members, setMembers] = useState([]);
+    const leader = localStorage.getItem("leader");
     let userId = parseInt(localStorage.getItem("userId"));
     let familyId = parseInt(localStorage.getItem("familyId"));
     const [user, setUser] = useState("");
@@ -49,7 +49,7 @@ function MyPage() {
         <>
             <div className="myPage">
                 <div>
-                    <div key={user.id}><img className="userAvatarPic" src={user.avatarPic} /><div>{user.name}</div></div>
+                    <div key={user.id}><div className="avatarPicAndCrown">{leader == user.id ? <img className="userCrown" src="../images/crown3.png" /> : ""}<img className="userAvatarPic" src={user.avatarPic} /></div><div>{user.name}</div></div>
                 </div>
                 <h1>{data["My page"][language]}</h1>
                 {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button onClick={e => setSetLeaderIsOpen(true)}>{data["Be the leader"][language]}</button>}

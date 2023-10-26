@@ -35,22 +35,7 @@ function MainFamilyPage() {
     const [selectedMember, setSelectedMember] = useState("");
     const [message, setMessage] = useState("");
     const [toDos, setToDos] = useState([]);
-    const fetchMembers = () =>
-        fetch("/api/User", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setMembers(json);
-
-            });
-    const fetchAllToDos = () =>
-        fetch(`/api/ToDo/`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setToDos(json);
+    const leader = localStorage.getItem("leader");
 
             });
     const fetchPrograms = () =>
@@ -84,7 +69,7 @@ function MainFamilyPage() {
                     {location.pathname == '/MainFamilyPage' ?
                         <div><div><h1>{data["This is my family"][language]}</h1>
                             <div className="memberAvatars">
-                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><img className="avatarPic" src={mem.avatarPic} /><div>{mem.name}</div></div>) : ""}
+                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><div className="avatarPicAndCrown">{leader == mem.id ? <img className="crown" src="../images/crown3.png" /> : ""}<img className="avatarPic" id={selectedMember === mem ? "chosenPicture" : ""} src={mem.avatarPic} /></div><div><h3>{mem.name}</h3></div></div>) : ""}
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
