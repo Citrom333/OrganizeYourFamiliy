@@ -68,7 +68,7 @@ function LoginAsFamilyMember() {
                     />
                 </label>
                 <div>
-                    <button onClick={handleLogin} >
+                    <button className="candyButton" onClick={handleLogin} >
                         {data["Login"][language]}
                     </button>
                 </div>
@@ -77,7 +77,7 @@ function LoginAsFamilyMember() {
                 </div>
                 <div>
                     <a href="/MainFamilyPage">
-                        <button >
+                        <button className="candyButton">
                             {data["Back"][language]}
                         </button>
                     </a>

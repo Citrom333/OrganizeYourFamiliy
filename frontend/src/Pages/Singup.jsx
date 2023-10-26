@@ -81,7 +81,7 @@ function SignUp() {
                 </form>
                 <div>
                     <a href="/">
-                        <button >
+                        <button className="candyButton">
                             {data["Back"][language]}
                         </button>
                     </a>

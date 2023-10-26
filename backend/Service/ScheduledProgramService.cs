@@ -33,6 +33,7 @@ public class ScheduledProgramService : IScheduledProgramService
                 Start = program.Start,
                 End = program.End,
                 Cost = program.Cost,
+                Place=program.Place,
                 Participants = participants,
             };
 

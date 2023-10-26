@@ -80,12 +80,16 @@ const AddNewProgram = (props) => {
                     <p>{data["End"][language]}</p>
                     <DateInput value={end} selected={end} setter={setEnd} timeNeeded={true} language={language} />
                 </label>
-                <label>
+                <label >
                     <p>{data["Participants"][language]}</p>
-                    {props.users.length > 0 ? props.users.map((u, index) => {
-                        return <div key={u.id}><label htmlFor="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
-                            value={[index, u.id]} onChange={handleCheckboxChange} /></div>
-                    }) : ""}
+                    <div className="centerForced">
+                        <div className="checkBoxContainer">
+                            {props.users.length > 0 ? props.users.map((u, index) => {
+                                return <div key={u.id}><label htmlFor="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
+                                    value={[index, u.id]} onChange={handleCheckboxChange} /></div>
+                            }) : ""}
+                        </div>
+                    </div>
                 </label>
                 <label>
                     <p>{data["Place (optional)"][language]}</p>

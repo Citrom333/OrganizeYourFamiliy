@@ -29,8 +29,9 @@ export default function Delete(props) {
                 <div><h1>{message}</h1></div>
                 : <div>
                     <h2>{data["Do you really want to delete?"][language]}</h2>
-                    <button onClick={finalDelete}>{data["Yes"][language]}</button>
+                    <button className="candyButton" onClick={finalDelete}>{data["Yes"][language]}</button>
                     <button
+                        className="candyButton"
                         onClick={props.onClose}
                     >{data["No"][language]}</button>
                 </div>

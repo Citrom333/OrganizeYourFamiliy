@@ -5,7 +5,7 @@ export default function WrongPage() {
     return (
         <div>
             <h1>{data["Wrong page"][language]}</h1>
-            <a href="/MainFamilyPage"><button>{data["Back to main page"][language]}</button></a>
+            <a href="/MainFamilyPage"><button className="candyButton">{data["Back to main page"][language]}</button></a>
         </div>
     )
 }

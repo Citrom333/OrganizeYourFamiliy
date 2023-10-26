@@ -83,10 +83,14 @@ const UpdateProgram = (props) => {
                     </label>
                     <label>
                         <p>{data["Participants"][language]}</p>
-                        {props.users.length > 0 ? props.users.map((u, index) => {
-                            return <div><label for="user">{u.name}</label><input type="checkbox" checked={isChecked[index]}
-                                value={[index, u.id]} onChange={handleCheckboxChange} /></div>
-                        }) : ""}
+                        <div className="centerForced">
+                            <div className="checkBoxContainer">
+                                {props.users.length > 0 ? props.users.map((u, index) => {
+                                    return <div><label for="user">{u.name}</label><input className="checkbox" type="checkbox" checked={isChecked[index]}
+                                        value={[index, u.id]} onChange={handleCheckboxChange} /></div>
+                                }) : ""}
+                            </div>
+                        </div>
                     </label>
                     <label>
                         <p>{data["Place (optional)"][language]}</p>

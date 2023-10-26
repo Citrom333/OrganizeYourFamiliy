@@ -19,9 +19,8 @@ export default function ProgramDetails(props) {
                 ))}
             </h3>
             {props.program.cost > 0 ? <h3>{data["Cost: "][language]}{props.program.cost}</h3> : ""}
-            <button onClick={e => props.handleUpdate(props.program)}>{data["Update"][language]}</button>
-            <button onClick={e => props.handleDelete(props.program)}>{data["Delete"][language]}</button>
-            {/* <button onClick={e => props.setSelected("")}>Back</button> */}
+            <button className="candyButton" onClick={e => props.handleUpdate(props.program)}>{data["Update"][language]}</button>
+            <button className="candyButton" onClick={e => props.handleDelete(props.program)}>{data["Delete"][language]}</button>
         </div >
     )
 }

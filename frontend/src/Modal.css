@@ -1,56 +1,67 @@
-.modal-overlay {
-    z-index: 50;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .modal-overlay {
+        overflow: scroll;
+        z-index: 50;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
 
-@media (min-width: 560px) {
+    #small {
+        align-items: center;
+    }
+
     .modal {
         background-color: #526e8a;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         text-align: center;
-        position: relative;
-        width: 50vw;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
     }
-}
 
-@media (max-width: 559px) {
-    .modal {
-        background-color: #526e8a;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        position: relative;
-        width: 80vw;
+    @media (min-width: 560px) {
+        .modal {
+            width: 50vw;
+        }
     }
-}
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
+    @media (max-width: 559px) {
+        .modal {
+            width: 80vw;
+        }
+    }
 
-form {
-    padding-top: 20px;
-}
+    .modalContent {
+        position: relative;
+    }
 
-.wrapper {
-    display: flex;
-    flex-wrap: wrap;
-}
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        z-index: 11;
+    }
 
-.centralize {
-    align-items: center;
-}
+    form {
+        padding-top: 20px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .centralize {
+        align-items: center;
+    }

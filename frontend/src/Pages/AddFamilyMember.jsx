@@ -143,7 +143,7 @@ export default function AddMember() {
                 <div><p>{message}</p></div>
                 <div>
                     <a href="/MainFamilyPage">
-                        <button>
+                        <button className="candyButton">
                             {data["Back"][language]}
                         </button>
                     </a>

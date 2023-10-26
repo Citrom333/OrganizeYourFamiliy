@@ -63,20 +63,20 @@ function MainFamilyPage() {
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
-                            <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
-                            <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
+                            <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} isSmall={true} />
+                            <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} isSmall={true} />
                             <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<UpdateProgram toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
-                            <Modal isOpen={rewardShopHandlerIsOpen} onClose={e => setRewardShopHandlerIsOpen(false)} child={<RewardShopHandler />} />
+                            <Modal isOpen={rewardShopHandlerIsOpen} onClose={e => setRewardShopHandlerIsOpen(false)} child={<RewardShopHandler />} isSmall={true} />
                             <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo todos={toDos} setAddedNew={setChange} userId={selectedMember.id} />} />
                             <Modal isOpen={showUpdateMemberForm} onClose={e => setShowUpdateMemberForm(false)} child={<UpdateMember toUpdate={selectedMember} setSelected={setSelectedMember} change={setChange} />} />
-                            <Modal isOpen={showDeleteMember} onClose={e => setShowDeleteMember(false)} child={<Delete toDelete={selectedMember} setSelected={setSelectedProg} type="member" change={setChange} onClose={e => setDeleteIsOpen(false)} />} />
+                            <Modal isOpen={showDeleteMember} onClose={e => setShowDeleteMember(false)} child={<Delete toDelete={selectedMember} setSelected={setSelectedProg} type="member" change={setChange} onClose={e => setShowDeleteMember(false)} />} isSmall={true} />
                             {localStorage.getItem("isAdult") ?
-                                <div><button onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button>
-                                    <button onClick={e => setRewardShopHandlerIsOpen(true)}>{data["Handle rewardshop"][language]}</button></div> : ""}
+                                <div><button className="candyButton" onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button>
+                                    <button className="candyButton" onClick={e => setRewardShopHandlerIsOpen(true)}>{data["Handle rewardshop"][language]}</button></div> : ""}
                             {"true" && selectedMember !== "" ? <div>
-                                <button onClick={e => setShowAddForm(true)}>{data["Add todo for "][language]}{selectedMember.name}</button>
-                                <button onClick={e => setShowUpdateMemberForm(true)}>{data["Update details of "][language]}{selectedMember.name} {data["Update details of 2"][language]}</button>
-                                <button onClick={e => setShowDeleteMember(true)}>{data["Delete member"][language]} {selectedMember.name} {data["from family"][language]}</button></div>
+                                <button className="candyButton" onClick={e => setShowAddForm(true)}>{data["Add todo for "][language]}{selectedMember.name}</button>
+                                <button className="candyButton" onClick={e => setShowUpdateMemberForm(true)}>{data["Update details of "][language]}{selectedMember.name} {data["Update details of 2"][language]}</button>
+                                <button className="candyButton" onClick={e => setShowDeleteMember(true)}>{data["Delete member"][language]} {selectedMember.name} {data["from family"][language]}</button></div>
                                 : ""}<p>{message}</p>
                             <div><Calendar isMainPage={true} toDos={[]} handleClick={(id, type) => handleClick(id, type)} toDo={""} programs={programs} /></div>
                         </div> :

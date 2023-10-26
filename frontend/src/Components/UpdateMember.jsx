@@ -57,22 +57,25 @@ const UpdateMember = (props) => {
     return (
         <>
             <div>
-                {changeAvatar ? <> <div className="pagination ">
-                    <img onClick={e => page > 1 ? setPage(page - 1) : ""} className={page === 1 ? "arrow left paginationElement inactive" : "arrow left paginationElement"} src="../images/arrow.png" />
-                    <p className="pageNumber paginationElement">{page}</p>
-                    <img onClick={e => page < 10 ? setPage(page + 1) : ""} className={page === 10 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
-                </div>
-                    <div className="avatarPics wrapper">
-                        {avatarPics.map((pic, index) => <div key={index}>
-                            <img
-                                className="avatarPic"
-                                id={chosenPic === pic ? "chosenPicture" : ""}
-                                src={pic}
-                                onClick={() => setChosenPic(pic)}>
-                            </img>
-                        </div>)}
-                    </div>
-                    <button onClick={e => setChangeAvatar(false)}>{data["Back"][language]}</button></> :
+                {changeAvatar ?
+                    <>
+                        <div className="pagination ">
+                            <img onClick={e => page > 1 ? setPage(page - 1) : ""} className={page === 1 ? "arrow left paginationElement inactive" : "arrow left paginationElement"} src="../images/arrow.png" />
+                            <p className="pageNumber paginationElement">{page}</p>
+                            <img onClick={e => page < 10 ? setPage(page + 1) : ""} className={page === 10 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
+                        </div>
+                        <div className="avatarPics wrapper">
+                            {avatarPics.map((pic, index) => <div key={index}>
+                                <img
+                                    className="avatarPic"
+                                    id={chosenPic === pic ? "chosenPicture" : ""}
+                                    src={pic}
+                                    onClick={() => setChosenPic(pic)}>
+                                </img>
+                            </div>)}
+                        </div>
+                        <button className="candyButton" onClick={e => setChangeAvatar(false)}>{data["Back"][language]}</button>
+                    </> :
                     <div>
                         <form className="form" onSubmit={handleSubmit}>
                             <h1>{data["Update"][language]}</h1>
@@ -121,7 +124,7 @@ const UpdateMember = (props) => {
                         <div><p>{message}</p></div>
                         <div>
                             <a href="/MainFamilyPage">
-                                <button>
+                                <button className="candyButton">
                                     {data["Back"][language]}
                                 </button>
                             </a>

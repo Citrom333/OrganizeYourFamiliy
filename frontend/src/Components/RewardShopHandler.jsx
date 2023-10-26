@@ -126,8 +126,8 @@ export default function RewardShopHandler() {
                                 </div>
                                 : <div>
                                     <h2>{data["Do you really want to delete?"][language]}</h2>
-                                    <button onClick={deleteReward}>{data["Yes"][language]}</button>
-                                    <button
+                                    <button className="candyButton" onClick={deleteReward}>{data["Yes"][language]}</button>
+                                    <button className="candyButton"
                                         onClick={e => { setDeleter(false); setSelected("") }}
                                     >{data["No"][language]}</button>
                                 </div>

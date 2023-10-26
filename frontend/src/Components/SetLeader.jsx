@@ -31,8 +31,8 @@ export default function SetLeader(props) {
                 <h3>{data["Would you like to be set"][language]}</h3>
                 <h3>{data["as the leader of the family?"][language]}</h3>
             </div>
-            {answered ? "" : <><button onClick={e => { setAsLeader(); setAnswered(true) }}>{data["Yes"][language]}</button>
-                <button onClick={props.onClose}>{data["No"][language]}</button></>}
+            {answered ? "" : <><button className="candyButton" onClick={e => { setAsLeader(); setAnswered(true) }}>{data["Yes"][language]}</button>
+                <button className="candyButton" onClick={props.onClose}>{data["No"][language]}</button></>}
 
             <p>{message}</p>
         </div>

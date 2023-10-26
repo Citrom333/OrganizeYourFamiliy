@@ -40,7 +40,7 @@ table {
 
 .weekCalendar {
     width: 100%;
-    background-color: beige;
+    background-color: rgb(246, 244, 241);
 }
 
 .day-of-week {
@@ -104,7 +104,7 @@ table {
 }
 
 .event {
-    border: solid coral 2px;
+    border: solid rgb(80, 156, 255) 2px;
 }
 
 .day:nth-child(1)>.event {
@@ -139,35 +139,35 @@ table {
 
 div[data-span="1"] {
     grid-column-end: span 1;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="2"] {
     grid-column-end: span 2;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="3"] {
     grid-column-end: span 3;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="4"] {
     grid-column-end: span 4;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="5"] {
     grid-column-end: span 5;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="6"] {
     grid-column-end: span 6;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
 
 div[data-span="7"] {
     grid-column-end: span 7;
-    background: sandybrown;
+    background: rgb(96, 190, 244);
 }
