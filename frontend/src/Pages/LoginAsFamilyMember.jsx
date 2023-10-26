@@ -8,6 +8,7 @@ function LoginAsFamilyMember() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [expectedPassword, setExpectedPassword] = useState("");
     const [id, setId] = useState("");
     const [members, setMembers] = useState([]);
     const [message, setMessage] = useState("");
@@ -32,14 +33,20 @@ function LoginAsFamilyMember() {
             });
     };
     const handleLogin = async () => {
-        localStorage.setItem("userName", "");
-        localStorage.setItem("userId", "");
-        localStorage.setItem("isAdult", "");
-        await fetchLogin(name, password, id);
+        if (password !== expectedPassword) {
+            setMessage(data["Wrong password for this user"][language]);
+        }
+        else {
+            localStorage.setItem("userName", "");
+            localStorage.setItem("userId", "");
+            localStorage.setItem("isAdult", "");
+            await fetchLogin(name, password, id);
+        }
     }
     const handleMemberSelect = (e) => {
         setName(e.target.value.split(",")[1]);
         setId(e.target.value.split(",")[0]);
+        setExpectedPassword(e.target.value.split(",")[2]);
     }
 
     return (
@@ -50,12 +57,13 @@ function LoginAsFamilyMember() {
                     <p>{data["Choose member"][language]}</p>
                     <select onChange={handleMemberSelect}>
                         <option value="">{data["Choose your name"][language]}</option>
-                        {members.map(member => <option key={member.id} value={[member.id, member.name]}>{member.name}</option>)}
+                        {members.map(member => <option key={member.id} value={[member.id, member.name, member.password]}>{member.name}</option>)}
                     </select>
                 </label>
                 <label>
                     <p>{data["Your password"][language]}</p>
                     <input
+                        type="password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
