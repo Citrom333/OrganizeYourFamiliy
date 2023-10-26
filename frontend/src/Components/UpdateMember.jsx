@@ -76,6 +76,8 @@ const UpdateMember = (props) => {
                     <div>
                         <form className="form" onSubmit={handleSubmit}>
                             <h1>{data["Update"][language]}</h1>
+                            <div><p>{message}</p></div>
+
                             <label>
                                 <p>{data["Name"][language]}</p>
                                 <input
@@ -85,8 +87,9 @@ const UpdateMember = (props) => {
                             <label>
                                 <p>{data["Member pin"][language]}</p>
                                 <input
-                                    value={password1}
-                                    onChange={(e) => setPassword1(e.target.value)} />
+                                    onChange={(e) => passwordValidator(e, setMessage, "member", setPassword1, language)}
+                                    type="password"
+                                />
                             </label>
                             <label>
                                 <p>{data["Date of birth"][language]}</p>

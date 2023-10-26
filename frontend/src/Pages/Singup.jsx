@@ -2,6 +2,7 @@ import data from "../translator.json"
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import passwordValidator from "../CostumHooks/passwordValidator";
 function SignUp() {
     const [language, setLanguage] = useOutletContext();
     const [message, setMessage] = useState("");
@@ -62,15 +63,17 @@ function SignUp() {
                         />
                     </label>
                     <label>
-                        <p>{data["Family password"][language]}</p>
+                        <p>{data["Family password (Min. 6 characters letters and numbers)"][language]}</p>
                         <input
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => passwordValidator(e, setMessage, "family", setPassword, language)}
+                            type="password"
                         />
                     </label>
                     <label>
                         <p>{data["Confirm password"][language]}</p>
                         <input
                             onChange={handlePasswordConfim}
+                            type="password"
                         />
                     </label>
                     <div >
