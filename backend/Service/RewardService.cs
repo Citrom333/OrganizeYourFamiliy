@@ -20,7 +20,6 @@ public class RewardService:IRewardService
             var family = await _context.Families.Include(family => family.Rewards).FirstOrDefaultAsync(f => f.Id == reward.FamilyId);
             if (family == null)
             {
-                Console.WriteLine("HIBA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 return false;
             }
             var newReward = new Reward()
@@ -33,14 +32,6 @@ public class RewardService:IRewardService
             };
             _context.Rewards.Add(newReward);
             family.Rewards.Add(newReward);
-            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXx");
-            Console.WriteLine(family.Rewards.Count());
-            Console.WriteLine(family.Rewards[0].Name);
-         
-            Console.WriteLine(family.Id);
-            Console.WriteLine(family.Name);
-
-
             await _context.SaveChangesAsync();
             return true;
         }

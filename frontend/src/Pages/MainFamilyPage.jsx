@@ -37,16 +37,6 @@ function MainFamilyPage() {
     const [toDos, setToDos] = useState([]);
     const leader = localStorage.getItem("leader");
 
-            });
-    const fetchPrograms = () =>
-        fetch("/api/ScheduledProgram", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setPrograms(json);
-
-            });
     const handleClick = (id, type) => {
         setSelectedProg(programs.find(p => p.id == id))
         setProgDetailIsOpen(true)

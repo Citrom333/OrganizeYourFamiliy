@@ -1,12 +1,10 @@
 import data from "../translator.json"
-import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import passwordValidator from "../CostumHooks/passwordValidator";
 function SignUp() {
     const [language, setLanguage] = useOutletContext();
     const [message, setMessage] = useState("");
-    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");

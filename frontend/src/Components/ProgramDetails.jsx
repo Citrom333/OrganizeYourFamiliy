@@ -1,5 +1,4 @@
 import data from "../translator.json"
-import { useState, useEffect } from "react"
 export default function ProgramDetails(props) {
     const language = localStorage.getItem("language");
 

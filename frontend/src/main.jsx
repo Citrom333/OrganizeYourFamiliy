@@ -8,7 +8,6 @@ import SignUp from './Pages/Singup.jsx';
 import MainFamilyPage from './Pages/MainFamilyPage.jsx';
 import AddMember from './Pages/AddFamilyMember.jsx';
 import MyPage from './Pages/MyPage.jsx';
-import MyRewards from './Pages/MyRewards.jsx';
 import LoginAsFamilyMember from './Pages/LoginAsFamilyMember.jsx';
 import RewardShop from './Pages/RewardShop.jsx';
 import WrongPage from './Pages/WrongPage.jsx';

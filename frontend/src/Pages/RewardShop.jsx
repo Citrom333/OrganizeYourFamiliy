@@ -17,24 +17,6 @@ export default function RewardShop(props) {
         setSelectedOption(option);
     };
     const [rewards, setRewards] = useState([]);
-    // { "Choose dinner for next friday": 300, "Popcorn after dinner": 300, "Exchange 500 to pocket money": 500, "Exchange 1000 to pocket money": 1000, "30 minutes of X-Box": 1000, "20 minutes playing on cellpohone": 1000, "Invite a friend to sleepover": 3000 };
-    const fetchUser = async () =>
-        await fetch(`/api/User/${userId}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setUser(json);
-
-            });
-    const fetchRewards = async () =>
-        await fetch("/api/Reward", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }).then((response) => response.json())
-            .then((json) => {
-                setRewards(json);
-            });
     useEffect(() => {
         if (localStorage.getItem("isAdult") == "true") {
             navigate("/Wrongpage");

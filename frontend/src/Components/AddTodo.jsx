@@ -1,14 +1,9 @@
 import data from "../translator.json"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import postTodo from "../CostumHooks/postTodo";
 import mostFreqToDos from "../CostumHooks/mostFreqToDos";
 import DateInput from "./DateInput";
 export default function AddTodo(props) {
-    registerLocale('English', enGB);
-    registerLocale("Français", fr);
-    registerLocale("Español", es);
-    registerLocale("Italiano", it);
-    registerLocale("Deutsch", de);
     const language = localStorage.getItem("language");
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");

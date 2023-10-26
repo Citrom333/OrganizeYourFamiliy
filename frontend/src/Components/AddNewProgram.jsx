@@ -38,10 +38,11 @@ const AddNewProgram = (props) => {
                 props.setAddedNew(true);
 
             } else {
-                // setMessage("Some error occured");
+                setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            // setMessage(err);
+            setMessage(data["ERROR"][language]);
+            console.log(err);
         }
     };
     const handleSubmit = (e) => {

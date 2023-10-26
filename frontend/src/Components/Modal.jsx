@@ -1,6 +1,4 @@
-import data from "../translator.json"
 import React from 'react';
-import { useState } from 'react';
 import "../Modal.css"
 const Modal = ({ isOpen, onClose, child }) => {
     if (!isOpen) return null;
