@@ -623,13 +623,21 @@
         "Italiano": "Nuovo membro",
         "Français": "Nouveau membre"
     },
-    "Member pin (Min. 4 characters, just numbers)": {
-        "Hungarian": "Jelszó (min. 4 karakter, csak számok)",
-        "English": "Member password (Min. 4 characters, just numbers)",
-        "Español": "Contraseña de miembro (Mínimo 4 caracteres, sólo números)",
-        "Deutsch": "Mitgliedspasswort (mind. 4 Zeichen, nur Zahlen)",
-        "Italiano": "Password membro (Min. 4 caratteri, solo numeri)",
-        "Français": "Mot de passe du membre (4 caractères minimum, uniquement des chiffres)"
+    "Member pin": {
+        "Hungarian": "Jelszó",
+        "English": "Member password",
+        "Español": "Contraseña de miembro",
+        "Deutsch": "Mitgliedspasswort",
+        "Italiano": "Password membro",
+        "Français": "Mot de passe du membre"
+    },
+    "(Min. 4 characters, just numbers)": {
+        "Hungarian": "(min. 4 karakter, csak számok)",
+        "English": "(Min. 4 characters, just numbers)",
+        "Español": "(Mínimo 4 caracteres, sólo números)",
+        "Deutsch": "(mind. 4 Zeichen, nur Zahlen)",
+        "Italiano": "(Min. 4 caratteri, solo numeri)",
+        "Français": "(4 caractères minimum, uniquement des chiffres)"
     },
     "Member pin confirmation": {
         "Hungarian": "Jelszó megerősítés",
@@ -703,13 +711,13 @@
         "Italiano": "Parola d'ordine della famiglia ",
         "Français": "Mot de passe familial "
     },
-    "Family password (Min. 6 characters letters and numbers)": {
-        "Hungarian": "Családi jelszó (min. 6 karakter, betűk és számok)",
-        "English": "Family password (Min. 6 characters letters and numbers)",
-        "Español": "Contraseña familiar (Mínimo 6 caracteres, letras y números)",
-        "Deutsch": "Familienpasswort (mind. 6 Zeichen, Buchstaben und Zahlen)",
-        "Italiano": "Parola d'ordine della famiglia (Min. 6 caratteri lettere e numeri)",
-        "Français": "Mot de passe familial (Min. 6 caractères lettres et chiffres)"
+    "(Min. 6 characters letters and numbers)": {
+        "Hungarian": "(min. 6 karakter, betűk és számok)",
+        "English": "(Min. 6 characters letters and numbers)",
+        "Español": "(Mínimo 6 caracteres, letras y números)",
+        "Deutsch": "(mind. 6 Zeichen, Buchstaben und Zahlen)",
+        "Italiano": "(Min. 6 caratteri lettere e numeri)",
+        "Français": "(Min. 6 caractères lettres et chiffres)"
     },
     "Choose member": {
         "Hungarian": "Válassz családtagot",
@@ -1072,7 +1080,7 @@
         "Français": "caractères"
     },
     "Good password": {
-        "Hungarian": "Megfeleő jelszó",
+        "Hungarian": "Megfelelő jelszó",
         "English": "Good password",
         "Español": "Buena contraseña",
         "Deutsch": "nGutes Passwort",
@@ -1126,5 +1134,13 @@
         "Deutsch": "Eine Belohnungsanfrage wurde gesendet.",
         "Italiano": "La richiesta di ricompensa è stata inviata.",
         "Français": "La demande de récompense a été envoyée."
+    },
+    "This name is already used": {
+        "Hungarian": "Ez név már foglalt",
+        "English": "This name is already used",
+        "Español": "Este nombre ya se utiliza",
+        "Deutsch": "Dieser Name wird bereits verwendet",
+        "Italiano": "Questo nome è già utilizzato",
+        "Français": "Ce nom est déjà utilisé"
     }
 }

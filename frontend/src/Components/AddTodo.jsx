@@ -79,7 +79,7 @@ export default function AddTodo(props) {
                     <label>
                         <p>{data["Type"][language]}</p>
                         <select onChange={(e) => setToDoType(e.target.value)}>
-                            <option value={toDoType}>{toDoType === 0 ? "Housework" : toDoType === 1 ? "Job" : toDoType === 2 ? "School" : toDoType === 3 ? "Other" : ""}</option>
+                            <option value={toDoType}>{toDoType === 0 ? data["Housework"][language] : toDoType === 1 ? data["Job"][language] : toDoType === 2 ? data["School"][language] : toDoType === 3 ? data["Other"][language] : ""}</option>
                             <option value={0}>{data["Housework"][language]}</option>
                             <option value={1}>{data["Job"][language]}</option>
                             <option value={2}>{data["School"][language]}</option>

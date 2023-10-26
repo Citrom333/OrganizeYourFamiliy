@@ -92,7 +92,7 @@ export default function AddMember() {
                         />
                     </label>
                     <label>
-                        <p>{data["Member pin (Min. 4 characters, just numbers)"][language]} </p>
+                        <p>{data["Member pin"][language]} {[data]["(Min. 4 characters, just numbers)"][language]} </p>
                         <input
                             onChange={(e) => passwordValidator(e, setMessage, "member", setPassword1, language)}
                             type="password"
