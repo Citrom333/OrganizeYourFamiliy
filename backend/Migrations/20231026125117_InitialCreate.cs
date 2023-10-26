@@ -32,7 +32,7 @@ namespace backend.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeaderOfFamilyId = table.Column<long>(type: "bigint", nullable: true)
                 },
@@ -144,6 +144,12 @@ namespace backend.Migrations
                 column: "LeaderOfFamilyId",
                 unique: true,
                 filter: "[LeaderOfFamilyId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Families_Name",
+                table: "Families",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rewards_FamilyId",

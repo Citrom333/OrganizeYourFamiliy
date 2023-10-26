@@ -8,9 +8,11 @@ public class User
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
-
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Password { get; set; }
+    [Required]
     public string FamilyRole { get; set; }
     public DateTime? Birthday { get; set; }
     public List<ToDo> Tasks { get; set; }
