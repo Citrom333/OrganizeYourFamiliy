@@ -73,7 +73,7 @@ function MainFamilyPage() {
                             {localStorage.getItem("isAdult") ?
                                 <div><button className="candyButton" onClick={e => setAddProgIsOpen(true)}>{data["Add new program"][language]}</button>
                                     <button className="candyButton" onClick={e => setRewardShopHandlerIsOpen(true)}>{data["Handle rewardshop"][language]}</button></div> : ""}
-                            {"true" && selectedMember !== "" ? <div>
+                            {localStorage.getItem("isAdult") && selectedMember !== "" ? <div>
                                 <button className="candyButton" onClick={e => setShowAddForm(true)}>{data["Add todo for "][language]}{selectedMember.name}</button>
                                 <button className="candyButton" onClick={e => setShowUpdateMemberForm(true)}>{data["Update details of "][language]}{selectedMember.name} {data["Update details of 2"][language]}</button>
                                 <button className="candyButton" onClick={e => setShowDeleteMember(true)}>{data["Delete member"][language]} {selectedMember.name} {data["from family"][language]}</button></div>
