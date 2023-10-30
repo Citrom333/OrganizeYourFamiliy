@@ -69,7 +69,7 @@ function SignUp() {
                         />
                     </label>
                     <label>
-                        <p>{data["Family password"][language]} </p>
+                        <p>{data["Family password"][language]}  {data["Min6chars"][language]} </p>
                         <input
                             onChange={(e) => passwordValidator(e, setMessage, "family", setPassword, language)}
                             type="password"

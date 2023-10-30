@@ -711,7 +711,7 @@
         "Italiano": "Parola d'ordine della famiglia ",
         "Français": "Mot de passe familial "
     },
-    "(Min. 6 characters letters and numbers)": {
+    "Min6chars": {
         "Hungarian": "(min. 6 karakter, betűk és számok)",
         "English": "(Min. 6 characters letters and numbers)",
         "Español": "(Mínimo 6 caracteres, letras y números)",
