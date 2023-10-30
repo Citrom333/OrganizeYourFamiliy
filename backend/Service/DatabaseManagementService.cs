@@ -11,8 +11,16 @@ namespace backend.Service
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<OrganizerContext>();
-                //context.Database.EnsureDeleted();
-                context.Database.Migrate();
+                // context.Database.EnsureDeleted();
+                // context.Database.Migrate();
+                if (context != null)
+                {
+                    // Ellenőrizd, hogy az adatbázis már létezik-e, mielőtt a migrációkat elvégeznéd.
+                    if (!context.Database.CanConnect())
+                    {
+                        context.Database.Migrate();
+                    }
+                }
             }
         }
     }
