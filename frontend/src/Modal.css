@@ -28,15 +28,16 @@
         flex-direction: column;
     }
 
-    @media (min-width: 560px) {
+    @media (min-width: 636px) {
         .modal {
             width: 50vw;
         }
     }
 
-    @media (max-width: 559px) {
+    @media (max-width: 635px) {
         .modal {
-            width: 80vw;
+            width: 100vw;
+            height: 100vh;
         }
     }
 

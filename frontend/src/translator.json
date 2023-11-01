@@ -39,6 +39,14 @@
         "Italiano": "Il nome del programma",
         "Français": "Nom du programme"
     },
+    "program": {
+        "Hungarian": "Prog.",
+        "English": "Prog.",
+        "Español": "Prog.",
+        "Deutsch": "Prog.",
+        "Italiano": "Prog.",
+        "Français": "Prog."
+    },
     "Start": {
         "Hungarian": "Kezdés",
         "English": "Start",
@@ -270,6 +278,62 @@
         "Deutsch": "Samstag",
         "Italiano": "Sabato",
         "Français": "Samedi"
+    },
+    "SunShort": {
+        "Hungarian": "Vas",
+        "English": "Sun",
+        "Español": "Dom",
+        "Deutsch": "Son",
+        "Italiano": "Dom",
+        "Français": "Dim"
+    },
+    "MonShort": {
+        "Hungarian": "Hé",
+        "English": "Mon",
+        "Español": "Lun",
+        "Deutsch": "Mon",
+        "Italiano": "Lun",
+        "Français": "Lun"
+    },
+    "TueShort": {
+        "Hungarian": "Ke",
+        "English": "Tue",
+        "Español": "Mar",
+        "Deutsch": "Dien",
+        "Italiano": "Mar",
+        "Français": "Mar"
+    },
+    "WedShort": {
+        "Hungarian": "Sze",
+        "English": "Wed",
+        "Español": "Miér",
+        "Deutsch": "Mit",
+        "Italiano": "Mer",
+        "Français": "Mer"
+    },
+    "ThuShort": {
+        "Hungarian": "Csü",
+        "English": "Thu",
+        "Español": "Jue",
+        "Deutsch": "Don",
+        "Italiano": "Gio",
+        "Français": "Jeu"
+    },
+    "FriShort": {
+        "Hungarian": "Pé",
+        "English": "Fri",
+        "Español": "Vie",
+        "Deutsch": "Fre",
+        "Italiano": "Ven",
+        "Français": "Ven"
+    },
+    "SatShort": {
+        "Hungarian": "Szo",
+        "English": "Sat",
+        "Español": "Sáb",
+        "Deutsch": "Sam",
+        "Italiano": "Sab",
+        "Français": "Sam"
     },
     "January": {
         "Hungarian": "Január",
@@ -583,13 +647,13 @@
         "Italiano": "Indietro",
         "Français": "Retour"
     },
-    "My todos:": {
-        "Hungarian": "Feladataim",
-        "English": "My todos:",
-        "Español": "Mis quehaceres",
-        "Deutsch": "Meine Aufgaben",
-        "Italiano": "Le mie cose da fare",
-        "Français": "Mes tâches :"
+    "todo": {
+        "Hungarian": "Felad.",
+        "English": "Todo",
+        "Español": "Quehac.",
+        "Deutsch": "Aufg.",
+        "Italiano": "Cos.f.",
+        "Français": "Tâche"
     },
     "Updated": {
         "Hungarian": "Módosítva",

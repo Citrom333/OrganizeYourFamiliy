@@ -1,6 +1,7 @@
 import data from "../translator.json"
 import React, { useState, useEffect } from 'react';
 import '../Calendar.css';
+import "../MobileStyle.css";
 
 const Calendar = (props) => {
     const language = localStorage.getItem("language");
@@ -16,13 +17,22 @@ const Calendar = (props) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const renderDaysOfWeek = () => {
         return (
-            <div className='dayNames'>
-                {days.map((day) =>
-                (<div key={day} className="day-of-week">
-                    {data[day][language]}
+            <>
+                <div className='dayNames'>
+                    {days.map((day) =>
+                    (<div key={day} className="day-of-week">
+                        {data[`${day}`][language]}
+                    </div>
+                    ))}
                 </div>
-                ))}
-            </div>
+                <div className='dayNamesShort'>
+                    {days.map((day) =>
+                    (<div key={day} className="day-of-week">
+                        {data[`${day}Short`][language]}
+                    </div>
+                    ))}
+                </div>
+            </>
         );
     };
 
@@ -88,10 +98,10 @@ const Calendar = (props) => {
                     <div className="tablecontent dayDate">{currentDate.getDate()}</div>
                     {!props.isMainPage ?
                         getToDos(currentDate).length > 0 ?
-                            getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id, "todo")}>{t.taskName}</div>)
+                            getToDos(currentDate).map(t => <div key={t.id} className={t.ready ? "tablecontent ready event" : "tablecontent not_ready event"} onClick={(e) => props.handleClick(t.id, "todo")}><p className="calendarEventName">{t.taskName}</p><p className="calEventNameShort">{data["todo"][language]}</p></div>)
                             : "" : ""}
                     {Object.keys(getPrograms(currentDate)).length > 0 ?
-                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId] > 7 ? "7" : getPrograms(currentDate)[pId]} onClick={(e) => props.handleClick(pId, "program")}>{props.programs.find(p => p.id === parseInt(pId)).name}</div>)
+                        Object.keys(getPrograms(currentDate)).map((pId, index) => <div key={index} className={`tablecontent event `} data-span={getPrograms(currentDate)[pId] > 7 ? "7" : getPrograms(currentDate)[pId]} onClick={(e) => props.handleClick(pId, "program")}><p className="calendarEventName">{props.programs.find(p => p.id === parseInt(pId)).name}</p><p className="calEventNameShort">{data["program"][language]}</p></div>)
                         : ""}
                 </div>
 
