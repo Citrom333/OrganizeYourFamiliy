@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import DateInput from "./DateInput";
 import passwordValidator from "../CostumHooks/passwordValidator";
+import canBeAdult from "../CostumHooks/canBeAdult";
 const UpdateMember = (props) => {
     const language = localStorage.getItem("language");
     const [page, setPage] = useState(3);
@@ -15,12 +16,14 @@ const UpdateMember = (props) => {
     const [chosenPic, setChosenPic] = useState(props.toUpdate.avatarPic);
     const [changeAvatar, setChangeAvatar] = useState(false);
     const [message, setMessage] = useState("");
+    const [adult, setAdult] = useState(false);
     useEffect(() => {
         let newList = [];
         for (let i = 1; i <= 9; i++) {
             newList.push(`../images/set${page}/avatar0${i}.png`);
         };
         setAvatarpics(newList);
+        canBeAdult(setAdult, birthDate)
     }, [page, language]);
     const fetchUpdateMember = async () => {
         try {
@@ -102,7 +105,7 @@ const UpdateMember = (props) => {
                                 <p>{data["Family role"][language]}</p>
                                 <select onChange={(e) => setFamilyRole(e.target.value)}>
                                     <option value={familyRole}></option>
-                                    <option value={0}>{data["Adult"][language]}</option>
+                                    {adult ? <option value={0}>{data["Adult"][language]}</option> : ""}
                                     <option value={1}>{data["Child"][language]}</option>
                                 </select>
                             </label>
