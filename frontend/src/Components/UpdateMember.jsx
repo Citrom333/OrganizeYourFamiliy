@@ -99,7 +99,7 @@ const UpdateMember = (props) => {
                             </label>
                             <label>
                                 <p>{data["Date of birth"][language]}</p>
-                                <DateInput value={1} selected={new Date(Date.parse(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
+                                <DateInput value={birthDate} selected={new Date(Date.parse(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
                             </label>
                             <label>
                                 <p>{data["Family role"][language]}</p>
