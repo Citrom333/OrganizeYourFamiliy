@@ -49,7 +49,7 @@ function MyPage() {
         <>
             <div className="myPage">
                 <div>
-                    <div key={user.id}><div className="avatarPicAndCrown">{leader == user.id ? <img className="userCrown" src="../images/crown3.png" /> : ""}<img className="userAvatarPic" src={user.avatarPic} /></div><div>{user.name}</div></div>
+                    <div key={user.id}><div className="avatarPicAndCrown">{leader == user.id ? <img className="userCrown" src="../images/crown4.png" /> : ""}<img className="userAvatarPic" src={user.avatarPic} /></div><div>{user.name}</div></div>
                 </div>
                 <h1>{data["My page"][language]}</h1>
                 {isLeader || localStorage.getItem("isAdult") == "false" ? "" : <button className="candyButton" onClick={e => setSetLeaderIsOpen(true)}>{data["Be the leader"][language]}</button>}

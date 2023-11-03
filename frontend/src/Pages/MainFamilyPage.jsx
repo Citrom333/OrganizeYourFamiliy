@@ -59,7 +59,7 @@ function MainFamilyPage() {
                     {location.pathname == '/MainFamilyPage' ?
                         <div><div><h1>{data["This is my family"][language]}</h1>
                             <div className="memberAvatars">
-                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><div className="avatarPicAndCrown">{leader == mem.id ? <img className="crown" src="../images/crown3.png" /> : ""}<img className="avatarPic" id={selectedMember === mem ? "chosenPicture" : ""} src={mem.avatarPic} /></div><div><h3>{mem.name}</h3></div></div>) : ""}
+                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><div className="avatarPicAndCrown">{leader == mem.id ? <img className="crown" src="../images/crown4.png" /> : ""}<img className="avatarPic" id={selectedMember === mem ? "chosenPicture" : ""} src={mem.avatarPic} /></div><div><h3>{mem.name}</h3></div></div>) : ""}
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
