@@ -9,6 +9,7 @@ const AddNewProgram = (props) => {
     const [end, setEnd] = useState(new Date());
     const [place, setPlace] = useState("");
     const [cost, setCost] = useState("");
+    const [message, setMessage] = useState("");
     const [participants, setParticipants] = useState([]);
     const [isChecked, setIsChecked] = useState(new Array(props.users.length).fill(false));
     const fetchAddProgram = async () => {
@@ -46,8 +47,11 @@ const AddNewProgram = (props) => {
         }
     };
     const handleSubmit = (e) => {
-        e.preventDefault()
-        fetchAddProgram();
+        if (end >= start) {
+            e.preventDefault()
+            fetchAddProgram();
+        }
+        else setMessage(data["ERROR"][language])
     };
     const handleCheckboxChange = (e) => {
         let change = [...isChecked];
@@ -108,6 +112,7 @@ const AddNewProgram = (props) => {
                 <div>
                     <input className="submit" type="submit" value={data["Add program"][language]} />
                 </div>
+                <p>{message}</p>
             </form>
         </div>
     );

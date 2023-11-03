@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import DateInput from "../Components/DateInput";
 import passwordValidator from "../CostumHooks/passwordValidator";
+import canBeAdult from "../CostumHooks/canBeAdult";
 export default function AddMember() {
     const [language, setLanguage] = useOutletContext();
     const [page, setPage] = useState(3);
@@ -21,7 +22,7 @@ export default function AddMember() {
             newList.push(`../images/set${page}/avatar0${i}.png`);
         };
         setAvatarpics(newList);
-        canBeAdult();
+        canBeAdult(setAdult, birthDate);
     }, [page, language, birthDate]);
 
     const handleSubmit = async (e) => {
@@ -70,18 +71,8 @@ export default function AddMember() {
             setMessage(data["The passwords are different"][language])
         }
     }
-    const canBeAdult = () => {
-        let date = new Date();
-        if (birthDate !== "") {
-            let bDay = new Date(birthDate);
-            var age = date.getFullYear() - bDay.getFullYear();
-            var m = date.getMonth() - bDay.getMonth();
-            if (m < 0 || (m === 0 && date.getDate() < bDay.getDate())) {
-                age--;
-            }
-            setAdult(age >= 16);
-        }
-    }
+
+
     return (
         <>
             <div>
