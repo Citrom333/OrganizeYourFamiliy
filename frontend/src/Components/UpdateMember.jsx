@@ -93,13 +93,13 @@ const UpdateMember = (props) => {
                             <label>
                                 <p>{data["Member pin"][language]}</p>
                                 <input
-                                    onChange={(e) => passwordValidator(e, setMessage, "member", setPassword1, language)}
+                                    onChange={(e) => passwordValidator(e, setMessage, "member", setPassword, language)}
                                     type="password"
                                 />
                             </label>
                             <label>
                                 <p>{data["Date of birth"][language]}</p>
-                                <DateInput value={birthDate.split("T")[0]} selected={new Date(Date.parse(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
+                                <DateInput value={1} selected={new Date(Date.parse(birthDate))} setter={setBirthdate} timeNeeded={false} language={language} />
                             </label>
                             <label>
                                 <p>{data["Family role"][language]}</p>
