@@ -26,6 +26,7 @@ const UpdateMember = (props) => {
         canBeAdult(setAdult, birthDate)
     }, [page, language]);
     const fetchUpdateMember = async () => {
+        let stringBday = `${new Date(birthDate).getFullYear()}-${(new Date(birthDate).getMonth() + 1).toString().padStart(2, '0')}-${new Date(birthDate).getDate().toString().padStart(2, '0')}`;
         try {
             let res = await fetch("/api/User", {
                 method: "PUT",
@@ -37,7 +38,7 @@ const UpdateMember = (props) => {
                     name: name,
                     password: password,
                     familyRole: familyRole,
-                    birthday: birthDate.split(".").join("-"),
+                    birthday: stringBday,
                     familyId: localStorage.getItem("familyId"),
                     avatarPic: chosenPic
                 }),
