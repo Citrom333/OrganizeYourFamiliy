@@ -49,7 +49,8 @@ const UpdateMember = (props) => {
                 setMessage(data["Some error occured"][language]);
             }
         } catch (err) {
-            setMessage(err);
+            console.log(err);
+            setMessage(data["ERROR"][language]);
         }
     };
     const handleSubmit = (e) => {
