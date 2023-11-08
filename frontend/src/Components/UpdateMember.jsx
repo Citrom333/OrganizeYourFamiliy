@@ -9,7 +9,6 @@ const UpdateMember = (props) => {
     const [page, setPage] = useState(3);
     const [avatarPics, setAvatarpics] = useState([]);
     const [name, setName] = useState(props.toUpdate.name);
-    const [password1, setPassword1] = useState(props.toUpdate.password);
     const [password, setPassword] = useState("confirmation");
     const [birthDate, setBirthdate] = useState(props.toUpdate.birthday);
     const [familyRole, setFamilyRole] = useState(props.toUpdate.familyRole);
