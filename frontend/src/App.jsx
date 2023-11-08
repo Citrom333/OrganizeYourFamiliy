@@ -16,8 +16,8 @@ function App() {
     <>
       <div className="flag-dropdown-content" onMouseEnter={() => setShowFlags(true)}
         onMouseLeave={() => setShowFlags(false)}>
-        <img className="flag language" src={`../images/flags/${language}.png`} ></img>
-        {showFlags ? flags.map(flag => <img key={flag} className={language === flag ? "flag hidden" : "flag other"} onClick={e => setLanguage(flag)} src={`../public/images/flags/${flag}.png`} ></img>) : ""}
+        <img className="flag language" src={`/images/flags/${language}.png`} ></img>
+        {showFlags ? flags.map(flag => <img key={flag} className={language === flag ? "flag hidden" : "flag other"} onClick={e => setLanguage(flag)} src={`/images/flags/${flag}.png`} ></img>) : ""}
       </div>
       <div>
         {location.pathname === "/" || location.pathname === "" ? <div>
