@@ -71,7 +71,6 @@ table {
 @media (min-width: 636px) {
     .dayNames {
         display: contents;
-        max-height: fit-content;
         /* display: inline-grid;
         max-width: 11.4vw;
         grid-row: none; */
