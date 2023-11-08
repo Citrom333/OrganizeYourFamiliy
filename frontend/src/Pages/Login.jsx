@@ -24,17 +24,25 @@ function Login() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: familyname, password: password }),
         })
-            .then((response) => {
+            .then(async (response) => {
                 if (response.status !== 200) {
+                    console.log("2");
+                    const details = await response.text();
                     setMessage(data["Wrong login details"][language]);
-                    return null;
+                    return false;
                 }
-                else return response.json()
+                else {
+                    console.log(details);
+                    return null;
+                    response.json()
+                }
             })
             .then((data) => {
+                console.log("3");
                 if (data != null)
                     localStorage.setItem("familyName", data.name);
                 else setMessage(data["Wrong login details"][language]);
+                console.log("4");
                 return data != null;
             });
     };
