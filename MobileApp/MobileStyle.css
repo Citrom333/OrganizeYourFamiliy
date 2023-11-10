@@ -1,0 +1,63 @@
+@media (min-width: 636px) {
+
+    .calEventNameShort {
+        display: none;
+    }
+
+    .dayNamesShort {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: none;
+    }
+}
+
+@media (max-width: 635px) {
+
+    .mainPageDiv {
+        margin-top: 30%;
+        margin-bottom: 10%;
+    }
+
+    .dayNames {
+        display: none;
+    }
+
+    .dayNamesShort {
+        display: contents;
+
+    }
+
+    .calendarEventName {
+        display: none;
+    }
+
+    .calEventNameShort {
+        display: contents;
+    }
+
+    .navbuttons {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: inline;
+        position: fixed;
+        top: 3px;
+        right: 30px;
+        width: 60px;
+    }
+
+    .mobileMenu:hover {
+        transform: translateY(5%);
+    }
+
+    .mobileMenu:active {
+        transform: scale(0.9);
+    }
+
+    .navmenu {
+        align-items: center;
+    }
+}
