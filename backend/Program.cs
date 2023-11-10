@@ -38,22 +38,30 @@ builder.Services.AddTransient<IToDoService, ToDoService>();
 builder.Services.AddTransient<IScheduledProgramService, ScheduledProgramService>();
 builder.Services.AddTransient<IRewardService, RewardService>();
 builder.Services.AddCors(options =>
-{
+{  
     options.AddPolicy("AllowAnyOrigin",
         builder =>
         {
-            builder.WithOrigins("http://localhost:5150")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            builder.WithOrigins("http://localhost:5200")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
             builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .WithExposedHeaders("Content-Disposition")
-                .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+                .SetPreflightMaxAge(TimeSpan.FromSeconds(3600)); 
+        });
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5150")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5200")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
