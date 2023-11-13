@@ -4,6 +4,7 @@ body {
 }
 
 .mainPageDiv {
+    width: 100%;
     margin-top: 80%;
     margin-bottom: 10%;
 }
