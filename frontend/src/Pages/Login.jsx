@@ -1,6 +1,6 @@
 import data from "../translator.json"
 import { useNavigate } from "react-router-dom"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 function Login() {
     const [language, setLanguage] = useOutletContext();
@@ -8,8 +8,9 @@ function Login() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const fetchFamilyId = async () =>
-        await fetch(`http://146.190.206.130:7176/Family/${localStorage.getItem("familyName")}`, {
+    const fetchFamilyId = async () => {
+        await fetch(`http://146.190.206.130:7176/Family/${name}`, {
+            // await fetch(`http://146.190.206.130:7176/Family/Rédei`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         }).then((response) => response.json())
@@ -19,36 +20,73 @@ function Login() {
                 localStorage.setItem("leader", json.leaderOfFamilyId);
                 localStorage.setItem("language", language);
             });
-    const fetchLogin = async (familyname, password) => {
-        return await fetch("http://146.190.206.130:7176/Family/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: "Rédei", password: "030713Roland" }),
+    };
+    const testFetch = async () => {
+        const result = await fetch('https://quotes-by-api-ninjas.p.rapidapi.com/v1/quotes', {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'cee3bd1e22msheedb98e87dec740p196316jsn6d22f5917037',
+                'X-RapidAPI-Host': 'quotes-by-api-ninjas.p.rapidapi.com'
+            }
         })
-            .then((response) => {
-                if (response.status !== 200) {
-                    setMessage(data["Wrong login details"][language]);
-                    return null;
-                }
-                else return response.json()
+            .then(response => response.json())
+            .then(data => {
+                setMessage(data[0].quote);
+                return true
             })
-            .then((data) => {
-                console.log(data);
-                if (data != null)
-                    localStorage.setItem("familyName", data.name);
-                else setMessage(data["Wrong login details"][language]);
-                return data != null;
-            });
+            .catch(error => { console.error(error); return false });
+        return result
+    };
+    const fetchLogin = async (familyname, password) => {
+        try {
+            // const result = await fetch("http://localhost:7146/Family/login", {
+            const result = await fetch("https://api-cors-proxy.herokuapp.com/http://146.190.206.130:7176/Family/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: "Rédei", password: "030713Roland" }),
+            })
+                .then((response) => {
+                    console.log("Státusz:");
+                    console.log(response.status);
+                    if (response.status !== 200) {
+                        setMessage(data["Wrong login details"][language]);
+                        return null;
+                    }
+                    else return response.json()
+                })
+                .then((data) => {
+                    console.log(data);
+                    if (data != null)
+                        localStorage.setItem("familyName", data.name);
+                    else setMessage(data["Wrong login details"][language]);
+                    return data != null;
+                });
+            return result;
+        }
+        catch (error) {
+            console.log(error)
+            return false;
+        }
     };
     const handleLogin = async () => {
         localStorage.clear();
-        let success = await fetchLogin(name, password);
-        await fetchFamilyId();
-        if (!success) {
-            setMessage(data["Wrong login details"][language]);
+        let test = await testFetch();
+        if (test) {
+            let success = await fetchLogin(name, password);
+            if (!success) {
+                setMessage(data["Wrong login details"][language]);
+            }
+            else {
+                // setMessage("success");
+                // console.log("SUCCESS");
+                // await fetchFamilyId();
+                //    navigate("/MainFamilyPage");
+            }
         }
-        else navigate("/MainFamilyPage");
-    }
+    };
+    useEffect(() => {
+
+    }, [message]);
     return (
         <>
             <div>

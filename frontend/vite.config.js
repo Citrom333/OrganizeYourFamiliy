@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: 'http://backend:7176',
+        target: 'http://146.190.206.130:7176',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false
@@ -15,6 +15,6 @@ export default defineConfig({
     },
     host: true,
     strictPort: true,
-    port: 5100,
+    port: 5150,
   },
 })
