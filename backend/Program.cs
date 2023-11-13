@@ -43,26 +43,10 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder.AllowAnyOrigin()
-                .WithOrigins("http://localhost:5150","http://localhost:5200")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
-                .WithExposedHeaders("Content-Disposition")
-                .SetPreflightMaxAge(TimeSpan.FromSeconds(3600)); 
-        });
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:5150")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:5200")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
+                .WithExposedHeaders("Content-Disposition");
         });
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
