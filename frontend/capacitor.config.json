@@ -3,7 +3,6 @@
   "appName": "FamilyOrganizer",
   "webDir": "dist",
   "server": {
-    "hostname": "localhost:5200",
     "cleartext": true
   }
 }
