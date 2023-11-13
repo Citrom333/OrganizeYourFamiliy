@@ -37,7 +37,18 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IToDoService, ToDoService>();
 builder.Services.AddTransient<IScheduledProgramService, ScheduledProgramService>();
 builder.Services.AddTransient<IRewardService, RewardService>();
-
+builder.Services.AddCors(options =>
+{  
+    options.AddPolicy("AllowAnyOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithExposedHeaders("Content-Disposition");
+        });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,9 +63,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAnyOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
