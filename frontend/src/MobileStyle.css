@@ -60,4 +60,16 @@
     .navmenu {
         align-items: center;
     }
+
+    #root {
+        display: contents;
+    }
+}
+
+@media (max-width: 350px) {
+
+
+    #root {
+        text-size-adjust: 70%;
+    }
 }
