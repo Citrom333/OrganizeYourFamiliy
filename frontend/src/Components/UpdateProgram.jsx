@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import React from 'react';
 import { useState, useEffect } from 'react';
 import DateInput from "./DateInput";
@@ -20,7 +21,7 @@ const UpdateProgram = (props) => {
     }, [language]);
     const fetchUpdateProgram = async () => {
         try {
-            let res = await fetch(`/api/ScheduledProgram`, {
+            let res = await fetch(`${route.api}/ScheduledProgram`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

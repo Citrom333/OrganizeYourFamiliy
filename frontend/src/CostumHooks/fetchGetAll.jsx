@@ -1,5 +1,6 @@
+import route from "../backendRoute.json"
 export default async function fetchGetAll(toGet, setter, param = "") {
-    const route = toGet === "rewards" ?
+    const routing = toGet === "rewards" ?
         "Reward" :
         toGet === "members" ?
             "User" :
@@ -9,7 +10,7 @@ export default async function fetchGetAll(toGet, setter, param = "") {
                     "ScheduledProgram" :
                     toGet === "families" ?
                         "Family" : "";
-    let result = await fetch(`/api/${route}${param}`, {
+    let result = await fetch(`${route.api}/${routing}${param}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     }).then((response) => response.json())

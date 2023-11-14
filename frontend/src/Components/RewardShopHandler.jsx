@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import { useState, useEffect } from "react";
 import fetchGetAll from "../CostumHooks/fetchGetAll";
 export default function RewardShopHandler() {
@@ -40,7 +41,7 @@ export default function RewardShopHandler() {
         setUpdater(false);
         setChanged(true);
         try {
-            const response = await fetch(`/api/Reward/`, {
+            const response = await fetch(`${route.api}/Reward/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +70,7 @@ export default function RewardShopHandler() {
         setChanged(true);
         setCreator(false);
         try {
-            const response = await fetch(`/api/Reward`, {
+            const response = await fetch(`${route.api}/Reward`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,6 +1,7 @@
+import route from "../backendRoute.json"
 export default async function handleLogout(navigate) {
     try {
-        let res = await fetch("/api/Family/logout", {
+        let res = await fetch(`${route.api}/Family/logout`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

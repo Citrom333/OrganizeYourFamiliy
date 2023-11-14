@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import React from 'react';
 import { useState } from 'react';
 import DateInput from "./DateInput";
@@ -14,7 +15,7 @@ const AddNewProgram = (props) => {
     const [isChecked, setIsChecked] = useState(new Array(props.users.length).fill(false));
     const fetchAddProgram = async () => {
         try {
-            let res = await fetch(`/api/ScheduledProgram`, {
+            let res = await fetch(`${route.api}/ScheduledProgram`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import passwordValidator from "../CostumHooks/passwordValidator";
@@ -18,7 +19,7 @@ function SignUp() {
         else if (families.map(fam => fam.name).includes(name)) { setMessage(data["This name is already used"][language]) }
         else {
             try {
-                let res = await fetch("/api/Family", {
+                let res = await fetch(`${route.api}/Family`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

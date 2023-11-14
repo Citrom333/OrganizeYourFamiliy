@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
@@ -17,7 +18,7 @@ function LoginAsFamilyMember() {
     }, [members.length])
 
     const fetchLogin = async (username, password, id) => {
-        await fetch("/api/User/login", {
+        await fetch(`${route.api}/User/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: username, password: password }),

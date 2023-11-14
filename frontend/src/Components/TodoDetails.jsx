@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import { useState, useEffect } from "react"
 import fetchRewardpoints from "../CostumHooks/fetchRewardpoints";
 export default function TodoDetails(props) {
@@ -7,7 +8,7 @@ export default function TodoDetails(props) {
     const handleCheckboxChange = async () => {
         setIsChecked(!isChecked);
         try {
-            let res = await fetch("/api/ToDo", {
+            let res = await fetch(`${route.api}/ToDo`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

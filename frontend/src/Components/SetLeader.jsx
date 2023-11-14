@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import { useState } from "react";
 export default function SetLeader(props) {
     const language = localStorage.getItem("language");
@@ -6,7 +7,7 @@ export default function SetLeader(props) {
     const [answered, setAnswered] = useState(false);
     const setAsLeader = async () => {
         try {
-            let res = await fetch(`/api/Leader/${props.familyId}/${props.userId}`, {
+            let res = await fetch(`${route.api}/Leader/${props.familyId}/${props.userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

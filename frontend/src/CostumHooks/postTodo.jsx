@@ -1,6 +1,7 @@
+import route from "../backendRoute.json"
 export default async function postTodo(taskName, description, deadline, toDoType, rewardPoint, userId) {
     try {
-        const response = await fetch(`/api/ToDo`, {
+        const response = await fetch(`${route.api}/ToDo`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import data from "../translator.json";
+import route from "../backendRoute.json"
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import DateInput from "../Components/DateInput";
@@ -27,12 +28,9 @@ export default function AddMember() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(new Date(birthDate));
         let stringBday = `${new Date(birthDate).getFullYear()}-${(new Date(birthDate).getMonth() + 1).toString().padStart(2, '0')}-${new Date(birthDate).getDate().toString().padStart(2, '0')}`;
-        console.log(stringBday);
-        console.log(`name: ${name}, password: ${password}, birthDate: ${birthDate}, familyRole: ${familyRole}, chosenPic: ${chosenPic}`);
         try {
-            let res = await fetch("/api/User", {
+            let res = await fetch(`${route.api}/User`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

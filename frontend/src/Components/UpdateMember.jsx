@@ -1,4 +1,5 @@
 import data from "../translator.json"
+import route from "../backendRoute.json"
 import React from 'react';
 import { useState, useEffect } from 'react';
 import DateInput from "./DateInput";
@@ -27,7 +28,7 @@ const UpdateMember = (props) => {
     const fetchUpdateMember = async () => {
         let stringBday = `${new Date(birthDate).getFullYear()}-${(new Date(birthDate).getMonth() + 1).toString().padStart(2, '0')}-${new Date(birthDate).getDate().toString().padStart(2, '0')}`;
         try {
-            let res = await fetch("/api/User", {
+            let res = await fetch(`${route.api}/User`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
