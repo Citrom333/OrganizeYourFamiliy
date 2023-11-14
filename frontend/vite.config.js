@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: 'http://146.190.206.130:7176',
+        target: 'https://familyorganizer.xyz:7176',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false
@@ -15,6 +15,6 @@ export default defineConfig({
     },
     host: true,
     strictPort: true,
-    port: 5150,
+    port: 5100,
   },
 })

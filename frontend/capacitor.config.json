@@ -2,6 +2,11 @@
   "appId": "com.example.app",
   "appName": "FamilyOrganizer",
   "webDir": "dist",
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  },
   "server": {
     "cleartext": true
   }

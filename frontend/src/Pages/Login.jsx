@@ -9,8 +9,8 @@ function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const fetchFamilyId = async () => {
-        await fetch(`http://146.190.206.130:7176/Family/${name}`, {
-            // await fetch(`http://146.190.206.130:7176/Family/Rédei`, {
+        await fetch(`https://familyorganizer.xyz:7176/Family/${name}`, {
+            // await fetch(`http://146.190.206.130:7176/Family`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         }).then((response) => response.json())
@@ -40,7 +40,7 @@ function Login() {
     const fetchLogin = async (familyname, password) => {
         try {
             // const result = await fetch("http://localhost:7146/Family/login", {
-            const result = await fetch("https://api-cors-proxy.herokuapp.com/http://146.190.206.130:7176/Family/login", {
+            const result = await fetch("https://familyorganizer.xyz:7176/Family/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: "Rédei", password: "030713Roland" }),
@@ -77,10 +77,10 @@ function Login() {
                 setMessage(data["Wrong login details"][language]);
             }
             else {
-                // setMessage("success");
-                // console.log("SUCCESS");
-                // await fetchFamilyId();
-                //    navigate("/MainFamilyPage");
+                setMessage("success");
+                console.log("SUCCESS");
+                await fetchFamilyId();
+                navigate("/MainFamilyPage");
             }
         }
     };
