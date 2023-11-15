@@ -26,6 +26,7 @@ function LoginAsFamilyMember() {
             .then((response) => response.status !== 200 ? response : response.json())
             .then((data) => {
                 localStorage.setItem("userName", data.name);
+                localStorage.setItem("userPassword", password);
                 localStorage.setItem("userId", id);
                 localStorage.setItem("isAdult", members.find(mem => mem.id == id).familyRole === "0");
                 data.name === undefined

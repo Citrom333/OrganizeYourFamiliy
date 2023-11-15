@@ -32,6 +32,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   flex-direction: row-reverse;
+  justify-content: center;
 }
 
 h1 {
