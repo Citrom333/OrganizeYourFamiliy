@@ -114,7 +114,7 @@ export default function AddMember() {
                         <div className="pagination">
                             <img onClick={e => page > 1 ? setPage(page - 1) : ""} className={page === 1 ? "arrow left paginationElement inactive" : "arrow left paginationElement"} src="../images/arrow.png" />
                             <p className="pageNumber paginationElement">{page}</p>
-                            <img onClick={e => page < 10 ? setPage(page + 1) : ""} className={page === 10 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
+                            <img onClick={e => page < 11 ? setPage(page + 1) : ""} className={page === 11 ? "arrow right paginationElement inactive" : "arrow right paginationElement"} src="../images/arrow.png" />
                         </div>
                         <div className="avatarPics">
                             {avatarPics.map((pic, index) =>
