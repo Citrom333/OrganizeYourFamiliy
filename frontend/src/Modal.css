@@ -13,9 +13,9 @@
         flex-wrap: wrap;
     }
 
-    #small {
+    /* #small {
         align-items: center;
-    }
+    } */
 
     .modal {
         background-color: #526e8a;
@@ -26,6 +26,7 @@
         position: absolute;
         display: flex;
         flex-direction: column;
+        overflow: auto;
     }
 
     @media (min-width: 636px) {
@@ -38,12 +39,13 @@
         .modal {
             width: 100vw;
             min-height: 100vh;
+            max-height: max-content;
         }
     }
 
     .modalContent {
         position: relative;
-        top: 5rem;
+        top: 3rem;
     }
 
     .close-button {

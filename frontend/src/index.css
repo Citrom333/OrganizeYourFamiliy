@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   padding-top: env(safe-area-inset-top);
+  overflow: auto;
 }
 
 a {
@@ -33,6 +34,7 @@ body {
   min-height: 100vh;
   flex-direction: row-reverse;
   justify-content: center;
+  overflow: auto;
 }
 
 h1 {
