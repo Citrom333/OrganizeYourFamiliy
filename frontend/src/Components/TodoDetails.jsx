@@ -47,6 +47,7 @@ export default function TodoDetails(props) {
                     onChange={handleCheckboxChange} />
             </form>
             <button className="candyButton" onClick={e => props.setSelected("")}>{data["Back"][language]}</button>
+            <button className="candyButton" onClick={e => props.handleDelete(props.toDo)}>{data["Delete"][language]}</button>
         </div>
     )
 }

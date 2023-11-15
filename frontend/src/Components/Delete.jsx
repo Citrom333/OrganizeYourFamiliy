@@ -8,11 +8,10 @@ export default function Delete(props) {
     const finalDelete = async () => {
         setConfirmed(true);
         try {
-            let url = props.type === "program" ? `${route.api}/ScheduledProgram/${props.toDelete.id}` : "member" ? `${route.api}/User/${props.toDelete.id}` : `${route.api}/ToDo/${props.toDelete.id}`;
+            let url = props.type === "program" ? `${route.api}/ScheduledProgram/${props.toDelete.id}` : props.type === "member" ? `${route.api}/User/${props.toDelete.id}` : `${route.api}/ToDo/${props.toDelete.id}`;
             let res = await fetch(url, {
                 method: "DELETE"
             })
-            console.log(res.status)
             if (res.status === 200) {
                 props.change(true);
                 setMessage(data["Successfully deleted"][language])

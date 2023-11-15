@@ -22,8 +22,10 @@ function MyPage() {
     const [change, setChange] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState("");
     const [selectedProg, setSelectedProg] = useState("");
+    const [selected, setSelected] = useState("");
     const [programs, setPrograms] = useState([]);
     const [members, setMembers] = useState([]);
+    const [type, setType] = useState("");
     const leader = localStorage.getItem("leader");
     let userId = parseInt(localStorage.getItem("userId"));
     let familyId = parseInt(localStorage.getItem("familyId"));
@@ -57,11 +59,13 @@ function MyPage() {
                     {localStorage.getItem("isAdult") == "false" ? <Rewardpoints user={user} /> : ""}
                     <button className="candyButton" onClick={e => setShowAddForm(true)}>{data["Add todo"][language]}</button>
                     <Modal isOpen={setLeaderIsOpen} onClose={e => setSetLeaderIsOpen(false)} child={<SetLeader userId={userId} familyId={familyId} onClose={e => setSetLeaderIsOpen(false)} />} isSmall={true} />
-                    <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => { setProgDetailIsOpen(false); setDeleteIsOpen(true) }} />} />
-                    <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} onClose={e => setDeleteIsOpen(false)} />} isSmall={true} />
+                    <Modal isOpen={progDetailIsOpen} onClose={e => setProgDetailIsOpen(false)} child={<ProgramDetails program={selectedProg} setSelected={setSelectedProg} handleUpdate={e => { setProgDetailIsOpen(false); setUpdateIsOpen(true) }} handleDelete={e => {
+                        setProgDetailIsOpen(false); setDeleteIsOpen(true); setSelected(selectedProg); setType("program")
+                    }} />} />
+                    <Modal isOpen={deleteIsOpen} onClose={e => setDeleteIsOpen(false)} child={<Delete toDelete={selected} setSelected={selected === selectedProg ? setSelectedProg : setSelectedTodo} type={type} change={setChange} onClose={e => setDeleteIsOpen(false)} />} isSmall={true} />
                     <Modal isOpen={updateIsOpen} onClose={e => setUpdateIsOpen(false)} child={<UpdateProgram toUpdate={selectedProg} setSelected={setSelectedProg} type="program" change={setChange} users={members} />} />
                     <Modal isOpen={showAddForm} onClose={e => setShowAddForm(false)} child={<AddTodo setAddedNew={setChange} userId={userId} todos={toDos} />} />
-                    <Modal isOpen={selectedTodo !== ""} onClose={e => setSelectedTodo("")} child={<TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} />} isSmall={true} />
+                    <Modal isOpen={selectedTodo !== ""} onClose={e => setSelectedTodo("")} child={<TodoDetails toDo={selectedTodo} setSelected={setSelectedTodo} handleDelete={e => { setSelectedTodo(""); setDeleteIsOpen(true); setSelected(selectedTodo); setType("todo") }} />} isSmall={true} />
                     <Calendar isMainPage={false} toDos={toDos} handleClick={(id, type) => handleClick(id, type)} toDo={selectedTodo} programs={programs} />
                 </div>
 
