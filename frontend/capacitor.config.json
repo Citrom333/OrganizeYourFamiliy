@@ -1,5 +1,5 @@
 {
-  "appId": "com.example.app",
+  "appId": "com.famorg.app",
   "appName": "FamilyOrganizer",
   "webDir": "dist",
   "plugins": {

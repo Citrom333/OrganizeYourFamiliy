@@ -1,4 +1,4 @@
-package com.example.app;
+package com.famorg.app;
 
 import com.getcapacitor.BridgeActivity;
 
