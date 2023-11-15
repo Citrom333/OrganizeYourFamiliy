@@ -52,7 +52,7 @@ export default function RewardShop(props) {
                 price--;
             }
         }
-        let pointsToRemove = [pointToRemoveFromHousework, pointToRemoveFromSchool, pointToRemoveFromJob, pointToRemoveFromOther]
+        let pointsToRemove = [pointToRemoveFromHousework, pointToRemoveFromJob, pointToRemoveFromSchool, pointToRemoveFromOther]
         return pointsToRemove;
     }
 
@@ -61,8 +61,9 @@ export default function RewardShop(props) {
             setMessage(data["There is no leader of the family, You can' exchange rewards at the moment."][language]);
         }
         else {
-            for (let i = 0; i < handleRemovingpoints(selectedOption.cost).length; i++) {
-                await fetchRewardpoints(-1, handleRemovingpoints(selectedOption.cost)[i], i);
+            const pointsToRemove = handleRemovingpoints(selectedOption.cost);
+            for (let i = 0; i < pointsToRemove.length; i++) {
+                await fetchRewardpoints(-1, pointsToRemove[i], i);
             }
             sendExchangeToLeader();
             setMessage(data["Reward request was sent."][language])
