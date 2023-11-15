@@ -269,6 +269,10 @@ a:active {
     visibility: hidden;
 }
 
+#hidden {
+    display: none;
+}
+
 .gridContainer {
     display: grid;
     justify-items: start;

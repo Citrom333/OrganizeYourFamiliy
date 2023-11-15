@@ -50,7 +50,10 @@ function MainFamilyPage() {
             setMessage("");
         }
         else navigate("/")
-    }, [members.length, programs.length, change, toDos.length, language])
+    }, [members.length, programs.length, change, toDos.length])
+    useEffect(() => {
+        console.log(selectedMember)
+    }, [language, selectedMember])
     return (
         <>
             <div>
@@ -59,7 +62,7 @@ function MainFamilyPage() {
                     {location.pathname == '/MainFamilyPage' ?
                         <div><div><h1>{data["This is my family"][language]}</h1>
                             <div className="memberAvatars">
-                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember === mem ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><div className="avatarPicAndCrown">{leader == mem.id ? <img id={selectedMember === mem ? "" : selectedMember !== "" ? "hidden" : ""} className="crown" src="../images/crown4.png" /> : ""}<img className="avatarPic" id={selectedMember === mem ? "chosenPicture" : selectedMember !== "" ? "hidden" : ""} src={mem.avatarPic} /></div><div><h3 id={selectedMember === mem ? "" : selectedMember !== "" ? "hidden" : ""}>{mem.name}</h3></div></div>) : ""}
+                                {members.length > 0 ? members.map(mem => <div onClick={e => { selectedMember.id === mem.id ? setSelectedMember("") : setSelectedMember(mem); setMessage("") }} key={mem.id}><div className="avatarPicAndCrown">{leader == mem.id ? <img id={selectedMember.id === mem.id || selectedMember === "" ? "" : "hidden"} className="crown" src="../images/crown4.png" /> : ""}<img className="avatarPic" id={selectedMember.id === mem.id || selectedMember === "" ? "" : "hidden"} src={mem.avatarPic} /></div><div><h3 id={selectedMember.id === mem.id || selectedMember === "" ? "" : "hidden"}>{mem.name}</h3></div></div>) : ""}
                             </div>
                         </div>
                             <Modal isOpen={addProgIsOpen} onClose={e => setAddProgIsOpen(false)} child={<AddNewProgram users={members} setAddedNew={setChange} change={change} />} />
