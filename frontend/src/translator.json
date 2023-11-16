@@ -200,7 +200,7 @@
         "Français": "Autres"
     },
     "Rewardpoint": {
-        "Hungarian": "Jutalom",
+        "Hungarian": "Jutalompont",
         "English": "Rewardpoint",
         "Español": "Punto de recompensa",
         "Deutsch": "Belohnungspunkt",
@@ -1206,5 +1206,13 @@
         "Deutsch": "Dieser Name wird bereits verwendet",
         "Italiano": "Questo nome è già utilizzato",
         "Français": "Ce nom est déjà utilisé"
+    },
+    "Write a number": {
+        "Hungarian": "Írj egy számot",
+        "English": "Write a number",
+        "Español": "Escribe un número",
+        "Deutsch": "Eine Zahl schreiben",
+        "Italiano": "Scrivere un numero",
+        "Français": "Écrire un nombre"
     }
 }
