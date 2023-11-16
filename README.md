@@ -2,13 +2,13 @@
 Planner and organizer 
 
 ## Table of Contents
-1.[Description]()
-2.[Tech stack]()
-3.[How to Install and Run the App]()
-4.[Run from browser]()
-5.[Run from local machine]()
-6.[Run from device]()
-7.[How to Use the Project]()
+1.[Description](https://github.com/Citrom333/OrganizeYourFamily#description)</br>
+2.[Tech stack](https://github.com/Citrom333/OrganizeYourFamily#tech-stack)</br>
+3.[How to Install and Run the App](https://github.com/Citrom333/OrganizeYourFamily#how-to-install-and-run-the-app)</br>
+4.[Run from browser](https://github.com/Citrom333/OrganizeYourFamily#a-easiest-way---follow-this-link-httpsfamilyorganizerxyz)</br>
+5.[Run from local machine](https://github.com/Citrom333/OrganizeYourFamily#b-run-in-localhost-on-your-machine)</br>
+6.[Run from device](https://github.com/Citrom333/OrganizeYourFamily#c-run-from-emulator-or-your-own-mobile-device-android)</br>
+7.[How to Use the Project](https://github.com/Citrom333/OrganizeYourFamily#how-to-use-the-project)
 
 ## Description
 It is a web application for scheduling programs, and planning tasks for family members. It has a rewarding system for motivating. 
