@@ -15,7 +15,10 @@ export default function AddTodo(props) {
     let userId = props.userId;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(`: ${taskName}, : ${description}, : ${deadline}, type: ${toDoType}, : ${userId}`);
+        if (isNAN(rewardPoint)) {
+            setMessage(data["Write a number"][language]);
+            return;
+        }
         try {
             let res = await postTodo(taskName, description, deadline, toDoType, rewardPoint, userId);
             if (res.status === 200) {
@@ -91,6 +94,7 @@ export default function AddTodo(props) {
                         <input
                             value={rewardPoint}
                             onChange={(e) => setRewardpoint(e.target.value)}
+                            type="number"
                         />
                     </label>
                     <div>
