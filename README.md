@@ -43,7 +43,7 @@ The application is deployed, so you can simply use it from your browser.</br>
 ### b) Run in localhost, on your machine
 For this, you will need docker, and docker compose on your machine.</br>
 ###
-Clone the main repository.
+Clone the main branch from repository.
 ```
 git clone https://github.com/Citrom333/OrganizeYourFamily.git
 ```
@@ -56,7 +56,7 @@ Now the app is running from localhost. You can open it in your browser.  http://
 
 
 ### c) Run from emulator or your own mobile device (Android)
-First you'll need to clone the AppForMobile repository. Run the following command in your terminal: </br>
+First you'll need to clone the AppForMobile branch from repository. Run the following command in your terminal: </br>
 ```
 git clone -b AppForMobile https://github.com/Citrom333/OrganizeYourFamily.git
 ```
