@@ -107,6 +107,7 @@ const AddNewProgram = (props) => {
                     <input
                         value={cost}
                         onChange={(e) => setCost(e.target.value)}
+                        type="number"
                     />
                 </label>
                 <div>
