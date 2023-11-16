@@ -148,6 +148,7 @@ body {
 button {
     background-color: bisque;
     margin: 10px;
+    color: rgb(6, 11, 55);
 }
 
 select,
@@ -157,6 +158,7 @@ input {
     padding-left: 20px;
     height: 50px;
     font-size: 14px;
+    color: rgb(6, 11, 55);
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
