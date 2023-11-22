@@ -15,7 +15,7 @@ export default function AddTodo(props) {
     let userId = props.userId;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isNAN(rewardPoint)) {
+        if (isNaN(rewardPoint)) {
             setMessage(data["Write a number"][language]);
             return;
         }
